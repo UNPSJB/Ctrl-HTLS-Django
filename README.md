@@ -16,10 +16,20 @@ El Centro Hotelero Buena Vista es una organización que centraliza la venta de e
 
 ## Tecnologías Utilizadas
 
+### Backend
+
 - Lenguaje de Programación: [Python](https://www.python.org/) (Versión X.X)
-- Backend: [Django](https://www.djangoproject.com/) (Versión 4.2.4)
-- Frontend: [React.js](https://es.react.dev/) (Versión X.X), [React Router DOM](https://reactrouter.com/en/main) (Versión X.X)
+- Framework: [Django](https://www.djangoproject.com/) (Versión 4.2.4)
+- Framework Adicional: [Django Rest Framework](https://www.django-rest-framework.org/) (Versión X.X)
+- Middleware: [Corsheaders](https://github.com/adamchainz/django-cors-headers) (Versión X.X)
 - Base de Datos: [PostgreSQL](https://www.postgresql.org/docs/15/index.html) (Versión 15.4)
+
+### Frontend
+
+- Biblioteca: [React.js](https://es.react.dev/) (Versión X.X)
+- Enrutamiento: [React Router DOM](https://reactrouter.com/en/main) (Versión X.X)
+- Manejo de Formularios: [React Hook Form](https://react-hook-form.com/) (Versión X.X)
+- Llamadas a API: [Axios](https://axios-http.com/) (Versión X.X)
 - Estilos: [Tailwind CSS](https://tailwindcss.com/) (Versión X.X)
 
 ## Instalación y Uso
