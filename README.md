@@ -32,4 +32,7 @@ El Centro Hotelero Buena Vista es una organización que centraliza la venta de e
 - Llamadas a API: [Axios](https://axios-http.com/) (Versión X.X)
 - Estilos: [Tailwind CSS](https://tailwindcss.com/) (Versión X.X)
 
-## Instalación y Uso
+## Configuraciones
+
+- Configuración del [Backend](https://github.com/UNPSJB/Ctrl-HTLS/blob/main/backend/README.md)
+- Configuración del [Frontend](https://github.com/UNPSJB/Ctrl-HTLS/blob/main/frontend/README.md)
