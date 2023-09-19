@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Pais
+from .model import Pais
 
 
 class PaisSerializer(ModelSerializer):

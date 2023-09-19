@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from .serializer import PaisSerializer
-from .models import Pais
+from .model import Pais
 
 
 class PaisViewSet(ModelViewSet):
