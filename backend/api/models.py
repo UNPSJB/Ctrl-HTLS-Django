@@ -1,2 +1,2 @@
 from .hotel.model import Hotel
-from .pais.model import Pais
+from .ubicacion.models import Pais, Provincia, Ciudad, Direccion
