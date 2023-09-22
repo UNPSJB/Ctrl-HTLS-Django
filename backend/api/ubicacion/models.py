@@ -2,10 +2,11 @@ from django.db import models
 
 
 class Pais(models.Model):
+    codigo = models.CharField(max_length=2, primary_key=True)
     nombre = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.nombre
+        return f"{self.codigo}, {self.nombre}"
 
 
 class Provincia(models.Model):
@@ -18,7 +19,7 @@ class Provincia(models.Model):
 
 class Ciudad(models.Model):
     nombre = models.CharField(max_length=100)
-    codigo_postal = models.CharField(max_length=20, unique=True)
+    codigo_postal = models.CharField(max_length=20, primary_key=True)
     provincia = models.ForeignKey(Provincia, on_delete=models.CASCADE)
 
     def __str__(self):
