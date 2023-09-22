@@ -40,14 +40,16 @@ pip install -r requirements.txt
 
 ### 4. Configuración de Postgresql
 
+Crear una base de datos en PostgreSQL, importar el archivo `db.sql` el cual contiene una base de datos de pruebas.
+
 Para configurar el entorno local, se necesita crear un archivo `.env` y añadir las variables de entorno.
 
 ```
-DATABASE_NAME= nombre de la DB
-DATABASE_USER= nombre del Usuario (por defecto siempre es postgres)
-DATABASE_PASSWORD= contraseña
-DATABASE_HOST= localhost
-DATABASE_PORT= puerto (por defecto siempre es 5432)
+DATABASE_NAME=nombre_de_la_db
+DATABASE_USER=nombre_del_usuario (por defecto, suele ser "postgres")
+DATABASE_PASSWORD=contraseña
+DATABASE_HOST=localhost
+DATABASE_PORT=5432 (por defecto, el puerto suele ser 5432)
 ```
 
 ### 5. Crear migraciones
@@ -64,12 +66,6 @@ python manage.py migrate
 
 ```
 python manage.py runserver
-```
-
-### 7. Crear administrador
-
-```
-python manage.py createsuperuser
 ```
 
 ### 7. Crear Hoteles y Habitaciones como admin
