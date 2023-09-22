@@ -1,13 +1,9 @@
 from django.contrib import admin
-from .hotel.model import Hotel
-from .ubicacion.models import Pais, Provincia, Ciudad, Direccion
-from .persona.models import Encargado, Vendedor
+from django.apps import apps
 
 
-admin.site.register(Hotel)
-admin.site.register(Pais)
-admin.site.register(Provincia)
-admin.site.register(Ciudad)
-admin.site.register(Direccion)
-admin.site.register(Encargado)
-admin.site.register(Vendedor)
+# Automaticamente se registran todos los modelos creandos en la api para el admin
+
+app_models = apps.get_app_config("api").get_models()
+for model in app_models:
+    admin.site.register(model)
