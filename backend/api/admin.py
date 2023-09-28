@@ -1,9 +1,0 @@
-from django.contrib import admin
-from django.apps import apps
-
-
-# Automaticamente se registran todos los modelos creandos en la api para el admin
-
-app_models = apps.get_app_config("api").get_models()
-for model in app_models:
-    admin.site.register(model)

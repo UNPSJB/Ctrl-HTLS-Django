@@ -1,0 +1,15 @@
+[
+  { "model": "ubicacion.pais", "pk": "AR", "fields": { "nombre": "Argentina" } },
+  { "model": "ubicacion.pais", "pk": "BO", "fields": { "nombre": "Bolivia" } },
+  { "model": "ubicacion.pais", "pk": "CH", "fields": { "nombre": "Chile" } },
+  { "model": "ubicacion.pais", "pk": "MX", "fields": { "nombre": "Mexico" } },
+  { "model": "ubicacion.pais", "pk": "UY", "fields": { "nombre": "Uruguay" } },
+  { "model": "ubicacion.provincia", "pk": 1, "fields": { "nombre": "Chubut", "pais": "AR" } },
+  { "model": "ubicacion.provincia", "pk": 2, "fields": { "nombre": "Buenos Aires", "pais": "AR" } },
+  { "model": "ubicacion.provincia", "pk": 3, "fields": { "nombre": "Cordoba", "pais": "AR" } },
+  { "model": "ubicacion.provincia", "pk": 4, "fields": { "nombre": "Tucuman", "pais": "AR" } },
+  { "model": "ubicacion.provincia", "pk": 5, "fields": { "nombre": "Catamarca", "pais": "AR" } },
+  { "model": "ubicacion.provincia", "pk": 6, "fields": { "nombre": "Artigas", "pais": "UY" } },
+  { "model": "ubicacion.provincia", "pk": 7, "fields": { "nombre": "Canelones", "pais": "UY" } },
+  { "model": "ubicacion.provincia", "pk": 8, "fields": { "nombre": "Montevideo", "pais": "UY" } }
+]
