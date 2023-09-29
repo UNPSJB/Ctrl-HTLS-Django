@@ -62,30 +62,22 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-### 6. Ejecutar el Servidor
+### 6. Cargar datos de "prueba" en la base de datos
+
+```
+python manage.py loaddata ubicacion > ubicacion/fixtures/data.json
+```
+
+```
+python manage.py loaddata hotel > hotel/fixtures/data.json
+```
+
+```
+python manage.py loaddata persona > persona/fixtures/data.json
+```
+
+### 7. Ejecutar el Servidor
 
 ```
 python manage.py runserver
 ```
-
-### 7. Crear Hoteles y Habitaciones como admin
-
-Acceder al panel del administrador en la url `http://localhost:8000/admin/`
-Utilizar el admin ya creado:
-
-Haz clic en "Hoteles" en la sección "Hotel".
-
-Luego, haz clic en "Agregar" para crear un nuevo hotel. Rellena los detalles requeridos y guarda el registro.
-
-Una vez que hayas creado un hotel, puedes hacer clic en ese hotel para ver los detalles.
-
-Para agregar habitaciones, ve a la sección "Habitaciones" y sigue el mismo proceso que seguiste para crear hoteles.
-
-### 8. Visualizar Hotles y Habitaciones en la vista de la API
-
-Para visualizar los hoteles, acceder a la URL `http://localhost:8000/api/hoteles/`
-
-Para visualizar las habitaciones, acceder a la URL `http://localhost:8000/api/habitaciones/`
-
-Para visualizar los hoteles segun pais, acceder a la URL `http://localhost:8000/api/hoteles/?pais=AR`
-`http://localhost:8000/api/hoteles/?pais=BO`

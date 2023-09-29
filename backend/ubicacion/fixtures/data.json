@@ -11,5 +11,11 @@
   { "model": "ubicacion.provincia", "pk": 5, "fields": { "nombre": "Catamarca", "pais": "AR" } },
   { "model": "ubicacion.provincia", "pk": 6, "fields": { "nombre": "Artigas", "pais": "UY" } },
   { "model": "ubicacion.provincia", "pk": 7, "fields": { "nombre": "Canelones", "pais": "UY" } },
-  { "model": "ubicacion.provincia", "pk": 8, "fields": { "nombre": "Montevideo", "pais": "UY" } }
+  { "model": "ubicacion.provincia", "pk": 8, "fields": { "nombre": "Montevideo", "pais": "UY" } },
+  { "model": "ubicacion.ciudad", "pk": "9100", "fields": { "nombre": "Trelew", "provincia": 1 } },
+  {
+    "model": "ubicacion.direccion",
+    "pk": 1,
+    "fields": { "calle": "Belgrano", "numero": 397, "ciudad": "9100" }
+  }
 ]
