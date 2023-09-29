@@ -65,15 +65,15 @@ python manage.py migrate
 ### 6. Cargar datos de "prueba" en la base de datos
 
 ```
-python manage.py loaddata ubicacion > ubicacion/fixtures/data.json
+python manage.py loaddata ubicacion/fixtures/data.json
 ```
 
 ```
-python manage.py loaddata hotel > hotel/fixtures/data.json
+python manage.py loaddata hotel/fixtures/data.json
 ```
 
 ```
-python manage.py loaddata persona > persona/fixtures/data.json
+python manage.py loaddata persona/fixtures/data.json
 ```
 
 ### 7. Ejecutar el Servidor
