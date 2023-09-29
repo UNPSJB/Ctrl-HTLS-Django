@@ -1,1 +1,5 @@
-[{ "model": "hotel.hotel", "pk": 1, "fields": { "nombre": "Rayentray", "direccion": 1 } }]
+[
+  { "model": "hotel.hotel", "pk": 1, "fields": { "nombre": "Rayentray", "direccion": 1 } },
+  { "model": "hotel.hotel", "pk": 2, "fields": { "nombre": "Libertador", "direccion": 2 } },
+  { "model": "hotel.hotel", "pk": 3, "fields": { "nombre": "Touring Club", "direccion": 3 } }
+]
