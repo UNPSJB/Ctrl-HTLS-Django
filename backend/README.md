@@ -64,6 +64,14 @@ python manage.py migrate
 
 ### 6. Cargar datos de "prueba" en la base de datos
 
+- Cargar todos los datos:
+
+```
+python manage.py loaddata_all
+```
+
+- Cargar datos individualmente (en caso de que ya se tengan datos cargados) utilizar solo el que sea necesario:
+
 ```
 python manage.py loaddata ubicacion/fixtures/data.json
 ```
