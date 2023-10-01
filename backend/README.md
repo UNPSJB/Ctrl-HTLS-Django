@@ -81,3 +81,5 @@ python manage.py loaddata persona/fixtures/data.json
 ```
 python manage.py runserver
 ```
+
+probando git pull
