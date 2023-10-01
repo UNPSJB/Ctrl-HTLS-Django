@@ -3,12 +3,11 @@ from rest_framework.routers import DefaultRouter
 from .views import PaisViewSet, ProvinciaViewSet, CiudadViewSet, DireccionViewSet
 
 router = DefaultRouter()
-router.register(r"pais", PaisViewSet, basename="pais")
-router.register(r"ciudad", CiudadViewSet, basename="ciudad")
-router.register(r"direccion", DireccionViewSet, basename="direccion")
+router.register(r"paises", PaisViewSet, basename="pais")
+router.register(r"provincias", ProvinciaViewSet, basename="provincia")
+router.register(r"ciudades", CiudadViewSet, basename="ciudad")
+router.register(r"direcciones", DireccionViewSet, basename="direccion")
 
-# Modificamos la ruta de ProvinciaViewSet para permitir el filtro por país
-router.register(r"provincia", ProvinciaViewSet, basename="provincia")
 
 urlpatterns = router.urls + [
     path(
