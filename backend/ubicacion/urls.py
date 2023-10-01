@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 from .views import PaisViewSet, ProvinciaViewSet, CiudadViewSet, DireccionViewSet
 
@@ -9,10 +9,4 @@ router.register(r"ciudades", CiudadViewSet, basename="ciudad")
 router.register(r"direcciones", DireccionViewSet, basename="direccion")
 
 
-urlpatterns = router.urls + [
-    path(
-        "provincia/<int:pk>/obtener_ciudades/",
-        ProvinciaViewSet.as_view({"get": "obtener_ciudades"}),
-        name="provincia-obtener-ciudades",
-    ),
-]
+urlpatterns = router.urls
