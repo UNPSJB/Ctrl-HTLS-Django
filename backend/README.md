@@ -40,16 +40,16 @@ pip install -r requirements.txt
 
 ### 4. Configuración de Postgresql
 
-Crear una base de datos en PostgreSQL, importar el archivo `db.sql` el cual contiene una base de datos de pruebas.
-
 Para configurar el entorno local, se necesita crear un archivo `.env` y añadir las variables de entorno.
 
 ```
+DATABASE_ENGINE=django.db.backends.postgresql
 DATABASE_NAME=nombre_de_la_db
 DATABASE_USER=nombre_del_usuario (por defecto, suele ser "postgres")
 DATABASE_PASSWORD=contraseña
 DATABASE_HOST=localhost
 DATABASE_PORT=5432 (por defecto, el puerto suele ser 5432)
+SECRET_KEY=
 ```
 
 ### 5. Crear migraciones
