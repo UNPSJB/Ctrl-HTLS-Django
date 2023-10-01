@@ -16,6 +16,10 @@ class Provincia(models.Model):
     def __str__(self):
         return f"{self.nombre}, {self.pais}"
 
+    def obtener_ciudades(self):
+        # Este método devuelve todas las ciudades asociadas a esta provincia
+        return Ciudad.objects.filter(provincia=self)
+
 
 class Ciudad(models.Model):
     nombre = models.CharField(max_length=100)
