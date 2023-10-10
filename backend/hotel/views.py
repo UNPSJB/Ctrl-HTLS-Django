@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Hotel, Habitacion
-from .serializers import HotelSerializer, HabitacionSerializer
+from .models import Hotel, Habitacion, TipoHabitacion
+from .serializers import HotelSerializer, HabitacionSerializer, TipoHabitacionSerializer
 
 
 class HotelViewSet(viewsets.ModelViewSet):
@@ -11,3 +11,8 @@ class HotelViewSet(viewsets.ModelViewSet):
 class HabitacionViewSet(viewsets.ModelViewSet):
     queryset = Habitacion.objects.all()
     serializer_class = HabitacionSerializer
+
+
+class TipoHabitacionViewSet(viewsets.ModelViewSet):
+    queryset = TipoHabitacion.objects.all()
+    serializer_class = TipoHabitacionSerializer
