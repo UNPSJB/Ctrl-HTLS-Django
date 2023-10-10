@@ -8,3 +8,13 @@ class Hotel(models.Model):
 
     def __str__(self):
         return f"{self.nombre}, {self.direccion}"
+
+
+class Habitacion(models.Model):
+    numero_de_habitacion = models.IntegerField()
+    piso = models.IntegerField()
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Habitacion {self.numero_de_habitacion} en el piso {self.piso} del hotel {self.hotel.nombre}"
