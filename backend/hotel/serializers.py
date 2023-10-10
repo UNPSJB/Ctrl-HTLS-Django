@@ -5,7 +5,7 @@ from .models import Hotel, Habitacion, TipoHabitacion
 class HotelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hotel
-        fields = ["nombre", "direccion"]
+        fields = "__all__"  # ["nombre", "direccion"]
 
 
 class HabitacionSerializer(serializers.ModelSerializer):

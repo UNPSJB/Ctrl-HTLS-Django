@@ -5,7 +5,7 @@ from .models import Pais, Provincia, Ciudad, Direccion
 class PaisSerializer(ModelSerializer):
     class Meta:
         model = Pais
-        fields = ["nombre"]
+        fields = ["codigo", "nombre"]
 
 
 class ProvinciaSerializer(ModelSerializer):
