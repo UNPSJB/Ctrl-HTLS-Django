@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/hoteles" element={<HotelPage />} />
-        <Route path="/hotelform" element={<HotelFormPage />} />
+        <Route path="/hotel-form" element={<HotelFormPage />} />
       </Routes>
     </BrowserRouter>
   );
