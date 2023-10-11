@@ -3,6 +3,7 @@ import {
 } from 'react-router-dom';
 import HotelPage from './pages/hoteles/HotelPage';
 import Home from './pages/Home';
+import HotelFormPage from './pages/hoteles/HotelFormPage';
 import Navigation from './components/Navigation';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/hoteles" element={<HotelPage />} />
+        <Route path="/hotelform" element={<HotelFormPage />} />
       </Routes>
     </BrowserRouter>
   );
