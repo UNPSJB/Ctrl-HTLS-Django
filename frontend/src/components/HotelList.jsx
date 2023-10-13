@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getAllHotels, getHotelsByCountry } from '../api/hotel.api';
-import getAllPaises from '../api/pais.api';
+import { getAllPaises } from '../api/ubicacion.api';
 
 export default function HotelList() {
   const [hoteles, setHoteles] = useState([]);

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { createHotel } from '../../api/hotel.api';
-import getAllPaises from '../../api/pais.api';
+import { getAllPaises } from '../../api/ubicacion.api';
 
 export default function HotelFormPage() {
   const {
