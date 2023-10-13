@@ -40,4 +40,4 @@ class Direccion(models.Model):
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.calle} {self.numero}, {self.ciudad}"
+        return f"{self.calle} {self.numero}"

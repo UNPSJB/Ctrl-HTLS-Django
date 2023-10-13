@@ -8,7 +8,7 @@ class Hotel(models.Model):
     direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.nombre}, {self.direccion}"
+        return f"{self.nombre}"
 
 
 class TipoHabitacion(models.Model):
