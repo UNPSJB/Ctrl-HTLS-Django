@@ -19,7 +19,7 @@ def main():
     if sys.argv[1] == "loaddata_all":
         # Se deben colocar en el orden segun quien necesita a quien
         # Ejemplo hotel tiene direccion por lo tanto ubicacion(pais,provincia,ciudad,direccion) tiene que ir antes
-        fixture_dirs = ["ubicacion", "hotel", "persona"]
+        fixture_dirs = ["core", "hotel"]
         for dir in fixture_dirs:
             print(f"Cargando datos desde {dir}/fixtures/data.json")
             execute_from_command_line(

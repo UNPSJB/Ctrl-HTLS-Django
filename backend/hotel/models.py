@@ -1,5 +1,5 @@
 from django.db import models
-from ubicacion.models import Direccion
+from core.models import Direccion
 from django.core.exceptions import ValidationError
 
 

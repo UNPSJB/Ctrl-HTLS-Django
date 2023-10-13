@@ -14,11 +14,6 @@ class HotelViewSet(viewsets.ModelViewSet):
     filterset_class = HotelFilter
 
 
-# class HotelViewSet(viewsets.ModelViewSet):
-#     queryset = Hotel.objects.all()
-#     serializer_class = HotelSerializer
-
-
 class HabitacionViewSet(viewsets.ModelViewSet):
     queryset = Habitacion.objects.all()
     serializer_class = HabitacionSerializer
