@@ -11,7 +11,6 @@ export default function HotelList() {
   useEffect(() => {
     async function loadHotels() {
       const res = pais === 'todos' ? await getAllHotels() : await getHotelsByCountry(pais);
-      console.log(res.data);
       setHoteles(res.data);
     }
 
