@@ -7,15 +7,18 @@ export default function HotelList() {
   const [pais, setPais] = useState('todos'); // Inicialmente se muestran todos los hoteles
   const [paises, setPaises] = useState([]);
 
+  // Listado de Hoteles segun el pais
   useEffect(() => {
     async function loadHotels() {
       const res = pais === 'todos' ? await getAllHotels() : await getHotelsByCountry(pais);
+      console.log(res.data);
       setHoteles(res.data);
     }
 
     loadHotels();
   }, [pais]);
 
+  // Obtener la lista de paises
   useEffect(() => {
     async function loadPaises() {
       const res = await getAllPaises();
