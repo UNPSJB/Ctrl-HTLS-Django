@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getAllHotels, getHotelesPorPais, getHotelesPorProvincia, getHotelesPorCiudad } from '../api/hotel.api';
-import { getAllPaises, getAllProvincias, getAllCiudades } from '../api/ubicacion.api';
+import { getAllPaises, getProvinciasPorPais, getAllCiudades } from '../api/ubicacion.api';
 
 export default function HotelList() {
   const [hoteles, setHoteles] = useState([]);
@@ -14,7 +14,7 @@ export default function HotelList() {
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState('todos');
   const [ciudadDisabled, setCiudadDisabled] = useState(true); // Estado para habilitar/deshabilitar el select de ciudades
-
+  
   // Listado de Hoteles según el país, provincia o ciudad seleccionada
   useEffect(() => {
     async function loadHotels() {
@@ -30,7 +30,7 @@ export default function HotelList() {
 
     loadHotels();
   }, [pais, provincia, ciudad]);
-  
+
   // Obtener la lista de paises
   useEffect(() => {
     async function loadPaises() {
@@ -41,15 +41,15 @@ export default function HotelList() {
     loadPaises();
   }, []);
 
-  // Obtener la lista de provincias
+  // Obtener la lista de provincias segun el Pais seleccionado
   useEffect(() => {
     async function loadProvincias() {
-      const res = await getAllProvincias();
+      const res = await getProvinciasPorPais(pais);
       setProvincias(res.data);
     }
 
     loadProvincias();
-  }, []);
+  }, [pais]);
 
   // Obtener la lista de ciudades
   useEffect(() => {

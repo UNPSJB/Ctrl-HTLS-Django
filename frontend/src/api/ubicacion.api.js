@@ -9,3 +9,7 @@ export const getAllPaises = () => ubicacionApi.get('paises/');
 export const getAllProvincias = () => ubicacionApi.get('provincias/')
 
 export const getAllCiudades = () => ubicacionApi.get('ciudades/')
+
+export const getProvinciasPorPais = (codigo) => ubicacionApi.get(`/provincias/?pais=${codigo}`)
+
+export const getCiudadesPorProvincia = (id) => ubicacionApi.get(`/?provincia=${id}`)
