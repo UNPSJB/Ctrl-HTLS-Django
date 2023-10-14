@@ -7,7 +7,7 @@ from .serializers import (
     DireccionSerializer,
 )
 from django_filters import rest_framework as filters
-from .filters import ProvinciaFilter
+from .filters import ProvinciaFilter, CiudadFilter
 
 
 class PaisViewSet(ModelViewSet):
@@ -25,6 +25,8 @@ class ProvinciaViewSet(ModelViewSet):
 class CiudadViewSet(ModelViewSet):
     queryset = Ciudad.objects.all()
     serializer_class = CiudadSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = CiudadFilter
 
 
 class DireccionViewSet(ModelViewSet):

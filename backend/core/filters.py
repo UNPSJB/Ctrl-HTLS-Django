@@ -1,5 +1,5 @@
 import django_filters
-from .models import Provincia
+from .models import Provincia, Ciudad
 
 
 class ProvinciaFilter(django_filters.FilterSet):
@@ -7,4 +7,14 @@ class ProvinciaFilter(django_filters.FilterSet):
 
     class Meta:
         model = Provincia
+        fields = []
+
+
+class CiudadFilter(django_filters.FilterSet):
+    provincia = django_filters.CharFilter(
+        field_name="provincia__id", lookup_expr="exact"
+    )
+
+    class Meta:
+        model = Ciudad
         fields = []
