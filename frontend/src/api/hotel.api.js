@@ -14,4 +14,8 @@ export const deleteHotel = (id) => hotelApi.delete(`/${id}`);
 
 export const updateHotel = (id, hotel) => hotelApi.put(`/${id}`, hotel);
 
-export const getHotelsByCountry = (countryCode) => hotelApi.get(`/?pais=${countryCode}`);
+export const getHotelesPorPais = (codigo) => hotelApi.get(`/?pais=${codigo}`);
+
+export const getHotelesPorProvincia = (id) => hotelApi.get(`/?provincia=${id}`)
+
+export const getHotelesPorCiudad = (codigo_postal) => hotelApi.get(`/?ciudad=${codigo_postal}`)

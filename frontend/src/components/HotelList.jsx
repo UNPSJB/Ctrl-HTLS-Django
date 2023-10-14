@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAllHotels, getHotelsByCountry } from '../api/hotel.api';
+import { getAllHotels, getHotelesPorPais } from '../api/hotel.api';
 import { getAllPaises } from '../api/ubicacion.api';
 
 export default function HotelList() {
@@ -10,7 +10,7 @@ export default function HotelList() {
   // Listado de Hoteles segun el pais
   useEffect(() => {
     async function loadHotels() {
-      const res = pais === 'todos' ? await getAllHotels() : await getHotelsByCountry(pais);
+      const res = pais === 'todos' ? await getAllHotels() : await getHotelesPorPais(pais);
       setHoteles(res.data);
     }
 
