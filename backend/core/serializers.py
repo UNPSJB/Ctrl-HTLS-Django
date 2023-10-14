@@ -1,26 +1,26 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from .models import Pais, Provincia, Ciudad, Direccion
 
 
-class PaisSerializer(ModelSerializer):
+class PaisSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pais
-        fields = ["codigo", "nombre"]
+        fields = "__all__"
 
 
-class ProvinciaSerializer(ModelSerializer):
+class ProvinciaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Provincia
-        fields = ["id", "nombre", "pais"]
+        fields = "__all__"
 
 
-class CiudadSerializer(ModelSerializer):
+class CiudadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ciudad
-        fields = ["nombre", "codigo_postal", "provincia"]
+        fields = "__all__"
 
 
-class DireccionSerializer(ModelSerializer):
+class DireccionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Direccion
-        fields = ["calle", "numero", "ciudad"]
+        fields = "__all__"
