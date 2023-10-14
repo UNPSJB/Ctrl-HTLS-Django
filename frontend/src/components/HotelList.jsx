@@ -7,6 +7,12 @@ export default function HotelList() {
   const [pais, setPais] = useState('todos'); // Inicialmente se muestran todos los hoteles
   const [paises, setPaises] = useState([]);
 
+  const [provincias, setProvincias] = useState([]);
+  const [provincia, setProvincia] = useState('todos');
+  
+  const [ciudades, setCiudades] = useState([])
+  const [ciudad, setCiudad] = useState("todos")
+
   // Listado de Hoteles segun el pais
   useEffect(() => {
     async function loadHotels() {
@@ -16,6 +22,7 @@ export default function HotelList() {
 
     loadHotels();
   }, [pais]);
+  
 
   // Obtener la lista de paises
   useEffect(() => {
@@ -34,6 +41,24 @@ export default function HotelList() {
         {paises.map((paisItem) => (
           <option key={paisItem.codigo} value={paisItem.codigo}>
             {paisItem.nombre}
+          </option>
+        ))}
+      </select>
+
+      <select value={provincia} onChange={(e) => setProvincia(e.target.value)}>
+        <option value="todos">Todas las provincias</option>
+        {provincias.map((provinciaItem) => (
+          <option key={provinciaItem.codigo} value={provinciaItem.codigo}>
+            {provinciaItem.nombre}
+          </option>
+        ))}
+      </select>
+
+      <select value={ciudad} onChange={(e) => setCiudad(e.target.value)}>
+        <option value="todos">Todas las ciudades</option>
+        {ciudades.map((ciudadItem) => (
+          <option key={ciudadItem.codigo} value={ciudadItem.codigo}>
+            {ciudadItem.nombre}
           </option>
         ))}
       </select>
