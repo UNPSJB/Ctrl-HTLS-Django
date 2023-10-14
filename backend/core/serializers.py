@@ -11,7 +11,7 @@ class PaisSerializer(ModelSerializer):
 class ProvinciaSerializer(ModelSerializer):
     class Meta:
         model = Provincia
-        fields = ["nombre", "pais"]
+        fields = ["id", "nombre", "pais"]
 
 
 class CiudadSerializer(ModelSerializer):
