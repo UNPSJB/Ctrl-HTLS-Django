@@ -73,15 +73,11 @@ python manage.py loaddata_all
 - Cargar datos individualmente (en caso de que ya se tengan datos cargados) utilizar solo el que sea necesario:
 
 ```
-python manage.py loaddata ubicacion/fixtures/data.json
+python manage.py loaddata core/fixtures/data.json
 ```
 
 ```
 python manage.py loaddata hotel/fixtures/data.json
-```
-
-```
-python manage.py loaddata persona/fixtures/data.json
 ```
 
 ### 7. Ejecutar el Servidor
