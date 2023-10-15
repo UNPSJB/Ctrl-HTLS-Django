@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   getAllHotels,
   getHotelesPorPais,
@@ -28,6 +29,10 @@ export default function HotelList() {
 
   return (
     <div>
+      <Link to="/">Home</Link>
+      <br />
+      <Link to="/hotel-form">Crear Hotel</Link>
+
       <SelectUbicacion
         pais={pais}
         setPais={setPais}
