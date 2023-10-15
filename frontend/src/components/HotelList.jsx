@@ -7,6 +7,7 @@ import {
   getHotelesPorCiudad,
 } from "../api/hotel.api";
 import SelectUbicacion from "./SelectUbicacion";
+import HotelCard from "./HotelCard";
 
 export default function HotelList() {
   const [hoteles, setHoteles] = useState([]);
@@ -42,11 +43,7 @@ export default function HotelList() {
         setCiudad={setCiudad}
       />
 
-      {hoteles.map((hotel) => (
-        <div key={hotel.id}>
-          <h1>{hotel.nombre}</h1>
-        </div>
-      ))}
+      <HotelCard hoteles={hoteles} />
     </div>
   );
 }
