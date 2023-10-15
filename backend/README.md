@@ -1,7 +1,5 @@
 # Backend
 
-Descripción o algo
-
 ## Requisitos Previos
 
 - [Python](https://www.python.org/) (Versión X.X)
