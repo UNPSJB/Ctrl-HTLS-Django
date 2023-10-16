@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Hotel, Habitacion, TipoHabitacion
+from .models import Hotel, Habitacion
 
 
 class HotelAdmin(admin.ModelAdmin):
@@ -28,4 +28,3 @@ class HotelAdmin(admin.ModelAdmin):
 
 admin.site.register(Hotel, HotelAdmin)
 admin.site.register(Habitacion)
-admin.site.register(TipoHabitacion)

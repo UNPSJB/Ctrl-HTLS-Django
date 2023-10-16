@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from .models import Pais, Provincia, Ciudad, Direccion
+from .models import Pais, Provincia, Ciudad, Direccion, TipoHabitacion
+
+
+# -------------------- Ubicacion --------------------
 
 
 class PaisSerializer(serializers.ModelSerializer):
@@ -23,4 +26,13 @@ class CiudadSerializer(serializers.ModelSerializer):
 class DireccionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Direccion
+        fields = "__all__"
+
+
+# -------------------- Otros --------------------
+
+
+class TipoHabitacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoHabitacion
         fields = "__all__"

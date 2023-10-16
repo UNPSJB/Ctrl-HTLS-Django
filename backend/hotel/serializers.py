@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Hotel, Habitacion, TipoHabitacion
+from .models import Hotel, Habitacion
 
 
 class HotelSerializer(serializers.ModelSerializer):
@@ -12,9 +12,3 @@ class HabitacionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Habitacion
         fields = ["numero_de_habitacion", "piso", "precio", "hotel"]
-
-
-class TipoHabitacionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TipoHabitacion
-        fields = ["nombre", "descripcion", "capacidad", "precio", "hotel"]
