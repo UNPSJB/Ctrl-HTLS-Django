@@ -1,1 +1,81 @@
-[{"model": "hotel.hotel", "pk": 1, "fields": {"nombre": "Rayentray", "direccion": 1}}, {"model": "hotel.hotel", "pk": 2, "fields": {"nombre": "Sunset Beach", "direccion": 2}}, {"model": "hotel.hotel", "pk": 3, "fields": {"nombre": "Ideal", "direccion": 3}}, {"model": "hotel.hotel", "pk": 4, "fields": {"nombre": "Monte Carlo", "direccion": 4}}, {"model": "hotel.hotel", "pk": 5, "fields": {"nombre": "Tolosa", "direccion": 5}}, {"model": "hotel.hotel", "pk": 6, "fields": {"nombre": "Peninsula Valdes", "direccion": 6}}, {"model": "hotel.hotel", "pk": 7, "fields": {"nombre": "El Arribo", "direccion": 7}}, {"model": "hotel.hotel", "pk": 8, "fields": {"nombre": "Altos de La Vina", "direccion": 8}}, {"model": "hotel.hotel", "pk": 9, "fields": {"nombre": "Pirayú", "direccion": 9}}, {"model": "hotel.tipohabitacion", "pk": 1, "fields": {"nombre": "Simple", "descripcion": "Habitación con una cama de una plaza.", "capacidad": 1, "precio": "10000.00", "hotel": 1}}, {"model": "hotel.tipohabitacion", "pk": 2, "fields": {"nombre": "Doble", "descripcion": "Habitación con dos camas de una plaza.", "capacidad": 2, "precio": "15000.00", "hotel": 1}}, {"model": "hotel.tipohabitacion", "pk": 3, "fields": {"nombre": "Doble Matrimonial", "descripcion": "Habitación con una cama de dos plazas.", "capacidad": 2, "precio": "15000.00", "hotel": 1}}, {"model": "hotel.tipohabitacion", "pk": 4, "fields": {"nombre": "Triple", "descripcion": "Habitación con tres camas de una plaza.", "capacidad": 3, "precio": "25000.00", "hotel": 1}}, {"model": "hotel.tipohabitacion", "pk": 5, "fields": {"nombre": "Triple Familiar", "descripcion": "Habitación con una cama de dos plazas y una cama de una plaza.", "capacidad": 3, "precio": "25000.00", "hotel": 1}}, {"model": "hotel.tipohabitacion", "pk": 6, "fields": {"nombre": "Apartamento", "descripcion": "Dos habitaciones separadas para 4 o 5 personas.", "capacidad": 5, "precio": "35000.00", "hotel": 1}}]
+[
+  {
+    "model": "hotel.hotel",
+    "pk": 1,
+    "fields": { "nombre": "Rayentray", "direccion": 1, "tipos_de_habitacion": [1, 2, 3, 4, 5, 6] }
+  },
+  {
+    "model": "hotel.hotel",
+    "pk": 2,
+    "fields": {
+      "nombre": "Sunset Beach",
+      "direccion": 2,
+      "tipos_de_habitacion": [1, 2, 3, 4, 5, 6]
+    }
+  },
+  {
+    "model": "hotel.hotel",
+    "pk": 3,
+    "fields": { "nombre": "Ideal", "direccion": 3, "tipos_de_habitacion": [1, 2, 3, 4, 5, 6] }
+  },
+  {
+    "model": "hotel.hotel",
+    "pk": 4,
+    "fields": { "nombre": "Monte Carlo", "direccion": 4, "tipos_de_habitacion": [1, 2, 3, 4, 5, 6] }
+  },
+  {
+    "model": "hotel.hotel",
+    "pk": 5,
+    "fields": { "nombre": "Tolosa", "direccion": 5, "tipos_de_habitacion": [1, 2, 3, 4, 5, 6] }
+  },
+  {
+    "model": "hotel.hotel",
+    "pk": 6,
+    "fields": {
+      "nombre": "Peninsula Valdes",
+      "direccion": 6,
+      "tipos_de_habitacion": [1, 2, 3, 4, 5, 6]
+    }
+  },
+  {
+    "model": "hotel.hotel",
+    "pk": 7,
+    "fields": { "nombre": "El Arribo", "direccion": 7, "tipos_de_habitacion": [1, 2, 3, 4, 5, 6] }
+  },
+  {
+    "model": "hotel.hotel",
+    "pk": 8,
+    "fields": {
+      "nombre": "Altos de La Vina",
+      "direccion": 8,
+      "tipos_de_habitacion": [1, 2, 3, 4, 5, 6]
+    }
+  },
+  {
+    "model": "hotel.hotel",
+    "pk": 9,
+    "fields": { "nombre": "Piray·", "direccion": 9, "tipos_de_habitacion": [1, 2, 3, 4, 5, 6] }
+  },
+  {
+    "model": "hotel.habitacion",
+    "pk": 1,
+    "fields": {
+      "numero_de_habitacion": 1,
+      "piso": 1,
+      "precio": "500.00",
+      "hotel": 1,
+      "tipo_habitacion": 2
+    }
+  },
+  {
+    "model": "hotel.habitacion",
+    "pk": 2,
+    "fields": {
+      "numero_de_habitacion": 2,
+      "piso": 1,
+      "precio": "300.00",
+      "hotel": 1,
+      "tipo_habitacion": 3
+    }
+  }
+]

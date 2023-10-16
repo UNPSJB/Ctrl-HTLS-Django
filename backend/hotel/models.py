@@ -16,6 +16,9 @@ class Habitacion(models.Model):
     piso = models.IntegerField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    tipo_habitacion = models.ForeignKey(
+        TipoHabitacion, on_delete=models.CASCADE, default=1
+    )
 
     def __str__(self):
         return f"Habitacion {self.numero_de_habitacion} en el piso {self.piso}"
