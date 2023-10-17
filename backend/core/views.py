@@ -1,11 +1,21 @@
 from rest_framework.viewsets import ModelViewSet
-from .models import Pais, Provincia, Ciudad, Direccion, TipoHabitacion
+from .models import (
+    Pais,
+    Provincia,
+    Ciudad,
+    Direccion,
+    TipoHabitacion,
+    Servicio,
+    Categoria,
+)
 from .serializers import (
     PaisSerializer,
     ProvinciaSerializer,
     CiudadSerializer,
     DireccionSerializer,
     TipoHabitacionSerializer,
+    ServicioSerializer,
+    CategoriaSerializer,
 )
 from django_filters import rest_framework as filters
 from .filters import ProvinciaFilter, CiudadFilter
@@ -44,3 +54,13 @@ class DireccionViewSet(ModelViewSet):
 class TipoHabitacionViewSet(ModelViewSet):
     queryset = TipoHabitacion.objects.all()
     serializer_class = TipoHabitacionSerializer
+
+
+class ServicioViewSet(ModelViewSet):
+    queryset = Servicio.objects.all()
+    serializer_class = ServicioSerializer
+
+
+class CategoriaViewSet(ModelViewSet):
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
