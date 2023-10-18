@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { createHotel } from "../../api/hotel.api";
 import { getAllPaises } from "../../api/ubicacion.api";
 import SelectUbicacion from "../../components/SelectUbicacion";
+import SelectTipoHabitacion from "../../components/SelectTipoHabitacion";
+
 
 export default function HotelFormPage() {
   const {
@@ -29,6 +31,7 @@ export default function HotelFormPage() {
 
   const onSubmit = handleSubmit(async (data) => {
     const newData = { ...data, pais };
+    console.log(newData)
     await createHotel(newData);
     navigate("/hoteles");
   });
@@ -50,7 +53,7 @@ export default function HotelFormPage() {
           ciudad={ciudad}
           setCiudad={setCiudad}
         />
-
+        <SelectTipoHabitacion />
         <button type="submit">Guardar</button>
       </form>
     </div>
