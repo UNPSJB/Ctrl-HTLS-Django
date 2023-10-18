@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const ubicacionApi = axios.create({
-  baseURL: 'http://localhost:8000/ubicacion/',
+  baseURL: 'http://localhost:8000/core/',
 });
 
 export const getAllPaises = () => ubicacionApi.get('paises/');
