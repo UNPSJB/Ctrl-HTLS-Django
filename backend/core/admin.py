@@ -7,6 +7,9 @@ from .models import (
     TipoHabitacion,
     Servicio,
     Categoria,
+    Vendedor,
+    Encargado,
+    Cliente,
 )
 
 
@@ -17,3 +20,6 @@ admin.site.register(Direccion)
 admin.site.register(TipoHabitacion)
 admin.site.register(Servicio)
 admin.site.register(Categoria)
+admin.site.register(Vendedor)
+admin.site.register(Encargado)
+admin.site.register(Cliente)

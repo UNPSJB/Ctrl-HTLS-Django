@@ -37,7 +37,7 @@ class Direccion(models.Model):
         return f"{self.calle} {self.numero}"
 
 
-# -------------------- Otros --------------------
+# -------------------- Otros ----------------------
 
 
 class TipoHabitacion(models.Model):
@@ -65,3 +65,32 @@ class Categoria(models.Model):
 
     def __str__(self):
         return f"Categoria {self.nombre}"
+
+
+# -------------------- Personas ---------------------
+
+
+class Persona(models.Model):
+    DNI = 0
+    PASAPORTE = 1
+    LIBRETA = 2
+    TIPOS_DOCUMENTO = ((DNI, "DNI"), (PASAPORTE, "PASAPORTE"), (LIBRETA, "LIBRETA"))
+    tipo_documento = models.PositiveSmallIntegerField(choices=TIPOS_DOCUMENTO)
+    documento = models.CharField(max_length=13, primary_key=True)
+    nombre = models.CharField(max_length=200)
+    apellido = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.nombre, self.apellido}"
+
+
+class Vendedor(Persona):
+    pass
+
+
+class Encargado(Persona):
+    pass
+
+
+class Cliente(Persona):
+    pass

@@ -8,6 +8,9 @@ from .views import (
     TipoHabitacionViewSet,
     ServicioViewSet,
     CategoriaViewSet,
+    VendedorViewSet,
+    EncargadoViewSet,
+    ClienteViewSet,
 )
 
 router = DefaultRouter()
@@ -19,7 +22,9 @@ router.register(
     r"tiposhabitaciones", TipoHabitacionViewSet, basename="tiposhabitaciones"
 )
 router.register(r"servicios", ServicioViewSet, basename="servicio")
-router.register(r"categoria", CategoriaViewSet, basename="categoria")
-
+router.register(r"categorias", CategoriaViewSet, basename="categorias")
+router.register(r"vendedores", VendedorViewSet, basename="vendedores")
+router.register(r"encargados", EncargadoViewSet, basename="encargados")
+router.register(r"clientes", ClienteViewSet, basename="clientes")
 
 urlpatterns = router.urls

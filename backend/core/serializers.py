@@ -7,6 +7,9 @@ from .models import (
     TipoHabitacion,
     Servicio,
     Categoria,
+    Vendedor,
+    Encargado,
+    Cliente,
 )
 
 
@@ -55,4 +58,25 @@ class ServicioSerializer(serializers.ModelSerializer):
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categoria
+        fields = "__all__"
+
+
+# -------------------- Persona --------------------
+
+
+class VendedorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vendedor
+        fields = "__all__"
+
+
+class EncargadoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Encargado
+        fields = "__all__"
+
+
+class ClienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cliente
         fields = "__all__"

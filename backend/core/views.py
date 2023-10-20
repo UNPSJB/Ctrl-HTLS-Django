@@ -7,6 +7,9 @@ from .models import (
     TipoHabitacion,
     Servicio,
     Categoria,
+    Vendedor,
+    Encargado,
+    Cliente,
 )
 from .serializers import (
     PaisSerializer,
@@ -16,6 +19,9 @@ from .serializers import (
     TipoHabitacionSerializer,
     ServicioSerializer,
     CategoriaSerializer,
+    VendedorSerializer,
+    EncargadoSerializer,
+    ClienteSerializer,
 )
 from django_filters import rest_framework as filters
 from .filters import ProvinciaFilter, CiudadFilter
@@ -64,3 +70,21 @@ class ServicioViewSet(ModelViewSet):
 class CategoriaViewSet(ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
+
+
+# -------------------- Persona --------------------
+
+
+class VendedorViewSet(ModelViewSet):
+    queryset = Vendedor.objects.all()
+    serializer_class = VendedorSerializer
+
+
+class EncargadoViewSet(ModelViewSet):
+    queryset = Encargado.objects.all()
+    serializer_class = EncargadoSerializer
+
+
+class ClienteViewSet(ModelViewSet):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
