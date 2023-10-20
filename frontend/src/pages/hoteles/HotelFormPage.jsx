@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { createHotel } from "../../api/hotel.api";
-import { createDireccion } from "../../api/ubicacion.api"
+import { createDireccion } from "../../api/ubicacion.api";
 import SelectUbicacion from "../../components/SelectUbicacion";
 import SelectEncargado from "../../components/SelectEncargado";
 import SelectCategoria from "../../components/SelectCategoria";
@@ -19,27 +19,29 @@ export default function HotelFormPage() {
   const [provincia, setProvincia] = useState("todos");
   const [ciudad, setCiudad] = useState("todos");
 
-  const [encargado, setEncargado] = useState(null)
-  const [categoria, setCategoria] = useState(null)
+  const [encargado, setEncargado] = useState(null);
+  const [categoria, setCategoria] = useState(null);
 
   const onSubmit = handleSubmit(async (data) => {
-
     try {
-      const { nombre, calle, numero } = data 
+      const { nombre, calle, numero } = data;
       const newDireccion = {
-      calle,
-      numero,
-      ciudad
-    }
-    await createDireccion(newDireccion);
+        calle,
+        numero,
+        ciudad,
+      };
 
-    const newHotel = { nombre, newDireccion, encargado, categoria };
-    await createHotel(newHotel);  
-    
+      const direccion = (await createDireccion(newDireccion)).data.id;
+
+      const tipos = [1, 2, 3, 4, 5, 6];
+
+      const newHotel = { nombre, direccion, tipos, categoria, encargado };
+      console.log(newHotel);
+      await createHotel(newHotel);
     } catch (error) {
-      return ;
+      return;
     }
-    
+
     navigate("/hoteles");
   });
 
@@ -64,15 +66,9 @@ export default function HotelFormPage() {
           setCiudad={setCiudad}
         />
 
-        <SelectEncargado 
-          encargado={encargado}
-          setEncargado={setEncargado}
-        />
+        <SelectEncargado encargado={encargado} setEncargado={setEncargado} />
 
-        <SelectCategoria 
-          categoria={categoria}
-          setCategoria={setCategoria}
-        />
+        <SelectCategoria categoria={categoria} setCategoria={setCategoria} />
 
         <button type="submit">Guardar</button>
       </form>

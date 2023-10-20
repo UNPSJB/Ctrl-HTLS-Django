@@ -62,7 +62,6 @@
     "fields": {
       "numero_de_habitacion": 1,
       "piso": 1,
-      "precio": "500.00",
       "hotel": 1,
       "tipo_habitacion": 2
     }
@@ -73,7 +72,6 @@
     "fields": {
       "numero_de_habitacion": 2,
       "piso": 1,
-      "precio": "300.00",
       "hotel": 1,
       "tipo_habitacion": 3
     }

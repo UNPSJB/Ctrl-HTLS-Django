@@ -1,1 +1,537 @@
-[{"model": "core.pais", "pk": "AR", "fields": {"nombre": "Argentina"}}, {"model": "core.pais", "pk": "BO", "fields": {"nombre": "Bolivia"}}, {"model": "core.pais", "pk": "BR", "fields": {"nombre": "Brasil"}}, {"model": "core.pais", "pk": "CL", "fields": {"nombre": "Chile"}}, {"model": "core.pais", "pk": "CO", "fields": {"nombre": "Colombia"}}, {"model": "core.pais", "pk": "UR", "fields": {"nombre": "Uruguay"}}, {"model": "core.provincia", "pk": 1, "fields": {"nombre": "Chubut", "pais": "AR"}}, {"model": "core.provincia", "pk": 2, "fields": {"nombre": "Maldonado", "pais": "UR"}}, {"model": "core.provincia", "pk": 3, "fields": {"nombre": "Buenos Aires", "pais": "AR"}}, {"model": "core.provincia", "pk": 4, "fields": {"nombre": "Santa Fe", "pais": "AR"}}, {"model": "core.provincia", "pk": 5, "fields": {"nombre": "Tierra del Fuego", "pais": "AR"}}, {"model": "core.provincia", "pk": 6, "fields": {"nombre": "Salta", "pais": "AR"}}, {"model": "core.provincia", "pk": 7, "fields": {"nombre": "San Luis", "pais": "AR"}}, {"model": "core.provincia", "pk": 8, "fields": {"nombre": "Chaco", "pais": "AR"}}, {"model": "core.provincia", "pk": 9, "fields": {"nombre": "Cordoba", "pais": "AR"}}, {"model": "core.provincia", "pk": 10, "fields": {"nombre": "Mendoza", "pais": "AR"}}, {"model": "core.provincia", "pk": 11, "fields": {"nombre": "Rio Negro", "pais": "AR"}}, {"model": "core.provincia", "pk": 12, "fields": {"nombre": "Santa Cruz", "pais": "AR"}}, {"model": "core.provincia", "pk": 13, "fields": {"nombre": "Jujuy", "pais": "AR"}}, {"model": "core.provincia", "pk": 14, "fields": {"nombre": "Catamarca", "pais": "AR"}}, {"model": "core.provincia", "pk": 15, "fields": {"nombre": "Neuquen", "pais": "AR"}}, {"model": "core.provincia", "pk": 16, "fields": {"nombre": "San Juan", "pais": "AR"}}, {"model": "core.provincia", "pk": 17, "fields": {"nombre": "La Pampa", "pais": "AR"}}, {"model": "core.provincia", "pk": 18, "fields": {"nombre": "Tucuman", "pais": "AR"}}, {"model": "core.provincia", "pk": 19, "fields": {"nombre": "Misiones", "pais": "AR"}}, {"model": "core.provincia", "pk": 20, "fields": {"nombre": "Entre Rios", "pais": "AR"}}, {"model": "core.ciudad", "pk": "1000", "fields": {"nombre": "Buenos Aires", "provincia": 3}}, {"model": "core.ciudad", "pk": "20100", "fields": {"nombre": "Punta del Este", "provincia": 2}}, {"model": "core.ciudad", "pk": "3370", "fields": {"nombre": "Puerto Iguaz ", "provincia": 19}}, {"model": "core.ciudad", "pk": "4600", "fields": {"nombre": "San Salvador de Jujuy", "provincia": 13}}, {"model": "core.ciudad", "pk": "5700", "fields": {"nombre": "San Luis", "provincia": 7}}, {"model": "core.ciudad", "pk": "7165", "fields": {"nombre": "Villa Gesell", "provincia": 3}}, {"model": "core.ciudad", "pk": "7167", "fields": {"nombre": "Pinamar", "provincia": 3}}, {"model": "core.ciudad", "pk": "7607", "fields": {"nombre": "Miramar", "provincia": 3}}, {"model": "core.ciudad", "pk": "8000", "fields": {"nombre": "Bah a Blanca", "provincia": 3}}, {"model": "core.ciudad", "pk": "9100", "fields": {"nombre": "Trelew", "provincia": 1}}, {"model": "core.ciudad", "pk": "9103", "fields": {"nombre": "Rawson", "provincia": 1}}, {"model": "core.ciudad", "pk": "9120", "fields": {"nombre": "Puerto Madryn", "provincia": 1}}, {"model": "core.ciudad", "pk": "9121", "fields": {"nombre": "Puerto Piramides", "provincia": 1}}, {"model": "core.ciudad", "pk": "B1900", "fields": {"nombre": "La Plata", "provincia": 3}}, {"model": "core.direccion", "pk": 1, "fields": {"calle": "Belgrano", "numero": 397, "ciudad": "9100"}}, {"model": "core.direccion", "pk": 2, "fields": {"calle": "Rb. Dr. Claudio Williman", "numero": 3, "ciudad": "20100"}}, {"model": "core.direccion", "pk": 3, "fields": {"calle": "9 de Julio", "numero": 626, "ciudad": "7607"}}, {"model": "core.direccion", "pk": 4, "fields": {"calle": "Calle 16", "numero": 1050, "ciudad": "7607"}}, {"model": "core.direccion", "pk": 5, "fields": {"calle": "Roque S. Pe a", "numero": 253, "ciudad": "9120"}}, {"model": "core.direccion", "pk": 6, "fields": {"calle": "J. A. Roca", "numero": 155, "ciudad": "9120"}}, {"model": "core.direccion", "pk": 7, "fields": {"calle": "Gral. Manuel Belgrano", "numero": 1263, "ciudad": "4600"}}, {"model": "core.direccion", "pk": 8, "fields": {"calle": "Av. Pasquini Lopez", "numero": 50, "ciudad": "4600"}}, {"model": "core.direccion", "pk": 9, "fields": {"calle": "Av. Tres Fronteras", "numero": 550, "ciudad": "3370"}}, {"model": "core.tipohabitacion", "pk": 1, "fields": {"nombre": "Simple", "descripcion": "Habitaci�n con una cama de una plaza.", "capacidad": 1, "precio": 0.0}}, {"model": "core.tipohabitacion", "pk": 2, "fields": {"nombre": "Doble", "descripcion": "Habitaci�n con dos camas de una plaza.", "capacidad": 2, "precio": 0.0}}, {"model": "core.tipohabitacion", "pk": 3, "fields": {"nombre": "Doble Matrimonial", "descripcion": "Habitaci�n con una cama de dos plazas.", "capacidad": 2, "precio": 0.0}}, {"model": "core.tipohabitacion", "pk": 4, "fields": {"nombre": "Triple", "descripcion": "Habitaci�n con tres camas de una plaza.", "capacidad": 3, "precio": 0.0}}, {"model": "core.tipohabitacion", "pk": 5, "fields": {"nombre": "Triple Familiar", "descripcion": "Habitaci�n con una cama de dos plazas y una cama de una plaza.", "capacidad": 3, "precio": 0.0}}, {"model": "core.tipohabitacion", "pk": 6, "fields": {"nombre": "Apartamento", "descripcion": "Dos habitaciones separadas para 4 o 5 personas.", "capacidad": 5, "precio": 0.0}}, {"model": "core.servicio", "pk": 1, "fields": {"nombre": "Recepci�n", "descripcion": "Servicio de Recepci�n"}}, {"model": "core.servicio", "pk": 2, "fields": {"nombre": "Pago sin efectivo", "descripcion": "M�todo de pago por tarjeta o puntos"}}, {"model": "core.servicio", "pk": 3, "fields": {"nombre": "Desayuno extendido", "descripcion": "Desayuno: Infusi�n, pan y dulces."}}, {"model": "core.servicio", "pk": 4, "fields": {"nombre": "Oferta de bebidas", "descripcion": "Se proporcionan ofertas en bebidas."}}, {"model": "core.servicio", "pk": 5, "fields": {"nombre": "Ducha o ba�era", "descripcion": "Todas las habitaciones poseer�n ducha y/o ba�era."}}, {"model": "core.servicio", "pk": 6, "fields": {"nombre": "Limpieza", "descripcion": "Limpieza diaria de las habitaciones"}}, {"model": "core.servicio", "pk": 7, "fields": {"nombre": "TV a color", "descripcion": "Todas las habitaciones dispondr�n de una TV a color con control remoto"}}, {"model": "core.servicio", "pk": 8, "fields": {"nombre": "WIFI", "descripcion": "Acceso a internet WiFi tanto en las habitaciones como en las zonas p�blicas"}}, {"model": "core.servicio", "pk": 9, "fields": {"nombre": "Muebles", "descripcion": "Mesa y silla"}}, {"model": "core.servicio", "pk": 10, "fields": {"nombre": "Jab�n", "descripcion": "Jabones o gel de ba�o"}}, {"model": "core.servicio", "pk": 11, "fields": {"nombre": "Toallas", "descripcion": "Toallas de ba�o"}}, {"model": "core.servicio", "pk": 12, "fields": {"nombre": "Oferta de productos sanitarios", "descripcion": "Oferta de productos sanitarios (p. ej. cepillo de dientes, pasta de dientes, kit de afeitado)"}}, {"model": "core.servicio", "pk": 13, "fields": {"nombre": "Personal biling�e", "descripcion": "Personal biling�e (p. ej. alem�n/ingl�s)"}}, {"model": "core.servicio", "pk": 14, "fields": {"nombre": "Desayuno buffet", "descripcion": "Desayuno con varios alimentos a elecci�n del comensal"}}, {"model": "core.servicio", "pk": 15, "fields": {"nombre": "L�mpara", "descripcion": "Luz de lectura al lado de la cama"}}, {"model": "core.servicio", "pk": 16, "fields": {"nombre": "Esencia de ba�o", "descripcion": "Esencia de ba�o o gel de ducha"}}, {"model": "core.servicio", "pk": 17, "fields": {"nombre": "Estantes", "descripcion": "Estanter�a de lino"}}, {"model": "core.servicio", "pk": 18, "fields": {"nombre": "Oferta de costurero", "descripcion": "Ofertas de costurero y utensilios para lustrar zapatos"}}, {"model": "core.servicio", "pk": 19, "fields": {"nombre": "Recepci�n 10 hs.", "descripcion": "Recepci�n abierta las 10 horas, accesible por tel�fono o comunicaci�n digital las 24 horas desde el interior y el exterior"}}, {"model": "core.servicio", "pk": 20, "fields": {"nombre": "Sal�n Suite", "descripcion": "Sal�n suite de tres piezas en recepci�n, servicio de maletas."}}, {"model": "core.servicio", "pk": 21, "fields": {"nombre": "Oferta de bebidas hab.", "descripcion": "Oferta de bebidas en la habitaci�n."}}, {"model": "core.servicio", "pk": 22, "fields": {"nombre": "Tel�fono", "descripcion": "Tel�fono bajo demanda"}}, {"model": "core.servicio", "pk": 23, "fields": {"nombre": "Entretenimiento multimedia", "descripcion": "Sistema de entretenimiento de audio o mulimedia"}}, {"model": "core.servicio", "pk": 24, "fields": {"nombre": "Calefacci�n y secador", "descripcion": "Instalaci�n de calefacci�n en el ba�o, secador de pelo, pa�uelos de limpieza."}}, {"model": "core.servicio", "pk": 25, "fields": {"nombre": "Espejo vestidor", "descripcion": "Espejo vestidor, lugar para poner el equipaje/maleta"}}, {"model": "core.servicio", "pk": 26, "fields": {"nombre": "Lavanderia", "descripcion": "Servicio de lavander�a y planchado"}}, {"model": "core.servicio", "pk": 27, "fields": {"nombre": "Almohada y manta", "descripcion": "Almohada adicional y manta adicional bajo petici�n"}}, {"model": "core.servicio", "pk": 28, "fields": {"nombre": "Sistema de quejas", "descripcion": "Sistema de gesti�n de quejas"}}, {"model": "core.servicio", "pk": 29, "fields": {"nombre": "Sitio web hoteles", "descripcion": "Sitio web biling�e propiedad del hotel"}}, {"model": "core.servicio", "pk": 30, "fields": {"nombre": "Recepci�n 16 hs.", "descripcion": "Recepci�n abierta las 16 horas, accesible por tel�fono las 24 horas desde dentro y desde fuera"}}, {"model": "core.servicio", "pk": 31, "fields": {"nombre": "Lobby", "descripcion": "Lobby con asientos y servicio de bebidas."}}, {"model": "core.servicio", "pk": 32, "fields": {"nombre": "Desayuno habitaci�n", "descripcion": "Desayuno buffet o carta de men� de desayuno v�a servicio de habitaciones"}}, {"model": "core.servicio", "pk": 33, "fields": {"nombre": "Bar", "descripcion": "Minibar, maxibar o bebidas 16 hs via room service"}}, {"model": "core.servicio", "pk": 34, "fields": {"nombre": "Sof� tapizado", "descripcion": "Silla/sof� tapizado con mesa auxiliar"}}, {"model": "core.servicio", "pk": 35, "fields": {"nombre": "Albornoz", "descripcion": "Albornoz y zapatillas bajo petici�n"}}, {"model": "core.servicio", "pk": 36, "fields": {"nombre": "Cosm�ticos", "descripcion": "Productos cosm�ticos (por ejemplo, gorro de ducha, lima de u�as, bastoncillos de algod�n), espejo de tocador, bandeja de gran tama�o en el ba�o"}}, {"model": "core.servicio", "pk": 37, "fields": {"nombre": "TV Internacional", "descripcion": "La televisi�n tiene canales internacionales disponibles"}}, {"model": "core.servicio", "pk": 38, "fields": {"nombre": "Sauna", "descripcion": "Instalaciones adicionales: Sauna"}}, {"model": "core.servicio", "pk": 39, "fields": {"nombre": "Gimnasio", "descripcion": "Instalaciones adicionales: Gimnasio/sala de ejercicios"}}, {"model": "core.servicio", "pk": 40, "fields": {"nombre": "Recepci�n 24 hs.", "descripcion": "Recepci�n abierta las 24 horas, personal multiling�e"}}, {"model": "core.servicio", "pk": 41, "fields": {"nombre": "Portero", "descripcion": "Servicio de portero o valet parking"}}, {"model": "core.servicio", "pk": 42, "fields": {"nombre": "Conserje", "descripcion": "Conserje, paje"}}, {"model": "core.servicio", "pk": 43, "fields": {"nombre": "Limusina", "descripcion": "Servicio de transporte"}}, {"model": "core.servicio", "pk": 44, "fields": {"nombre": "Equipaje", "descripcion": "Servicio de equipaje"}}, {"model": "core.servicio", "pk": 45, "fields": {"nombre": "Regalo", "descripcion": "Saludo personalizado para cada hu�sped con flores frescas o un regalo en la habitaci�n"}}, {"model": "core.servicio", "pk": 46, "fields": {"nombre": "Room service", "descripcion": "Minibar y oferta de alimentos y bebidas v�a room service durante las 24 horas"}}, {"model": "core.servicio", "pk": 47, "fields": {"nombre": "Internet", "descripcion": "Dispositivo de Internet en la habitaci�n bajo petici�n"}}, {"model": "core.servicio", "pk": 48, "fields": {"nombre": "Seguridad", "descripcion": "Seguro en la habitaci�n"}}, {"model": "core.servicio", "pk": 49, "fields": {"nombre": "Cobertura", "descripcion": "Servicio de cobertura por la noche"}}, {"model": "core.categoria", "pk": 1, "fields": {"nombre": "Turista", "descripcion": "Categor�a: 1 estrella", "servicios": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}, {"model": "core.categoria", "pk": 2, "fields": {"nombre": "Est�ndar", "descripcion": "Categor�a: 2 estrellas", "servicios": [13, 14, 15, 16, 17, 18]}}, {"model": "core.categoria", "pk": 3, "fields": {"nombre": "Comodidad", "descripcion": "Categor�a: 3 estrellas", "servicios": [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]}}, {"model": "core.categoria", "pk": 4, "fields": {"nombre": "Primera clase", "descripcion": "Categor�a: 4 estrellas", "servicios": [32, 33, 34, 35, 36, 37, 30, 31]}}, {"model": "core.categoria", "pk": 5, "fields": {"nombre": "Primera clase superior", "descripcion": "Categor�a: 4 estrellas y media", "servicios": [38, 39]}}, {"model": "core.categoria", "pk": 6, "fields": {"nombre": "Lujo", "descripcion": "Categor�a: 5 estrellas", "servicios": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49]}}]
+[
+  { "model": "core.pais", "pk": "AR", "fields": { "nombre": "Argentina" } },
+  { "model": "core.pais", "pk": "BO", "fields": { "nombre": "Bolivia" } },
+  { "model": "core.pais", "pk": "BR", "fields": { "nombre": "Brasil" } },
+  { "model": "core.pais", "pk": "CL", "fields": { "nombre": "Chile" } },
+  { "model": "core.pais", "pk": "CO", "fields": { "nombre": "Colombia" } },
+  { "model": "core.pais", "pk": "UR", "fields": { "nombre": "Uruguay" } },
+  { "model": "core.provincia", "pk": 1, "fields": { "nombre": "Chubut", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 2, "fields": { "nombre": "Maldonado", "pais": "UR" } },
+  { "model": "core.provincia", "pk": 3, "fields": { "nombre": "Buenos Aires", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 4, "fields": { "nombre": "Santa Fe", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 5, "fields": { "nombre": "Tierra del Fuego", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 6, "fields": { "nombre": "Salta", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 7, "fields": { "nombre": "San Luis", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 8, "fields": { "nombre": "Chaco", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 9, "fields": { "nombre": "Cordoba", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 10, "fields": { "nombre": "Mendoza", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 11, "fields": { "nombre": "Rio Negro", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 12, "fields": { "nombre": "Santa Cruz", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 13, "fields": { "nombre": "Jujuy", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 14, "fields": { "nombre": "Catamarca", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 15, "fields": { "nombre": "Neuquen", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 16, "fields": { "nombre": "San Juan", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 17, "fields": { "nombre": "La Pampa", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 18, "fields": { "nombre": "Tucuman", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 19, "fields": { "nombre": "Misiones", "pais": "AR" } },
+  { "model": "core.provincia", "pk": 20, "fields": { "nombre": "Entre Rios", "pais": "AR" } },
+  { "model": "core.ciudad", "pk": "1000", "fields": { "nombre": "Buenos Aires", "provincia": 3 } },
+  {
+    "model": "core.ciudad",
+    "pk": "20100",
+    "fields": { "nombre": "Punta del Este", "provincia": 2 }
+  },
+  {
+    "model": "core.ciudad",
+    "pk": "3370",
+    "fields": { "nombre": "Puerto Iguaz ", "provincia": 19 }
+  },
+  {
+    "model": "core.ciudad",
+    "pk": "4600",
+    "fields": { "nombre": "San Salvador de Jujuy", "provincia": 13 }
+  },
+  { "model": "core.ciudad", "pk": "5700", "fields": { "nombre": "San Luis", "provincia": 7 } },
+  { "model": "core.ciudad", "pk": "7165", "fields": { "nombre": "Villa Gesell", "provincia": 3 } },
+  { "model": "core.ciudad", "pk": "7167", "fields": { "nombre": "Pinamar", "provincia": 3 } },
+  { "model": "core.ciudad", "pk": "7607", "fields": { "nombre": "Miramar", "provincia": 3 } },
+  { "model": "core.ciudad", "pk": "8000", "fields": { "nombre": "Bah a Blanca", "provincia": 3 } },
+  { "model": "core.ciudad", "pk": "9100", "fields": { "nombre": "Trelew", "provincia": 1 } },
+  { "model": "core.ciudad", "pk": "9103", "fields": { "nombre": "Rawson", "provincia": 1 } },
+  { "model": "core.ciudad", "pk": "9120", "fields": { "nombre": "Puerto Madryn", "provincia": 1 } },
+  {
+    "model": "core.ciudad",
+    "pk": "9121",
+    "fields": { "nombre": "Puerto Piramides", "provincia": 1 }
+  },
+  { "model": "core.ciudad", "pk": "B1900", "fields": { "nombre": "La Plata", "provincia": 3 } },
+  {
+    "model": "core.direccion",
+    "pk": 1,
+    "fields": { "calle": "Belgrano", "numero": 397, "ciudad": "9100" }
+  },
+  {
+    "model": "core.direccion",
+    "pk": 2,
+    "fields": { "calle": "Rb. Dr. Claudio Williman", "numero": 3, "ciudad": "20100" }
+  },
+  {
+    "model": "core.direccion",
+    "pk": 3,
+    "fields": { "calle": "9 de Julio", "numero": 626, "ciudad": "7607" }
+  },
+  {
+    "model": "core.direccion",
+    "pk": 4,
+    "fields": { "calle": "Calle 16", "numero": 1050, "ciudad": "7607" }
+  },
+  {
+    "model": "core.direccion",
+    "pk": 5,
+    "fields": { "calle": "Roque S. Pe a", "numero": 253, "ciudad": "9120" }
+  },
+  {
+    "model": "core.direccion",
+    "pk": 6,
+    "fields": { "calle": "J. A. Roca", "numero": 155, "ciudad": "9120" }
+  },
+  {
+    "model": "core.direccion",
+    "pk": 7,
+    "fields": { "calle": "Gral. Manuel Belgrano", "numero": 1263, "ciudad": "4600" }
+  },
+  {
+    "model": "core.direccion",
+    "pk": 8,
+    "fields": { "calle": "Av. Pasquini Lopez", "numero": 50, "ciudad": "4600" }
+  },
+  {
+    "model": "core.direccion",
+    "pk": 9,
+    "fields": { "calle": "Av. Tres Fronteras", "numero": 550, "ciudad": "3370" }
+  },
+  {
+    "model": "core.tipohabitacion",
+    "pk": 1,
+    "fields": {
+      "nombre": "Simple",
+      "descripcion": "Habitaci�n con una cama de una plaza.",
+      "capacidad": 1
+    }
+  },
+  {
+    "model": "core.tipohabitacion",
+    "pk": 2,
+    "fields": {
+      "nombre": "Doble",
+      "descripcion": "Habitaci�n con dos camas de una plaza.",
+      "capacidad": 2
+    }
+  },
+  {
+    "model": "core.tipohabitacion",
+    "pk": 3,
+    "fields": {
+      "nombre": "Doble Matrimonial",
+      "descripcion": "Habitaci�n con una cama de dos plazas.",
+      "capacidad": 2
+    }
+  },
+  {
+    "model": "core.tipohabitacion",
+    "pk": 4,
+    "fields": {
+      "nombre": "Triple",
+      "descripcion": "Habitaci�n con tres camas de una plaza.",
+      "capacidad": 3
+    }
+  },
+  {
+    "model": "core.tipohabitacion",
+    "pk": 5,
+    "fields": {
+      "nombre": "Triple Familiar",
+      "descripcion": "Habitaci�n con una cama de dos plazas y una cama de una plaza.",
+      "capacidad": 3
+    }
+  },
+  {
+    "model": "core.tipohabitacion",
+    "pk": 6,
+    "fields": {
+      "nombre": "Apartamento",
+      "descripcion": "Dos habitaciones separadas para 4 o 5 personas.",
+      "capacidad": 5
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 1,
+    "fields": { "nombre": "Recepci�n", "descripcion": "Servicio de Recepci�n" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 2,
+    "fields": {
+      "nombre": "Pago sin efectivo",
+      "descripcion": "M�todo de pago por tarjeta o puntos"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 3,
+    "fields": { "nombre": "Desayuno extendido", "descripcion": "Desayuno: Infusi�n, pan y dulces." }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 4,
+    "fields": {
+      "nombre": "Oferta de bebidas",
+      "descripcion": "Se proporcionan ofertas en bebidas."
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 5,
+    "fields": {
+      "nombre": "Ducha o ba�era",
+      "descripcion": "Todas las habitaciones poseer�n ducha y/o ba�era."
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 6,
+    "fields": { "nombre": "Limpieza", "descripcion": "Limpieza diaria de las habitaciones" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 7,
+    "fields": {
+      "nombre": "TV a color",
+      "descripcion": "Todas las habitaciones dispondr�n de una TV a color con control remoto"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 8,
+    "fields": {
+      "nombre": "WIFI",
+      "descripcion": "Acceso a internet WiFi tanto en las habitaciones como en las zonas p�blicas"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 9,
+    "fields": { "nombre": "Muebles", "descripcion": "Mesa y silla" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 10,
+    "fields": { "nombre": "Jab�n", "descripcion": "Jabones o gel de ba�o" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 11,
+    "fields": { "nombre": "Toallas", "descripcion": "Toallas de ba�o" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 12,
+    "fields": {
+      "nombre": "Oferta de productos sanitarios",
+      "descripcion": "Oferta de productos sanitarios (p. ej. cepillo de dientes, pasta de dientes, kit de afeitado)"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 13,
+    "fields": {
+      "nombre": "Personal biling�e",
+      "descripcion": "Personal biling�e (p. ej. alem�n/ingl�s)"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 14,
+    "fields": {
+      "nombre": "Desayuno buffet",
+      "descripcion": "Desayuno con varios alimentos a elecci�n del comensal"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 15,
+    "fields": { "nombre": "L�mpara", "descripcion": "Luz de lectura al lado de la cama" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 16,
+    "fields": { "nombre": "Esencia de ba�o", "descripcion": "Esencia de ba�o o gel de ducha" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 17,
+    "fields": { "nombre": "Estantes", "descripcion": "Estanter�a de lino" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 18,
+    "fields": {
+      "nombre": "Oferta de costurero",
+      "descripcion": "Ofertas de costurero y utensilios para lustrar zapatos"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 19,
+    "fields": {
+      "nombre": "Recepci�n 10 hs.",
+      "descripcion": "Recepci�n abierta las 10 horas, accesible por tel�fono o comunicaci�n digital las 24 horas desde el interior y el exterior"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 20,
+    "fields": {
+      "nombre": "Sal�n Suite",
+      "descripcion": "Sal�n suite de tres piezas en recepci�n, servicio de maletas."
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 21,
+    "fields": {
+      "nombre": "Oferta de bebidas hab.",
+      "descripcion": "Oferta de bebidas en la habitaci�n."
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 22,
+    "fields": { "nombre": "Tel�fono", "descripcion": "Tel�fono bajo demanda" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 23,
+    "fields": {
+      "nombre": "Entretenimiento multimedia",
+      "descripcion": "Sistema de entretenimiento de audio o mulimedia"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 24,
+    "fields": {
+      "nombre": "Calefacci�n y secador",
+      "descripcion": "Instalaci�n de calefacci�n en el ba�o, secador de pelo, pa�uelos de limpieza."
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 25,
+    "fields": {
+      "nombre": "Espejo vestidor",
+      "descripcion": "Espejo vestidor, lugar para poner el equipaje/maleta"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 26,
+    "fields": { "nombre": "Lavanderia", "descripcion": "Servicio de lavander�a y planchado" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 27,
+    "fields": {
+      "nombre": "Almohada y manta",
+      "descripcion": "Almohada adicional y manta adicional bajo petici�n"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 28,
+    "fields": { "nombre": "Sistema de quejas", "descripcion": "Sistema de gesti�n de quejas" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 29,
+    "fields": {
+      "nombre": "Sitio web hoteles",
+      "descripcion": "Sitio web biling�e propiedad del hotel"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 30,
+    "fields": {
+      "nombre": "Recepci�n 16 hs.",
+      "descripcion": "Recepci�n abierta las 16 horas, accesible por tel�fono las 24 horas desde dentro y desde fuera"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 31,
+    "fields": { "nombre": "Lobby", "descripcion": "Lobby con asientos y servicio de bebidas." }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 32,
+    "fields": {
+      "nombre": "Desayuno habitaci�n",
+      "descripcion": "Desayuno buffet o carta de men� de desayuno v�a servicio de habitaciones"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 33,
+    "fields": {
+      "nombre": "Bar",
+      "descripcion": "Minibar, maxibar o bebidas 16 hs via room service"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 34,
+    "fields": { "nombre": "Sof� tapizado", "descripcion": "Silla/sof� tapizado con mesa auxiliar" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 35,
+    "fields": { "nombre": "Albornoz", "descripcion": "Albornoz y zapatillas bajo petici�n" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 36,
+    "fields": {
+      "nombre": "Cosm�ticos",
+      "descripcion": "Productos cosm�ticos (por ejemplo, gorro de ducha, lima de u�as, bastoncillos de algod�n), espejo de tocador, bandeja de gran tama�o en el ba�o"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 37,
+    "fields": {
+      "nombre": "TV Internacional",
+      "descripcion": "La televisi�n tiene canales internacionales disponibles"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 38,
+    "fields": { "nombre": "Sauna", "descripcion": "Instalaciones adicionales: Sauna" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 39,
+    "fields": {
+      "nombre": "Gimnasio",
+      "descripcion": "Instalaciones adicionales: Gimnasio/sala de ejercicios"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 40,
+    "fields": {
+      "nombre": "Recepci�n 24 hs.",
+      "descripcion": "Recepci�n abierta las 24 horas, personal multiling�e"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 41,
+    "fields": { "nombre": "Portero", "descripcion": "Servicio de portero o valet parking" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 42,
+    "fields": { "nombre": "Conserje", "descripcion": "Conserje, paje" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 43,
+    "fields": { "nombre": "Limusina", "descripcion": "Servicio de transporte" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 44,
+    "fields": { "nombre": "Equipaje", "descripcion": "Servicio de equipaje" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 45,
+    "fields": {
+      "nombre": "Regalo",
+      "descripcion": "Saludo personalizado para cada hu�sped con flores frescas o un regalo en la habitaci�n"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 46,
+    "fields": {
+      "nombre": "Room service",
+      "descripcion": "Minibar y oferta de alimentos y bebidas v�a room service durante las 24 horas"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 47,
+    "fields": {
+      "nombre": "Internet",
+      "descripcion": "Dispositivo de Internet en la habitaci�n bajo petici�n"
+    }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 48,
+    "fields": { "nombre": "Seguridad", "descripcion": "Seguro en la habitaci�n" }
+  },
+  {
+    "model": "core.servicio",
+    "pk": 49,
+    "fields": { "nombre": "Cobertura", "descripcion": "Servicio de cobertura por la noche" }
+  },
+  {
+    "model": "core.categoria",
+    "pk": 1,
+    "fields": {
+      "nombre": "Turista",
+      "descripcion": "Categor�a: 1 estrella",
+      "servicios": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    }
+  },
+  {
+    "model": "core.categoria",
+    "pk": 2,
+    "fields": {
+      "nombre": "Est�ndar",
+      "descripcion": "Categor�a: 2 estrellas",
+      "servicios": [13, 14, 15, 16, 17, 18]
+    }
+  },
+  {
+    "model": "core.categoria",
+    "pk": 3,
+    "fields": {
+      "nombre": "Comodidad",
+      "descripcion": "Categor�a: 3 estrellas",
+      "servicios": [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+    }
+  },
+  {
+    "model": "core.categoria",
+    "pk": 4,
+    "fields": {
+      "nombre": "Primera clase",
+      "descripcion": "Categor�a: 4 estrellas",
+      "servicios": [32, 33, 34, 35, 36, 37, 30, 31]
+    }
+  },
+  {
+    "model": "core.categoria",
+    "pk": 5,
+    "fields": {
+      "nombre": "Primera clase superior",
+      "descripcion": "Categor�a: 4 estrellas y media",
+      "servicios": [38, 39]
+    }
+  },
+  {
+    "model": "core.categoria",
+    "pk": 6,
+    "fields": {
+      "nombre": "Lujo",
+      "descripcion": "Categor�a: 5 estrellas",
+      "servicios": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+    }
+  }
+]
