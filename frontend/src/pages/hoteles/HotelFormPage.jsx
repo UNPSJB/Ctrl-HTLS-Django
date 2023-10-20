@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { createHotel } from "../../api/hotel.api";
 import { createDireccion } from "../../api/ubicacion.api"
 import SelectUbicacion from "../../components/SelectUbicacion";
-import SelectTipoHabitacion from "../../components/SelectTipoHabitacion";
-
+import SelectEncargado from "../../components/SelectEncargado";
+import SelectCategoria from "../../components/SelectCategoria";
 
 export default function HotelFormPage() {
   const {
@@ -19,23 +19,24 @@ export default function HotelFormPage() {
   const [provincia, setProvincia] = useState("todos");
   const [ciudad, setCiudad] = useState("todos");
 
-  const [tipoHabitacion, setTipoHabitacion] = useState(null)
+  const [encargado, setEncargado] = useState(null)
+  const [categoria, setCategoria] = useState(null)
 
   const onSubmit = handleSubmit(async (data) => {
+
     try {
-      const { calle, numero } = data 
+      const { nombre, calle, numero } = data 
       const newDireccion = {
       calle,
       numero,
       ciudad
     }
-    console.log(newDireccion)
     await createDireccion(newDireccion);
 
-    const newHotel = { ...data, pais, provincia, ciudad, tipoHabitacion, newDireccion };
+    const newHotel = { nombre, newDireccion, encargado, categoria };
     await createHotel(newHotel);  
     
-  } catch (error) {
+    } catch (error) {
       return ;
     }
     
@@ -62,10 +63,17 @@ export default function HotelFormPage() {
           ciudad={ciudad}
           setCiudad={setCiudad}
         />
-        <SelectTipoHabitacion 
-          tipoHabitacion={tipoHabitacion}
-          setTipoHabitacion={setTipoHabitacion}
+
+        <SelectEncargado 
+          encargado={encargado}
+          setEncargado={setEncargado}
         />
+
+        <SelectCategoria 
+          categoria={categoria}
+          setCategoria={setCategoria}
+        />
+
         <button type="submit">Guardar</button>
       </form>
     </div>

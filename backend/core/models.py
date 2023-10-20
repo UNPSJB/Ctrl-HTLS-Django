@@ -44,7 +44,6 @@ class TipoHabitacion(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     capacidad = models.IntegerField()
-    precio = models.FloatField(default=0)
 
     def __str__(self):
         return f"Tipo de Habitacion {self.nombre}"
