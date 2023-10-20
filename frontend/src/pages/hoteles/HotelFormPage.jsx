@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { createHotel } from "../../api/hotel.api";
+import { createDireccion } from "../../api/ubicacion.api"
 import SelectUbicacion from "../../components/SelectUbicacion";
 import SelectTipoHabitacion from "../../components/SelectTipoHabitacion";
 
@@ -21,9 +22,23 @@ export default function HotelFormPage() {
   const [tipoHabitacion, setTipoHabitacion] = useState(null)
 
   const onSubmit = handleSubmit(async (data) => {
-    const newData = { ...data, pais, provincia, ciudad, tipoHabitacion };
-    console.log(newData)
-    await createHotel(newData);
+    try {
+      const { calle, numero } = data 
+      const newDireccion = {
+      calle,
+      numero,
+      ciudad
+    }
+    console.log(newDireccion)
+    await createDireccion(newDireccion);
+
+    const newHotel = { ...data, pais, provincia, ciudad, tipoHabitacion, newDireccion };
+    await createHotel(newHotel);  
+    
+  } catch (error) {
+      return ;
+    }
+    
     navigate("/hoteles");
   });
 
@@ -33,8 +48,11 @@ export default function HotelFormPage() {
         <input type="text" placeholder="nombre" {...register("nombre", { required: true })} />
         {errors.nombre && <span>Este campo es requerido</span>}
 
-        <input type="text" placeholder="direccion" {...register("direccion", { required: true })} />
-        {errors.direccion && <span>Este campo es requerido</span>}
+        <input type="text" placeholder="calle" {...register("calle", { required: true })} />
+        {errors.calle && <span>Este campo es requerido</span>}
+
+        <input type="number" placeholder="numero" {...register("numero", { required: true })} />
+        {errors.numero && <span>Este campo es requerido</span>}
 
         <SelectUbicacion
           pais={pais}
