@@ -33,9 +33,9 @@ export default function HotelFormPage() {
 
       const direccion = (await createDireccion(newDireccion)).data.id;
 
-      const tipos = [1, 2, 3, 4, 5, 6];
+      const tipos_de_habitacion = [1, 2, 3, 4, 5, 6];
 
-      const newHotel = { nombre, direccion, tipos, categoria, encargado };
+      const newHotel = { nombre, direccion, tipos_de_habitacion, categoria, encargado };
       console.log(newHotel);
       await createHotel(newHotel);
     } catch (error) {
