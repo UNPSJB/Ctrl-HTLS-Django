@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { getAllTipoHabitacion } from "../api/tipoHabitacion.api";
 
-function SelectTipoHabitacion() {
+function SelectTipoHabitacion({tipoHabitacion, setTipoHabitacion}) {
 
   const [tipoHabitaciones, setTipoHabitaciones] = useState([])
-  const [tipoHabitacion, setTipoHabitacion] = useState([])
 
   useEffect(() => {
   async function loadTipoHabitaciones() {
@@ -18,10 +17,10 @@ function SelectTipoHabitacion() {
 
   return (
     <div>
-      <select value={tipoHabitacion} onChange={handleChange}>
+      <select value={tipoHabitacion ?? ""} onChange={handleChange}>
         <option value="todos">Tipos de Habitacion</option>
         {tipoHabitaciones.map((tipoHabitacionItem) => (
-          <option key={tipoHabitacionItem.codigo} value={tipoHabitacionItem.codigo}>
+          <option key={tipoHabitacionItem.nombre} value={tipoHabitacionItem.nombre}>
             {tipoHabitacionItem.nombre}
           </option>
         ))}

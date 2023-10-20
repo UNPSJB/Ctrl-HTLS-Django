@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { createHotel } from "../../api/hotel.api";
-import { getAllPaises } from "../../api/ubicacion.api";
 import SelectUbicacion from "../../components/SelectUbicacion";
 import SelectTipoHabitacion from "../../components/SelectTipoHabitacion";
 
@@ -14,23 +13,15 @@ export default function HotelFormPage() {
     formState: { errors }, // Asegúrate de importar errors de useForm
   } = useForm();
   const navigate = useNavigate();
-  const [pais, setPais] = useState("todos");
-  const [paises, setPaises] = useState([]);
 
+  const [pais, setPais] = useState("todos");
   const [provincia, setProvincia] = useState("todos");
   const [ciudad, setCiudad] = useState("todos");
 
-  useEffect(() => {
-    async function loadPaises() {
-      const res = await getAllPaises();
-      setPaises(res.data);
-    }
-
-    loadPaises();
-  }, []);
+  const [tipoHabitacion, setTipoHabitacion] = useState(null)
 
   const onSubmit = handleSubmit(async (data) => {
-    const newData = { ...data, pais };
+    const newData = { ...data, pais, provincia, ciudad, tipoHabitacion };
     console.log(newData)
     await createHotel(newData);
     navigate("/hoteles");
@@ -53,7 +44,10 @@ export default function HotelFormPage() {
           ciudad={ciudad}
           setCiudad={setCiudad}
         />
-        <SelectTipoHabitacion />
+        <SelectTipoHabitacion 
+          tipoHabitacion={tipoHabitacion}
+          setTipoHabitacion={setTipoHabitacion}
+        />
         <button type="submit">Guardar</button>
       </form>
     </div>
