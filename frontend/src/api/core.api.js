@@ -13,6 +13,7 @@ export const getAllProvincias = () => coreApi.get("provincias/");
 export const getAllCiudades = () => coreApi.get("ciudades/");
 
 export const getAllDirecciones = () => coreApi.get("direcciones/");
+export const getDireccion = (id) => coreApi.get(`direcciones/${id}`);
 export const createDireccion = (direccion) => coreApi.post("direcciones/", direccion);
 
 export const getProvinciasPorPais = (codigo) => coreApi.get(`/provincias/?pais=${codigo}`);
@@ -35,3 +36,4 @@ export const getAllTipoHabitacion = () => coreApi.get("tiposhabitaciones/");
 export const getAllServicios = () => coreApi.get("servicios/");
 
 export const getAllCategorias = () => coreApi.get("categorias/");
+export const getCategoria = (id) => coreApi.get(`categorias/${id}`);
