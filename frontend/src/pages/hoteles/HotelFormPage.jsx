@@ -11,7 +11,7 @@ export default function HotelFormPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors }, // Asegúrate de importar errors de useForm
+    formState: { errors },
   } = useForm();
   const navigate = useNavigate();
 
@@ -34,8 +34,8 @@ export default function HotelFormPage() {
       const { id: direccion } = (await createDireccion(newDireccion)).data;
 
       const newHotel = { nombre, direccion, categoria, encargado };
-
       await createHotel(newHotel);
+
       navigate("/hoteles");
     } catch (error) {
       console.error("Error al crear el hotel:", error);
