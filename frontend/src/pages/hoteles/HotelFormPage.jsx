@@ -25,11 +25,7 @@ export default function HotelFormPage() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       const { nombre, calle, numero } = data;
-      const newDireccion = {
-        calle,
-        numero,
-        ciudad,
-      };
+      const newDireccion = { calle, numero, ciudad };
 
       const { id: direccion } = (await createDireccion(newDireccion)).data;
 
