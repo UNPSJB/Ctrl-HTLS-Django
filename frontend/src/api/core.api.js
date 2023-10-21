@@ -22,6 +22,9 @@ export const getCiudadesPorProvincia = (id) => coreApi.get(`ciudades/?provincia=
 // -------------------- Persona --------------------
 
 export const getAllEncargados = () => coreApi.get("encargados/");
+// Estado tiene que ser true (asignados a hotel) o false (sin asignar a hotel)
+export const getAllEncargadosAsignados = (estado) =>
+  coreApi.get(`encargados/?encargado_asignado=${estado}`);
 
 export const getAllVendedores = () => coreApi.get("vendedores/");
 
