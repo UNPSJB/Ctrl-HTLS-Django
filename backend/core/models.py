@@ -89,7 +89,7 @@ class Vendedor(Persona):
 
 
 class Encargado(Persona):
-    pass
+    encargado_asignado = models.BooleanField(default=False)
 
 
 class Cliente(Persona):
