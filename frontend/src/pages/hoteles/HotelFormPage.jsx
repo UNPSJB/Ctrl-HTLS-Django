@@ -31,18 +31,15 @@ export default function HotelFormPage() {
         ciudad,
       };
 
-      const direccion = (await createDireccion(newDireccion)).data.id;
+      const { id: direccion } = (await createDireccion(newDireccion)).data;
 
-      const tipos_de_habitacion = [1, 2, 3, 4, 5, 6];
+      const newHotel = { nombre, direccion, categoria, encargado };
 
-      const newHotel = { nombre, direccion, tipos_de_habitacion, categoria, encargado };
-      console.log(newHotel);
       await createHotel(newHotel);
+      navigate("/hoteles");
     } catch (error) {
-      return;
+      console.error("Error al crear el hotel:", error);
     }
-
-    navigate("/hoteles");
   });
 
   return (
