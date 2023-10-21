@@ -4,7 +4,7 @@ import {
   getProvinciasPorPais,
   getCiudadesPorProvincia,
   getAllCiudades,
-} from "../api/ubicacion.api";
+} from "../../api/ubicacion.api";
 
 function SelectUbicacion({ pais, setPais, provincia, setProvincia, ciudad, setCiudad }) {
   const [paises, setPaises] = useState([]);

@@ -4,8 +4,8 @@ import {
   getHotelesPorPais,
   getHotelesPorProvincia,
   getHotelesPorCiudad,
-} from "../api/hotel.api";
-import SelectUbicacion from "./SelectUbicacion";
+} from "../../api/hotel.api";
+import SelectUbicacion from "../select/SelectUbicacion";
 import HotelCard from "./HotelCard";
 
 export default function HotelList() {

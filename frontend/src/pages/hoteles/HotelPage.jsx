@@ -1,4 +1,4 @@
-import HotelList from '../../components/HotelList';
+import HotelList from "../../components/hotel/HotelList";
 import { Link } from "react-router-dom";
 
 export default function HotelPage() {
@@ -9,5 +9,5 @@ export default function HotelPage() {
       <Link to="/hotel-form">Crear Hotel</Link>
       <HotelList />;
     </div>
-  ) 
+  );
 }

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAllCategorias } from "../api/categoria.api";
+import { getAllCategorias } from "../../api/categoria.api";
 
 export default function SelectCategoria({ categoria, setCategoria }) {
-  
-  const [categorias, setCategorias] = useState([])
+  const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
     async function loadCategorias() {
@@ -13,7 +12,7 @@ export default function SelectCategoria({ categoria, setCategoria }) {
     loadCategorias();
   }, []);
 
-  const handleChange = (e) => setCategoria(e.target.value)
+  const handleChange = (e) => setCategoria(e.target.value);
 
   return (
     <div>
@@ -26,5 +25,5 @@ export default function SelectCategoria({ categoria, setCategoria }) {
         ))}
       </select>
     </div>
-  )
+  );
 }

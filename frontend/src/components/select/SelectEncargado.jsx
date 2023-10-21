@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAllEncargados } from "../api/persona.api";
+import { getAllEncargados } from "../../api/persona.api";
 
 export default function SelectEncargado({ encargado, setEncargado }) {
-
-  const [encargados, setEncargados] = useState([])
+  const [encargados, setEncargados] = useState([]);
 
   useEffect(() => {
     async function loadEncargados() {
@@ -13,8 +12,8 @@ export default function SelectEncargado({ encargado, setEncargado }) {
     loadEncargados();
   }, []);
 
-  const handleChange = (e) => setEncargado(e.target.value)
-  
+  const handleChange = (e) => setEncargado(e.target.value);
+
   return (
     <div>
       <select value={encargado ?? ""} onChange={handleChange}>
@@ -26,6 +25,5 @@ export default function SelectEncargado({ encargado, setEncargado }) {
         ))}
       </select>
     </div>
-  )
+  );
 }
-

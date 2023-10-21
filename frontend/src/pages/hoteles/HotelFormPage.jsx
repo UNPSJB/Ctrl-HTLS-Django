@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { createHotel } from "../../api/hotel.api";
 import { createDireccion } from "../../api/ubicacion.api";
-import SelectUbicacion from "../../components/SelectUbicacion";
-import SelectEncargado from "../../components/SelectEncargado";
-import SelectCategoria from "../../components/SelectCategoria";
+import SelectUbicacion from "../../components/select/SelectUbicacion";
+import SelectEncargado from "../../components/select/SelectEncargado";
+import SelectCategoria from "../../components/select/SelectCategoria";
 
 export default function HotelFormPage() {
   const {
