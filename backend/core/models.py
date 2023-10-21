@@ -79,9 +79,6 @@ class Persona(models.Model):
     nombre = models.CharField(max_length=200)
     apellido = models.CharField(max_length=200)
 
-    def __str__(self):
-        return f"{self.nombre} {self.apellido}"
-
     def save(self, *args, **kwargs):
         self.nombre = self.nombre.capitalize()
         super().save(*args, **kwargs)
