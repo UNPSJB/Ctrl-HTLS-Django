@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  getAllHotels,
+  getAllHoteles,
   getHotelesPorPais,
   getHotelesPorProvincia,
   getHotelesPorCiudad,
@@ -21,7 +21,7 @@ export default function HotelList() {
       if (ciudad !== "todos") res = await getHotelesPorCiudad(ciudad);
       else if (provincia !== "todos") res = await getHotelesPorProvincia(provincia);
       else if (pais !== "todos") res = await getHotelesPorPais(pais);
-      else res = await getAllHotels();
+      else res = await getAllHoteles();
       setHoteles(res.data);
     }
     loadHotels();

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllEncargados } from "../../api/persona.api";
+import { getAllEncargados } from "../../api/core.api";
 
 export default function SelectEncargado({ encargado, setEncargado }) {
   const [encargados, setEncargados] = useState([]);

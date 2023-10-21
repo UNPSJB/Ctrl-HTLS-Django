@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllCategorias } from "../../api/categoria.api";
+import { getAllCategorias } from "../../api/core.api";
 
 export default function SelectCategoria({ categoria, setCategoria }) {
   const [categorias, setCategorias] = useState([]);

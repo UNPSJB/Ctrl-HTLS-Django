@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { createHotel } from "../../api/hotel.api";
-import { createDireccion } from "../../api/ubicacion.api";
+import { createDireccion } from "../../api/core.api";
 import SelectUbicacion from "../../components/select/SelectUbicacion";
 import SelectEncargado from "../../components/select/SelectEncargado";
 import SelectCategoria from "../../components/select/SelectCategoria";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllTipoHabitacion } from "../../api/tipoHabitacion.api";
+import { getAllTipoHabitacion } from "../../api/core.api";
 
 function SelectTipoHabitacion({ tipoHabitacion, setTipoHabitacion }) {
   const [tipoHabitaciones, setTipoHabitaciones] = useState([]);
