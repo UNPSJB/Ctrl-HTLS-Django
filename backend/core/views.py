@@ -24,7 +24,7 @@ from .serializers import (
     ClienteSerializer,
 )
 from django_filters import rest_framework as filters
-from .filters import ProvinciaFilter, CiudadFilter
+from .filters import ProvinciaFilter, CiudadFilter, EncargadoFilter
 
 
 # -------------------- Ubicacion --------------------
@@ -83,6 +83,8 @@ class VendedorViewSet(ModelViewSet):
 class EncargadoViewSet(ModelViewSet):
     queryset = Encargado.objects.all()
     serializer_class = EncargadoSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = EncargadoFilter
 
 
 class ClienteViewSet(ModelViewSet):
