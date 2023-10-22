@@ -73,7 +73,7 @@ class VendedorSerializer(serializers.ModelSerializer):
 class EncargadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Encargado
-        fields = "__all__"
+        fields = ["documento", "tipo_documento", "nombre", "apellido"]
 
 
 class ClienteSerializer(serializers.ModelSerializer):

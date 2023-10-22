@@ -6,7 +6,7 @@ class Hotel(models.Model):
     nombre = models.CharField(max_length=100)
     direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE)
     tipos_de_habitacion = models.ManyToManyField(TipoHabitacion)
-    categoria = models.OneToOneField(Categoria, on_delete=models.SET_NULL, null=True)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True)
     encargado = models.OneToOneField(Encargado, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
