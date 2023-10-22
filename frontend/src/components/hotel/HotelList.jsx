@@ -7,7 +7,7 @@ import {
 } from "../../api/hotel.api";
 import HotelCard from "./HotelCard";
 
-export default function HotelList({ pais, provincia, ciudad }) {
+export default function HotelList({ pais, provincia, ciudad, categoria }) {
   const [hoteles, setHoteles] = useState([]);
 
   // Listado de Hoteles según el país, provincia o ciudad seleccionada
