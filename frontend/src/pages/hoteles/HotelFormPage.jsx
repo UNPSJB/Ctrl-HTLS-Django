@@ -6,6 +6,7 @@ import { createDireccion } from "../../api/core.api";
 import SelectUbicacion from "../../components/select/SelectUbicacion";
 import SelectEncargado from "../../components/select/SelectEncargado";
 import SelectCategoria from "../../components/select/SelectCategoria";
+import useUbicacion from "../../hooks/useUbicacion";
 
 export default function HotelFormPage() {
   const {
@@ -15,9 +16,7 @@ export default function HotelFormPage() {
   } = useForm();
   const navigate = useNavigate();
 
-  const [pais, setPais] = useState("todos");
-  const [provincia, setProvincia] = useState("todos");
-  const [ciudad, setCiudad] = useState("todos");
+  const ubicacion = useUbicacion();
 
   const [encargado, setEncargado] = useState(null);
   const [categoria, setCategoria] = useState(null);
@@ -25,7 +24,7 @@ export default function HotelFormPage() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       const { nombre, calle, numero } = data;
-      const newDireccion = { calle, numero, ciudad };
+      const newDireccion = { calle, numero, ciudad: ubicacion.ciudad };
 
       const { id: direccion } = (await createDireccion(newDireccion)).data;
 
@@ -50,14 +49,7 @@ export default function HotelFormPage() {
         <input type="number" placeholder="numero" {...register("numero", { required: true })} />
         {errors.numero && <span>Este campo es requerido</span>}
 
-        <SelectUbicacion
-          pais={pais}
-          setPais={setPais}
-          provincia={provincia}
-          setProvincia={setProvincia}
-          ciudad={ciudad}
-          setCiudad={setCiudad}
-        />
+        <SelectUbicacion {...ubicacion} />
 
         <SelectEncargado encargado={encargado} setEncargado={setEncargado} />
 
