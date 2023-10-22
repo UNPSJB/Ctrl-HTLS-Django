@@ -5,14 +5,10 @@ import {
   getHotelesPorProvincia,
   getHotelesPorCiudad,
 } from "../../api/hotel.api";
-import SelectUbicacion from "../select/SelectUbicacion";
 import HotelCard from "./HotelCard";
 
-export default function HotelList() {
+export default function HotelList({ pais, provincia, ciudad }) {
   const [hoteles, setHoteles] = useState([]);
-  const [pais, setPais] = useState("todos");
-  const [provincia, setProvincia] = useState("todos");
-  const [ciudad, setCiudad] = useState("todos");
 
   // Listado de Hoteles según el país, provincia o ciudad seleccionada
   useEffect(() => {
@@ -27,18 +23,5 @@ export default function HotelList() {
     loadHotels();
   }, [pais, provincia, ciudad]);
 
-  return (
-    <div>
-      <SelectUbicacion
-        pais={pais}
-        setPais={setPais}
-        provincia={provincia}
-        setProvincia={setProvincia}
-        ciudad={ciudad}
-        setCiudad={setCiudad}
-      />
-
-      <HotelCard hoteles={hoteles} />
-    </div>
-  );
+  return <HotelCard hoteles={hoteles} />;
 }
