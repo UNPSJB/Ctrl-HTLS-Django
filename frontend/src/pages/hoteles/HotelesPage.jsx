@@ -14,6 +14,7 @@ export default function HotelesPage() {
       <Link to="/">Home</Link>
       <br />
       <Link to="/hotel-form">Crear Hotel</Link>
+      {/* Este div es todo el filtrado de los hoteles */}
       <div>
         <SelectUbicacion {...ubicacion} />
         <SelectCategoria categoria={categoria} setCategoria={setCategoria} />
@@ -24,7 +25,6 @@ export default function HotelesPage() {
         ciudad={ubicacion.ciudad}
         categoria={categoria}
       />
-      ;
     </div>
   );
 }

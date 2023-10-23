@@ -18,10 +18,16 @@ export default function HotelList({ pais, provincia, ciudad, categoria }) {
       else if (provincia !== "todos") res = await getHotelesPorProvincia(provincia);
       else if (pais !== "todos") res = await getHotelesPorPais(pais);
       else res = await getAllHoteles();
+
+      // Filtrar hoteles por categoría
+      if (categoria !== null) {
+        res.data = res.data.filter((hotel) => hotel.categoria == categoria);
+      }
+
       setHoteles(res.data);
     }
     loadHotels();
-  }, [pais, provincia, ciudad]);
+  }, [pais, provincia, ciudad, categoria]);
 
   return <HotelCard hoteles={hoteles} />;
 }
