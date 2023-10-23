@@ -5,9 +5,12 @@ import {
   getHotelesPorProvincia,
   getHotelesPorCiudad,
 } from "../../api/hotel.api";
+
+import api from "../../api";
 import HotelCard from "./HotelCard";
 
 export default function HotelList({ pais, provincia, ciudad, categoria }) {
+  window.API = api;
   const [hoteles, setHoteles] = useState([]);
 
   // Listado de Hoteles según el país, provincia o ciudad seleccionada
