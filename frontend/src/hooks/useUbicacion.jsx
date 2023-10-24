@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
-import {
-  getAllPaises,
-  getProvinciasPorPais,
-  getCiudadesPorProvincia,
-  getAllCiudades,
-} from "../api/core.api";
+
+import api from "../api"
 
 export default function useUbicacion() {
-  const [pais, setPais] = useState("todos");
-  const [provincia, setProvincia] = useState("todos");
-  const [ciudad, setCiudad] = useState("todos");
+  const [pais, setPais] = useState("");
+  const [provincia, setProvincia] = useState("");
+  const [ciudad, setCiudad] = useState("");
 
   const [paises, setPaises] = useState([]);
   const [provincias, setProvincias] = useState([]);
@@ -18,8 +14,8 @@ export default function useUbicacion() {
   // Obtener la lista de paises
   useEffect(() => {
     async function loadPaises() {
-      const res = await getAllPaises();
-      setPaises(res.data);
+      const res = await api.allPaises();
+      setPaises(res);
     }
     loadPaises();
   }, []);
@@ -27,9 +23,9 @@ export default function useUbicacion() {
   // Obtener la lista de provincias segun el Pais seleccionado
   useEffect(() => {
     async function loadProvincias() {
-      if (pais !== "todos") {
-        const res = await getProvinciasPorPais(pais);
-        setProvincias(res.data);
+      if (pais !== "") {
+        const res = await api.findProvincias({pais});
+        setProvincias(res);
       } else {
         setProvincias([]);
       }
@@ -40,12 +36,12 @@ export default function useUbicacion() {
   // Obtener la lista de ciudades segun la Provincia seleccionada
   useEffect(() => {
     async function loadCiudades() {
-      if (provincia !== "todos") {
-        const res = await getCiudadesPorProvincia(provincia);
-        setCiudades(res.data);
+      if (provincia !== "") {
+        const res = await api.findCiudades({provincia});
+        setCiudades(res);
       } else {
-        const res = await getAllCiudades();
-        setCiudades(res.data);
+        const res = await api.allCiudades();
+        setCiudades(res);
       }
     }
     loadCiudades();

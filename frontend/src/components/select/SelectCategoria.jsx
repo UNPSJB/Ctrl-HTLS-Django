@@ -17,7 +17,7 @@ export default function SelectCategoria({ categoria, setCategoria }) {
   return (
     <div>
       <select value={categoria ?? ""} onChange={handleChange}>
-        <option value="todos">Categorias</option>
+        <option value="">Categorias</option>
         {categorias.map((categoriaItem) => (
           <option key={categoriaItem.id} value={categoriaItem.id}>
             {categoriaItem.nombre}

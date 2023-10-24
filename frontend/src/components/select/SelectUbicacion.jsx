@@ -11,16 +11,16 @@ function SelectUbicacion({
 }) {
   const handlePaisChange = (e) => {
     setPais(e.target.value);
-    if (e.target.value === "todos") {
-      setProvincia("todos");
-      setCiudad("todos");
+    if (e.target.value === "") {
+      setProvincia("");
+      setCiudad("");
     }
   };
 
   const handleProvinciaChange = (e) => {
     setProvincia(e.target.value);
-    if (e.target.value === "todos") {
-      setCiudad("todos");
+    if (e.target.value === "") {
+      setCiudad("");
     }
   };
 
@@ -31,7 +31,7 @@ function SelectUbicacion({
   return (
     <div>
       <select value={pais} onChange={handlePaisChange}>
-        <option value="todos">Países</option>
+        <option value="">Países</option>
         {paises.map((paisItem) => (
           <option key={paisItem.codigo} value={paisItem.codigo}>
             {paisItem.nombre}
@@ -39,8 +39,8 @@ function SelectUbicacion({
         ))}
       </select>
 
-      <select value={provincia} onChange={handleProvinciaChange} disabled={pais === "todos"}>
-        <option value="todos">Provincias</option>
+      <select value={provincia} onChange={handleProvinciaChange} disabled={pais === ""}>
+        <option value="">Provincias</option>
         {provincias.map((provinciaItem) => (
           <option key={provinciaItem.id} value={provinciaItem.id}>
             {provinciaItem.nombre}
@@ -48,8 +48,8 @@ function SelectUbicacion({
         ))}
       </select>
 
-      <select value={ciudad} onChange={handleCiudadChange} disabled={provincia === "todos"}>
-        <option value="todos">Ciudades</option>
+      <select value={ciudad} onChange={handleCiudadChange} disabled={provincia === ""}>
+        <option value="">Ciudades</option>
         {ciudades.map((ciudadItem) => (
           <option key={ciudadItem.codigo_postal} value={ciudadItem.codigo_postal}>
             {ciudadItem.nombre}
