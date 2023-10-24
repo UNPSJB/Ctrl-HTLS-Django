@@ -4,6 +4,9 @@ import { client } from "./client";
 const ENDPOINTS = [
   ["hotel", "hotel", "hoteles"],
   ["hotel", "habitacion", "habitaciones"],
+  ["core", "pais", "paises"],
+  ["core", "provincia", "provincias"],
+  ["core", "ciudad", "ciudades"],
 ];
 
 // Manejar la respuesta de la API
