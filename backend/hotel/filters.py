@@ -15,6 +15,10 @@ class HotelFilter(django_filters.FilterSet):
         field_name="direccion__ciudad__codigo_postal", lookup_expr="exact"
     )
 
+    categoria = django_filters.CharFilter(
+        field_name="categoria__id", lookup_expr="exact"
+    )
+
     class Meta:
         model = Hotel
         fields = []
