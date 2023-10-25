@@ -52,7 +52,6 @@ class HotelFullSerializer(ModelSerializer):
     categoria = CategoriaSerializer()
     encargado = EncargadoSerializer()
     vendedores = SerializerMethodField()
-    habitaciones = SerializerMethodField()
 
     class Meta:
         model = Hotel
@@ -63,13 +62,8 @@ class HotelFullSerializer(ModelSerializer):
             "categoria",
             "encargado",
             "vendedores",
-            "habitaciones",
         ]
 
     def get_vendedores(self, obj):
         vendedores = HotelVendedor.objects.filter(hotel=obj)
         return HotelVendedorSerializer(vendedores, many=True).data
-
-    def get_habitaciones(self, obj):
-        habitaciones = Habitacion.objects.filter(hotel=obj)
-        return HabitacionSerializer(habitaciones, many=True).data
