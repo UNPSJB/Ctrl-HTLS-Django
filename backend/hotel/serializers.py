@@ -1,4 +1,5 @@
 from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from .models import Hotel, Habitacion, HotelVendedor
 from core.models import Categoria, Vendedor
 
@@ -11,8 +12,16 @@ class CategoriaSerializer(ModelSerializer):
 
 class VendedorSerializer(ModelSerializer):
     class Meta:
+        model = Vendedor
+        fields = ["documento", "nombre", "apellido"]
+
+
+class HotelVendedorSerializer(ModelSerializer):
+    vendedor = VendedorSerializer()
+
+    class Meta:
         model = HotelVendedor
-        fields = ["id", "Nombre"]
+        fields = ["vendedor"]
 
 
 class HotelSerializer(ModelSerializer):
@@ -23,11 +32,15 @@ class HotelSerializer(ModelSerializer):
 
 class HotelFullSerializer(ModelSerializer):
     categoria = CategoriaSerializer()
-    vendedor = VendedorSerializer()
+    vendedores = serializers.SerializerMethodField()
 
     class Meta:
         model = Hotel
-        fields = ["id", "nombre", "direccion", "categoria", "encargado", "vendedor"]
+        fields = ["id", "nombre", "direccion", "categoria", "encargado", "vendedores"]
+
+    def get_vendedores(self, obj):
+        vendedores = HotelVendedor.objects.filter(hotel=obj)
+        return HotelVendedorSerializer(vendedores, many=True).data
 
 
 class HabitacionSerializer(ModelSerializer):
