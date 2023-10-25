@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 from .models import (
     Pais,
     Provincia,
@@ -16,25 +16,25 @@ from .models import (
 # -------------------- Ubicacion --------------------
 
 
-class PaisSerializer(serializers.ModelSerializer):
+class PaisSerializer(ModelSerializer):
     class Meta:
         model = Pais
         fields = "__all__"
 
 
-class ProvinciaSerializer(serializers.ModelSerializer):
+class ProvinciaSerializer(ModelSerializer):
     class Meta:
         model = Provincia
         fields = "__all__"
 
 
-class CiudadSerializer(serializers.ModelSerializer):
+class CiudadSerializer(ModelSerializer):
     class Meta:
         model = Ciudad
         fields = "__all__"
 
 
-class DireccionSerializer(serializers.ModelSerializer):
+class DireccionSerializer(ModelSerializer):
     class Meta:
         model = Direccion
         fields = "__all__"
@@ -43,19 +43,19 @@ class DireccionSerializer(serializers.ModelSerializer):
 # -------------------- Otros --------------------
 
 
-class TipoHabitacionSerializer(serializers.ModelSerializer):
+class TipoHabitacionSerializer(ModelSerializer):
     class Meta:
         model = TipoHabitacion
         fields = "__all__"
 
 
-class ServicioSerializer(serializers.ModelSerializer):
+class ServicioSerializer(ModelSerializer):
     class Meta:
         model = Servicio
         fields = "__all__"
 
 
-class CategoriaSerializer(serializers.ModelSerializer):
+class CategoriaSerializer(ModelSerializer):
     class Meta:
         model = Categoria
         fields = "__all__"
@@ -64,19 +64,19 @@ class CategoriaSerializer(serializers.ModelSerializer):
 # -------------------- Persona --------------------
 
 
-class VendedorSerializer(serializers.ModelSerializer):
+class VendedorSerializer(ModelSerializer):
     class Meta:
         model = Vendedor
         fields = "__all__"
 
 
-class EncargadoSerializer(serializers.ModelSerializer):
+class EncargadoSerializer(ModelSerializer):
     class Meta:
         model = Encargado
         fields = ["documento", "tipo_documento", "nombre", "apellido"]
 
 
-class ClienteSerializer(serializers.ModelSerializer):
+class ClienteSerializer(ModelSerializer):
     class Meta:
         model = Cliente
         fields = "__all__"
