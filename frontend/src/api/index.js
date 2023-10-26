@@ -7,7 +7,8 @@ const ENDPOINTS = [
   ["core", "pais", "paises"],
   ["core", "provincia", "provincias"],
   ["core", "ciudad", "ciudades"],
-  ["core", "categoria", "categorias"]
+  ["core", "categoria", "categorias"],
+  ["core", "vendedor", "vendedores"]
 ];
 
 // Manejar la respuesta de la API

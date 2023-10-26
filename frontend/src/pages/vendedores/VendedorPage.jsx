@@ -1,13 +1,22 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import api from "../../api"
 
-function VendedorPage() {
+export default function VendedorPage() {
+  const { documento } = useParams();
+  const [vendedor, setVendedor] = useState(null)
+
+  useEffect(() => {
+    api.getVendedor(documento).then((res) => {
+      setVendedor(res)
+    })
+  }, [documento])
+
   return (
     <div>
-    <Link to="/">Home</Link>
-    <br />
-    <Link to="/vendedor-form">Crear Vendedor</Link>
+      <h1>{vendedor.nombre} {vendedor.apellido}</h1>
+      <p>{vendedor.documento}</p>
+      <p>{vendedor.tipo_documento}</p>
     </div>
   )
 }
-
-export default VendedorPage

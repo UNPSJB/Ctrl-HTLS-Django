@@ -3,8 +3,9 @@ import HotelesPage from "./pages/hoteles/HotelesPage";
 import Home from "./pages/Home";
 import HotelFormPage from "./pages/hoteles/HotelFormPage";
 import HotelPage from "./pages/hoteles/HotelPage";
-import VendedorPage from "./pages/vendedores/VendedorPage";
+import VendedoresPage from "./pages/vendedores/VendedoresPage";
 import VendedorFormPage from "./pages/vendedores/VendedorFormPage";
+import VendedorPage from "./pages/vendedores/VendedorPage";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
         <Route path="/hoteles" element={<HotelesPage />} />
         <Route path="/hotel-form" element={<HotelFormPage />} />
         <Route path="/hotel/:id" element={<HotelPage />} />
-        <Route path="/vendedores" element={<VendedorPage />} />
+        <Route path="/vendedores" element={<VendedoresPage />} />
         <Route path="/vendedor-form" element={<VendedorFormPage />} />
+        <Route path="/vendedor/:documento" element={<VendedorPage />} />
       </Routes>
     </BrowserRouter>
   );
