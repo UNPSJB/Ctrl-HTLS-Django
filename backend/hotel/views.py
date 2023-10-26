@@ -19,10 +19,18 @@ class HotelViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = HotelFilter
 
+    # Visualizar todos los datos de todos los hoteles
     @action(detail=False)
     def full(self, request):
         instance = Hotel.objects.all()
         serializer = HotelFullSerializer(instance, many=True)
+        return Response(serializer.data)
+
+    # Visualizar todos los datos de un unico hotel
+    @action(detail=True)
+    def full_detail(self, request, pk=None):
+        instance = self.get_object()
+        serializer = HotelFullSerializer(instance)
         return Response(serializer.data)
 
 

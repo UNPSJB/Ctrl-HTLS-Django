@@ -6,4 +6,10 @@ router = DefaultRouter()
 router.register(r"hoteles", HotelViewSet)
 router.register(r"habitaciones", HabitacionViewSet)
 
-urlpatterns = router.urls
+urlpatterns = [
+    path("", include(router.urls)),
+    path(
+        "hoteles/<int:pk>/full/",
+        HotelViewSet.as_view({"get": "full_detail"}),
+    ),
+]
