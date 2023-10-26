@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from .models import Hotel, Habitacion, HotelVendedor
+from .models import Hotel, Habitacion, HotelVendedor, PaquetePromocional
 from core.models import Categoria, Vendedor, Encargado, Direccion
 
 
@@ -67,3 +67,9 @@ class HotelFullSerializer(ModelSerializer):
     def get_vendedores(self, obj):
         vendedores = HotelVendedor.objects.filter(hotel=obj)
         return HotelVendedorSerializer(vendedores, many=True).data
+
+
+class PaqueteSerializer(ModelSerializer):
+    class Meta:
+        model = PaquetePromocional
+        fields = "__all__"
