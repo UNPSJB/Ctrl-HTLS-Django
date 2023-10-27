@@ -9,8 +9,4 @@ router.register(r"paquetes", PaqueteViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
-    path(
-        "hoteles/<int:pk>/full/",
-        HotelViewSet.as_view({"get": "full_detail"}),
-    ),
 ]

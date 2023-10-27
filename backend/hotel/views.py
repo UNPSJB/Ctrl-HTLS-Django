@@ -21,19 +21,14 @@ class HotelViewSet(viewsets.ModelViewSet):
     filterset_class = HotelFilter
 
     # Visualizar todos los datos de todos los hoteles
-    @action(detail=False)
+    @action(detail=False, serializer_class=HotelFullSerializer)
     def full(self, request):
-        instance = Hotel.objects.all()
-        serializer = HotelFullSerializer(instance, many=True)
-        return Response(serializer.data)
-
+        return super().list(request)
+    
     # Visualizar todos los datos de un unico hotel
-    @action(detail=True)
+    @action(detail=True, url_path="full", serializer_class=HotelFullSerializer)
     def full_detail(self, request, pk=None):
-        instance = self.get_object()
-        serializer = HotelFullSerializer(instance)
-        return Response(serializer.data)
-
+        return super().retrieve(request, pk)
 
 class HabitacionViewSet(viewsets.ModelViewSet):
     queryset = Habitacion.objects.all()

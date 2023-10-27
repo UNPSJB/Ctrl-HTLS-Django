@@ -31,10 +31,10 @@ const crud = ENDPOINTS.reduce((acc, [app, singular, plural]) => {
   const titlePlural = `${plural[0].toUpperCase()}${plural.substring(1)}`;
   return {
     ...acc,
-    [`all${titlePlural}`]: () =>
-      client.get(`${app}/${plural}`).then(handleResponse).catch(handleError),
-    [`get${titleSingular}`]: (id) =>
-      client.get(`${app}/${plural}/${id}`).then(handleResponse).catch(handleError),
+    [`all${titlePlural}`]: (view="") =>
+      client.get(`${app}/${plural}/${view}`).then(handleResponse).catch(handleError),
+    [`get${titleSingular}`]: (id, view="") =>
+      client.get(`${app}/${plural}/${id}/${view}`).then(handleResponse).catch(handleError),
     [`create${titleSingular}`]: (data) =>
       client.post(`${app}/${plural}`, data).then(handleResponse).catch(handleError),
     [`update${titleSingular}`]: (id, data) =>
