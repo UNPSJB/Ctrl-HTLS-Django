@@ -9,7 +9,7 @@ export default function HotelList({ pais, provincia, ciudad, categoria }) {
   // Listado de Hoteles según el país, provincia o ciudad seleccionada
   useEffect(() => {
     async function loadHotels() {
-      const res = await api.hoteles.find({ pais });
+      const res = await api.hoteles.find({ pais, provincia, ciudad, categoria });
       setHoteles(res);
     }
     loadHotels();
