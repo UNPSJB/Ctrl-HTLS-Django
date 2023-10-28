@@ -8,7 +8,7 @@ const ENDPOINTS = [
   ["core", "provincia", "provincias"],
   ["core", "ciudad", "ciudades"],
   ["core", "categoria", "categorias"],
-  ["core", "vendedor", "vendedores"]
+  ["core", "vendedor", "vendedores"],
 ];
 
 // Manejar la respuesta de la API
@@ -21,8 +21,8 @@ const handleResponse = (resp) => {
 
 // Manejar los errores de la API
 const handleError = (error) => {
-  console.log(error);
-  return "error";
+  console.error(error);
+  throw error;
 };
 
 // Crear las funciones CRUD para cada endpoint
@@ -31,9 +31,9 @@ const crud = ENDPOINTS.reduce((acc, [app, singular, plural]) => {
   const titlePlural = `${plural[0].toUpperCase()}${plural.substring(1)}`;
   return {
     ...acc,
-    [`all${titlePlural}`]: (view="") =>
+    [`all${titlePlural}`]: (view = "") =>
       client.get(`${app}/${plural}/${view}`).then(handleResponse).catch(handleError),
-    [`get${titleSingular}`]: (id, view="") =>
+    [`get${titleSingular}`]: (id, view = "") =>
       client.get(`${app}/${plural}/${id}/${view}`).then(handleResponse).catch(handleError),
     [`create${titleSingular}`]: (data) =>
       client.post(`${app}/${plural}`, data).then(handleResponse).catch(handleError),
