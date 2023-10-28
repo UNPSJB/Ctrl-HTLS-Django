@@ -7,21 +7,27 @@ export default function HotelPage() {
   const [hotel, setHotel] = useState(null);
 
   useEffect(() => {
-    async function loadHotel() {
-      const res = await api.hoteles.get(id, "full");
+    api.hoteles.get(id, "full").then((res) => {
       setHotel(res);
-    }
-    loadHotel();
+    });
   }, [id]);
 
   return (
     <div>
-      <h1>{hotel ? hotel.nombre : "Cargando..."}</h1>
-      <h2>
-        {hotel && hotel.direccion
-          ? `${hotel.direccion.calle} ${hotel.direccion.numero}`
-          : "Cargando dirección..."}
-      </h2>
+      {hotel ? (
+        <>
+          <p>Nombre: {hotel.nombre}</p>
+          <p>
+            Dirección: {hotel.direccion.calle} {hotel.direccion.numero}
+          </p>
+          <p>Categoría: {hotel.categoria.nombre}</p>
+          <p>
+            Encargado: {hotel.encargado.nombre} {hotel.encargado.apellido}
+          </p>
+        </>
+      ) : (
+        <p>Cargando...</p>
+      )}
     </div>
   );
 }

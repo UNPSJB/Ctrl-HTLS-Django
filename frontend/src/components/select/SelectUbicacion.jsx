@@ -1,3 +1,5 @@
+import Selector from "./Selector";
+
 function SelectUbicacion({
   pais,
   setPais,
@@ -30,32 +32,34 @@ function SelectUbicacion({
 
   return (
     <div>
-      <select value={pais} onChange={handlePaisChange}>
-        <option value="">Países</option>
-        {paises.map((paisItem) => (
-          <option key={paisItem.codigo} value={paisItem.codigo}>
-            {paisItem.nombre}
-          </option>
-        ))}
-      </select>
+      <Selector
+        value={pais}
+        handleChange={handlePaisChange}
+        options={paises}
+        defaultOption="Países"
+        getValue={(item) => item.codigo}
+        getLabel={(item) => item.nombre}
+      />
 
-      <select value={provincia} onChange={handleProvinciaChange} disabled={pais === ""}>
-        <option value="">Provincias</option>
-        {provincias.map((provinciaItem) => (
-          <option key={provinciaItem.id} value={provinciaItem.id}>
-            {provinciaItem.nombre}
-          </option>
-        ))}
-      </select>
+      <Selector
+        value={provincia}
+        handleChange={handleProvinciaChange}
+        options={provincias}
+        defaultOption="Provincias"
+        disabled={pais === ""}
+        getValue={(item) => item.id}
+        getLabel={(item) => item.nombre}
+      />
 
-      <select value={ciudad} onChange={handleCiudadChange} disabled={provincia === ""}>
-        <option value="">Ciudades</option>
-        {ciudades.map((ciudadItem) => (
-          <option key={ciudadItem.codigo_postal} value={ciudadItem.codigo_postal}>
-            {ciudadItem.nombre}
-          </option>
-        ))}
-      </select>
+      <Selector
+        value={ciudad}
+        handleChange={handleCiudadChange}
+        options={ciudades}
+        defaultOption="Ciudades"
+        disabled={provincia === ""}
+        getValue={(item) => item.codigo_postal}
+        getLabel={(item) => item.nombre}
+      />
     </div>
   );
 }

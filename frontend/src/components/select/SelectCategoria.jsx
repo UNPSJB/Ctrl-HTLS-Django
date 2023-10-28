@@ -1,29 +1,28 @@
 import { useEffect, useState } from "react";
 import api from "../../api";
+import Selector from "./Selector";
 
 export default function SelectCategoria({ categoria, setCategoria }) {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
-    async function loadCategorias() {
-      const res = await api.categorias.getAll();
+    api.categorias.getAll().then((res) => {
       setCategorias(res);
-    }
-    loadCategorias();
+    });
   }, []);
 
   const handleChange = (e) => setCategoria(e.target.value);
 
   return (
     <div>
-      <select value={categoria ?? ""} onChange={handleChange}>
-        <option value="">Categorias</option>
-        {categorias.map((categoriaItem) => (
-          <option key={categoriaItem.id} value={categoriaItem.id}>
-            {categoriaItem.nombre}
-          </option>
-        ))}
-      </select>
+      <Selector
+        value={categoria ?? ""}
+        handleChange={handleChange}
+        options={categorias}
+        defaultOption="Categorias"
+        getValue={(item) => item.id}
+        getLabel={(item) => item.nombre}
+      />
     </div>
   );
 }

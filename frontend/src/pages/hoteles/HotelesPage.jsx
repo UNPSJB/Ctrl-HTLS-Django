@@ -4,10 +4,8 @@ import HotelList from "../../components/hotel/HotelList";
 import SelectUbicacion from "../../components/select/SelectUbicacion";
 import SelectCategoria from "../../components/select/SelectCategoria";
 import useUbicacion from "../../hooks/useUbicacion";
-import api from "../../api";
 
 export default function HotelesPage() {
-  window.API = api;
   const ubicacion = useUbicacion();
   const [categoria, setCategoria] = useState(null);
 

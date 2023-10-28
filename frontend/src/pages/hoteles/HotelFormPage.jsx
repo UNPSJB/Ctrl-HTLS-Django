@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import api from "../../api";
+import useUbicacion from "../../hooks/useUbicacion";
 import SelectUbicacion from "../../components/select/SelectUbicacion";
 import SelectEncargado from "../../components/select/SelectEncargado";
 import SelectCategoria from "../../components/select/SelectCategoria";
-import useUbicacion from "../../hooks/useUbicacion";
-import api from "../../api";
 
 export default function HotelFormPage() {
-  Window.api = api;
   const {
     register,
     handleSubmit,

@@ -6,11 +6,9 @@ export default function VendedorList() {
   const [vendedores, setVendedores] = useState([]);
 
   useEffect(() => {
-    async function loadVendedores() {
-      const res = await api.vendedores.find({});
+    api.vendedores.find({}).then((res) => {
       setVendedores(res);
-    }
-    loadVendedores();
+    });
   }, []);
 
   return <VendedorCard vendedores={vendedores} />;

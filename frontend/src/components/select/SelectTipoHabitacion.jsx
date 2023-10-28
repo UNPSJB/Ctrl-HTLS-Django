@@ -5,11 +5,9 @@ function SelectTipoHabitacion({ tipoHabitacion, setTipoHabitacion }) {
   const [tipoHabitaciones, setTipoHabitaciones] = useState([]);
 
   useEffect(() => {
-    async function loadTipoHabitaciones() {
-      const res = await api.tipoHabitaciones.getAll();
+    api.tipoHabitaciones.getAll().then((res) => {
       setTipoHabitaciones(res.data);
-    }
-    loadTipoHabitaciones();
+    });
   }, []);
 
   const handleChange = (e) => setTipoHabitacion(e.target.value);
