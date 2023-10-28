@@ -69,3 +69,4 @@ class Descuento(models.Model):
     def __str__(self):
         return f"{self.hotel.nombre} - {self.cantidad_habitaciones}"
     
+
