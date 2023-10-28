@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import api from "../api"
+import api from "../api";
 
 export default function useUbicacion() {
   const [pais, setPais] = useState("");
@@ -14,7 +14,7 @@ export default function useUbicacion() {
   // Obtener la lista de paises
   useEffect(() => {
     async function loadPaises() {
-      const res = await api.allPaises();
+      const res = await api.paises.getAll();
       setPaises(res);
     }
     loadPaises();
@@ -24,7 +24,7 @@ export default function useUbicacion() {
   useEffect(() => {
     async function loadProvincias() {
       if (pais !== "") {
-        const res = await api.findProvincias({pais});
+        const res = await api.provincias.find({ pais });
         setProvincias(res);
       } else {
         setProvincias([]);
@@ -37,10 +37,10 @@ export default function useUbicacion() {
   useEffect(() => {
     async function loadCiudades() {
       if (provincia !== "") {
-        const res = await api.findCiudades({provincia});
+        const res = await api.ciudades.find({ provincia });
         setCiudades(res);
       } else {
-        const res = await api.allCiudades();
+        const res = await api.ciudades.getAll();
         setCiudades(res);
       }
     }

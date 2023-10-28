@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { getAllTipoHabitacion } from "../../api/core.api";
+import api from "../../api";
 
 function SelectTipoHabitacion({ tipoHabitacion, setTipoHabitacion }) {
   const [tipoHabitaciones, setTipoHabitaciones] = useState([]);
 
   useEffect(() => {
     async function loadTipoHabitaciones() {
-      const res = await getAllTipoHabitacion();
+      const res = await api.tipoHabitaciones.getAll();
       setTipoHabitaciones(res.data);
     }
     loadTipoHabitaciones();

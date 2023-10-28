@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { createHotel } from "../../api/hotel.api";
-import { createDireccion } from "../../api/core.api";
 import SelectUbicacion from "../../components/select/SelectUbicacion";
 import SelectEncargado from "../../components/select/SelectEncargado";
 import SelectCategoria from "../../components/select/SelectCategoria";
 import useUbicacion from "../../hooks/useUbicacion";
+import api from "../../api";
 
 export default function HotelFormPage() {
+  Window.api = api;
   const {
     register,
     handleSubmit,
@@ -17,24 +17,19 @@ export default function HotelFormPage() {
   const navigate = useNavigate();
 
   const ubicacion = useUbicacion();
-
   const [encargado, setEncargado] = useState(null);
   const [categoria, setCategoria] = useState(null);
 
   const onSubmit = handleSubmit(async (data) => {
-    try {
-      const { nombre, calle, numero } = data;
-      const newDireccion = { calle, numero, ciudad: ubicacion.ciudad };
+    const { nombre, calle, numero } = data;
+    const newDireccion = { calle, numero, ciudad: ubicacion.ciudad };
 
-      const { id: direccion } = (await createDireccion(newDireccion)).data;
+    const { id: direccion } = await api.direcciones.create(newDireccion);
 
-      const newHotel = { nombre, direccion, categoria, encargado };
-      await createHotel(newHotel);
+    const newHotel = { nombre, direccion, categoria, encargado };
+    await api.hoteles.create(newHotel);
 
-      navigate("/hoteles");
-    } catch (error) {
-      console.error("Error al crear el hotel:", error);
-    }
+    navigate("/hoteles");
   });
 
   return (

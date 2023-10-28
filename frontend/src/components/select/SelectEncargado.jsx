@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { getAllEncargadosAsignados } from "../../api/core.api";
+import api from "../../api";
 
 export default function SelectEncargado({ encargado, setEncargado }) {
   const [encargados, setEncargados] = useState([]);
 
   useEffect(() => {
     async function loadEncargados() {
-      const res = await getAllEncargadosAsignados(false);
-      setEncargados(res.data);
+      const res = await api.encargados.find({ asignado: false });
+      setEncargados(res);
     }
     loadEncargados();
   }, []);

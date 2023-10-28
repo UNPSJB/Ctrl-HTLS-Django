@@ -73,7 +73,13 @@ class VendedorSerializer(ModelSerializer):
 class EncargadoSerializer(ModelSerializer):
     class Meta:
         model = Encargado
-        fields = ["documento", "tipo_documento", "nombre", "apellido"]
+        fields = [
+            "documento",
+            "tipo_documento",
+            "nombre",
+            "apellido",
+            "asignado",
+        ]
 
 
 class ClienteSerializer(ModelSerializer):

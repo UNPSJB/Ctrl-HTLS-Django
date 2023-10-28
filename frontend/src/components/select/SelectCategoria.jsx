@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import api from "../../api"
+import api from "../../api";
 
 export default function SelectCategoria({ categoria, setCategoria }) {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
     async function loadCategorias() {
-      const res = await api.allCategorias();
+      const res = await api.categorias.getAll();
       setCategorias(res);
     }
     loadCategorias();
