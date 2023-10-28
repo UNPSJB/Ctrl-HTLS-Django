@@ -9,7 +9,6 @@ export default function HotelPage() {
   useEffect(() => {
     async function loadHotel() {
       const res = await api.hoteles.get(id, "full");
-      console.log(res);
       setHotel(res);
     }
     loadHotel();
