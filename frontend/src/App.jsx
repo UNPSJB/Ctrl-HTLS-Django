@@ -9,18 +9,20 @@ import VendedorPage from "./pages/vendedores/VendedorPage";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/hoteles" element={<HotelesPage />} />
-        <Route path="/hotel-form" element={<HotelFormPage />} />
-        <Route path="/hotel/:id" element={<HotelPage />} />
-        <Route path="/vendedores" element={<VendedoresPage />} />
-        <Route path="/vendedor-form" element={<VendedorFormPage />} />
-        <Route path="/vendedor/:documento" element={<VendedorPage />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="m-4">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/hoteles" element={<HotelesPage />} />
+          <Route path="/hotel-form" element={<HotelFormPage />} />
+          <Route path="/hotel/:id" element={<HotelPage />} />
+          <Route path="/vendedores" element={<VendedoresPage />} />
+          <Route path="/vendedor-form" element={<VendedorFormPage />} />
+          <Route path="/vendedor/:documento" element={<VendedorPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

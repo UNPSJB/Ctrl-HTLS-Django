@@ -1,20 +1,17 @@
-import { useEffect, useState } from "react"
-import api from "../../api"
-import VendedorCard from "./VendedorCard"
+import { useEffect, useState } from "react";
+import VendedorCard from "./VendedorCard";
+import api from "../../api";
 
 export default function VendedorList() {
-
-  const [vendedores, setVendedores] = useState([])
+  const [vendedores, setVendedores] = useState([]);
 
   useEffect(() => {
-    async function loadVendedores(){
-      const res = await api.findVendedores()
-      setVendedores(res)
+    async function loadVendedores() {
+      const res = await api.vendedores.find({});
+      setVendedores(res);
     }
-    loadVendedores()
-  },[])
+    loadVendedores();
+  }, []);
 
-  return (
-    <VendedorCard vendedores={vendedores}/>
-  )
+  return <VendedorCard vendedores={vendedores} />;
 }
