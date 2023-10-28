@@ -7,7 +7,6 @@ export default function SelectEncargado({ encargado, setEncargado }) {
   useEffect(() => {
     async function loadEncargados() {
       const res = await api.encargados.find({ asignado: false });
-      console.log(res);
       setEncargados(res);
     }
     loadEncargados();
