@@ -27,9 +27,7 @@ class CiudadFilter(django_filters.FilterSet):
 
 
 class EncargadoFilter(django_filters.FilterSet):
-    encargado_asignado = django_filters.BooleanFilter(
-        field_name="encargado_asignado", lookup_expr="exact"
-    )
+    asignado = django_filters.BooleanFilter(field_name="asignado", lookup_expr="exact")
 
     class Meta:
         model = Encargado
