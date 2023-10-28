@@ -12,15 +12,16 @@ export default function HotelesPage() {
   const [categoria, setCategoria] = useState(null);
 
   return (
-    <div>
+    <div className="m-4">
       <Link to="/">Home</Link>
       <br />
       <Link to="/hotel-form">Crear Hotel</Link>
       {/* Este div es todo el filtrado de los hoteles */}
-      <div>
+      <div className="flex m-4">
         <SelectUbicacion {...ubicacion} />
         <SelectCategoria categoria={categoria} setCategoria={setCategoria} />
       </div>
+
       <HotelList
         pais={ubicacion.pais}
         provincia={ubicacion.provincia}

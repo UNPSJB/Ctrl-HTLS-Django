@@ -1,14 +1,23 @@
 import { Link } from "react-router-dom";
-import styles from "./Navigation.module.css";
 
 export default function Navigation() {
   return (
-    <div className={styles.navbar}>
-      <Link to="/">Home</Link>
-      <Link to="/hoteles">Hoteles</Link>
-      <Link to="/vendedores">Vendedores</Link>
-      <Link to="/clientes">Clientes</Link>
-      <Link to="/ventas">Ventas</Link>
+    <div className="flex justify-center space-x-28">
+      <Link to="/" className="px-2">
+        Home
+      </Link>
+      <Link to="/hoteles" className="px-2">
+        Hoteles
+      </Link>
+      <Link to="/vendedores" className="px-2">
+        Vendedores
+      </Link>
+      <Link to="/clientes" className="px-2">
+        Clientes
+      </Link>
+      <Link to="/ventas" className="px-2">
+        Ventas
+      </Link>
     </div>
   );
 }
