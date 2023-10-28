@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from .models import Hotel, Habitacion, HotelVendedor, PaquetePromocional
+from .models import Hotel, Habitacion, HotelVendedor, PaquetePromocional , Descuento
 from core.models import Categoria, Vendedor, Encargado, Direccion
 
 
@@ -73,3 +73,10 @@ class PaqueteSerializer(ModelSerializer):
     class Meta:
         model = PaquetePromocional
         fields = "__all__"
+
+
+class DescuentoSerializer(ModelSerializer):
+    class Meta:
+        model = Descuento
+        fields = "__all__"
+        

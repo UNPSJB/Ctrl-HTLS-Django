@@ -59,3 +59,13 @@ class PaquetePromocional(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+class Descuento(models.Model):
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    cantidad_habitaciones = models.IntegerField()
+    porcentaje = models.DecimalField(max_digits=5, decimal_places=3)
+    
+    def __str__(self):
+        return f"{self.hotel.nombre} - {self.cantidad_habitaciones}"
+    

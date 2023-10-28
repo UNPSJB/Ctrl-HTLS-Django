@@ -1,12 +1,13 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from .models import Hotel, Habitacion, PaquetePromocional
+from .models import Hotel, Habitacion, PaquetePromocional, Descuento
 from .serializers import (
     HotelSerializer,
     HabitacionSerializer,
     HotelFullSerializer,
     PaqueteSerializer,
+    DescuentoSerializer
 )
 
 
@@ -38,3 +39,8 @@ class HabitacionViewSet(viewsets.ModelViewSet):
 class PaqueteViewSet(viewsets.ModelViewSet):
     queryset = PaquetePromocional.objects.all()
     serializer_class = PaqueteSerializer
+
+class DescuentoViewSet(viewsets.ModelViewSet):
+    queryset = Descuento.objects.all()
+    serializer_class = DescuentoSerializer
+    
