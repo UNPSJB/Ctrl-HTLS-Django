@@ -7,9 +7,10 @@ import VendedoresPage from "./pages/vendedores/VendedoresPage";
 import VendedorFormPage from "./pages/vendedores/VendedorFormPage";
 import VendedorPage from "./pages/vendedores/VendedorPage";
 
+
 function App() {
   return (
-    <div className="m-4">
+    <div className="">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
