@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import api from "../../api";
-import useUbicacion from "../../hooks/useUbicacion";
-import SelectUbicacion from "../../components/select/SelectUbicacion";
-import SelectEncargado from "../../components/select/SelectEncargado";
-import SelectCategoria from "../../components/select/SelectCategoria";
+import SelectEncargado from "../../components/selectores/SelectEncargado";
+import SelectCategoria from "../../components/selectores/SelectCategoria";
+import SelectPais from "../../components/selectores/SelectPais";
+import SelectProvincia from "../../components/selectores/SelectProvincia";
+import SelectCiudad from "../../components/selectores/SelectCiudad";
 
 export default function HotelFormPage() {
   const {
@@ -14,14 +15,15 @@ export default function HotelFormPage() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-
-  const ubicacion = useUbicacion();
+  const [pais, setPais] = useState("");
+  const [provincia, setProvincia] = useState("");
+  const [ciudad, setCiudad] = useState("");
   const [encargado, setEncargado] = useState(null);
   const [categoria, setCategoria] = useState(null);
 
   const onSubmit = handleSubmit(async (data) => {
     const { nombre, calle, numero } = data;
-    const newDireccion = { calle, numero, ciudad: ubicacion.ciudad };
+    const newDireccion = { calle, numero, ciudad: ciudad };
 
     const { id: direccion } = await api.direcciones.create(newDireccion);
 
@@ -43,7 +45,9 @@ export default function HotelFormPage() {
         <input type="number" placeholder="numero" {...register("numero", { required: true })} />
         {errors.numero && <span>Este campo es requerido</span>}
 
-        <SelectUbicacion {...ubicacion} />
+        <SelectPais pais={pais} setPais={setPais} />
+        <SelectProvincia pais={pais} provincia={provincia} setProvincia={setProvincia} />
+        <SelectCiudad provincia={provincia} ciudad={ciudad} setCiudad={setCiudad} />
 
         <SelectEncargado encargado={encargado} setEncargado={setEncargado} />
 
