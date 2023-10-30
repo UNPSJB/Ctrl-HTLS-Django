@@ -2,7 +2,7 @@
 
 ## Requisitos Previos
 
-- [Python](https://www.python.org/) (Versión X.X)
+- [Python](https://www.python.org/) (Versión 3.11.4)
 
 ## Configuración de Entorno
 
