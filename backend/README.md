@@ -78,7 +78,13 @@ python manage.py loaddata core/fixtures/data.json
 python manage.py loaddata hotel/fixtures/data.json
 ```
 
-### 7. Ejecutar el Servidor
+### 7. Crear super usuario
+
+```
+python manage.py createsuperuser
+```
+
+### 8. Ejecutar el Servidor
 
 ```
 python manage.py runserver
