@@ -24,6 +24,13 @@ export default function HotelPage() {
           <p>
             Encargado: {hotel.encargado.nombre} {hotel.encargado.apellido}
           </p>
+          <h3>Tipos de habitación:</h3>
+          {hotel.habitaciones_por_tipo.map((tipo, index) => (
+            <div key={index}>
+              <p>Nombre: {tipo.nombre}</p>
+              <p>Cantidad: {tipo.cantidad}</p>
+            </div>
+          ))}
         </>
       ) : (
         <p>Cargando...</p>
