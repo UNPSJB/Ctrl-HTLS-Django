@@ -7,6 +7,7 @@ import SelectCiudad from "../../components/selectores/SelectCiudad";
 import SelectCategoria from "../../components/selectores/SelectCategoria";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import Navigation from "../../components/Navigation";
 
 export default function HotelesPage() {
   const [pais, setPais] = useState("");
@@ -27,8 +28,8 @@ export default function HotelesPage() {
   }
 
   return (
-    <div className="m-4">
-      <div className="flex justify-evenly">
+    <div>
+      <Navigation>
         <Link to="/" className="flex m-4 items-center">
           <FontAwesomeIcon icon={faHome} className="text-red-500" />
         </Link>
@@ -38,7 +39,7 @@ export default function HotelesPage() {
         {/* Menú desplegable de filtros */}
         <div className="relative">
           <button
-            className="border border-gray-300 py-2 px-4 rounded-md ml-2" 
+            className="border border-gray-300 py-2 px-4 rounded-md ml-2"
             onClick={toggleFiltros}
           >
             Buscar por
@@ -49,11 +50,11 @@ export default function HotelesPage() {
               <SelectProvincia pais={pais} provincia={provincia} setProvincia={setProvincia} />
               <SelectCiudad provincia={provincia} ciudad={ciudad} setCiudad={setCiudad} />
               <SelectCategoria categoria={categoria} setCategoria={setCategoria} />
-              <button className= "cursor-pointer border rounded-md py-1 px-4 bg-red-500" onClick={handleResetFiltros}>Reset</button>
+              <button className="cursor-pointer border rounded-md py-1 px-4 bg-red-500" onClick={handleResetFiltros}>Reset</button>
             </div>
           )}
         </div>
-      </div>
+      </Navigation>
       {/* Lista de hoteles filtrados */}
       <HotelList pais={pais} provincia={provincia} ciudad={ciudad} categoria={categoria} />
     </div>
