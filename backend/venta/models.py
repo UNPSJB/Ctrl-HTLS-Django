@@ -47,6 +47,9 @@ class Liquidacion(models.Model):
     
 
 class Pago(models.Model):
+    CONTADO = 0
+    PUNTOS = 1
+    TARJETA = 2
     importe = models.DecimalField(max_digits=10, decimal_places=2)
     fecha = models.DateField()
     TIPOS_PAGO = ((CONTADO, "CONTADO"), (PUNTOS, "PUNTOS"), (TARJETA, "TARJETA"))
