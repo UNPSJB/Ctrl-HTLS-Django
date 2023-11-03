@@ -93,4 +93,5 @@ class Encargado(Persona):
 
 
 class Cliente(Persona):
-    pass
+    puntos = models.IntegerField(default=0)
+    
