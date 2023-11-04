@@ -21,12 +21,24 @@ class Hotel(models.Model):
         super(Hotel, self).save(*args, **kwargs)
 
 
+class PaquetePromocional(models.Model):
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=200)
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+    coeficiente_descuento = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return self.nombre
+
+
 class Habitacion(models.Model):
     numero_de_habitacion = models.IntegerField()
     piso = models.IntegerField()
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-    tipo_habitacion = models.ForeignKey(
-        TipoHabitacion, on_delete=models.CASCADE, default=1
+    tipo_habitacion = models.ForeignKey(TipoHabitacion, on_delete=models.CASCADE)
+    paquete = models.ForeignKey(
+        PaquetePromocional, on_delete=models.CASCADE, null=True, blank=True
     )
 
     def __str__(self):
@@ -50,23 +62,10 @@ class PrecioPorTipo(models.Model):
         return f"{self.hotel.nombre} - {self.tipohabitacion.nombre}"
 
 
-class PaquetePromocional(models.Model):
-    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-    nombre = models.CharField(max_length=200)
-    fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
-    coeficiente_descuento = models.DecimalField(max_digits=5, decimal_places=2)
-
-    def __str__(self):
-        return self.nombre
-
-
 class Descuento(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     cantidad_habitaciones = models.IntegerField()
     porcentaje = models.DecimalField(max_digits=5, decimal_places=3)
-    
+
     def __str__(self):
         return f"{self.hotel.nombre} - {self.cantidad_habitaciones}"
-    
-
