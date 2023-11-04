@@ -40,6 +40,16 @@ class DireccionSerializer(ModelSerializer):
         fields = "__all__"
 
 
+# -------------------- Ubicacion Personalizados --------------------
+
+
+# Utilizado en HotelFullSerializer -> hotel/serializers.py
+class DireccionSerializer(ModelSerializer):
+    class Meta:
+        model = Direccion
+        fields = ["calle", "numero", "ciudad"]
+
+
 # -------------------- Otros --------------------
 
 
@@ -61,6 +71,16 @@ class CategoriaSerializer(ModelSerializer):
         fields = "__all__"
 
 
+# -------------------- Otros Personalizados --------------------
+
+
+# Utilizado en HotelFullSerializer -> hotel/serializers.py
+class CategoriaSerializer(ModelSerializer):
+    class Meta:
+        model = Categoria
+        fields = ["nombre"]
+
+
 # -------------------- Persona --------------------
 
 
@@ -73,16 +93,27 @@ class VendedorSerializer(ModelSerializer):
 class EncargadoSerializer(ModelSerializer):
     class Meta:
         model = Encargado
-        fields = [
-            "documento",
-            "tipo_documento",
-            "nombre",
-            "apellido",
-            "asignado",
-        ]
+        fields = "__all__"
 
 
 class ClienteSerializer(ModelSerializer):
     class Meta:
         model = Cliente
         fields = "__all__"
+
+
+# -------------------- Persona Personalizados --------------------
+
+
+# Utilizado en HotelFullSerializer -> hotel/serializers.py
+class EncargadoSerializer(ModelSerializer):
+    class Meta:
+        model = Encargado
+        fields = ["documento", "nombre", "apellido"]
+
+
+# Utilizado en HotelFullSerializer -> hotel/serializers.py
+class VendedorSerializer(ModelSerializer):
+    class Meta:
+        model = Vendedor
+        fields = ["documento", "nombre", "apellido"]

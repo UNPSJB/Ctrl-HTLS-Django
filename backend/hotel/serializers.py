@@ -4,43 +4,12 @@ from rest_framework.serializers import (
     Serializer,
 )
 from .models import Hotel, Habitacion, HotelVendedor, PaquetePromocional, Descuento
-from core.models import Categoria, Vendedor, Encargado, Direccion, TipoHabitacion
-from collections import Counter
-
-# -------------------- Serializadores de 'core' --------------------
-
-
-class DireccionSerializer(ModelSerializer):
-    class Meta:
-        model = Direccion
-        fields = ["calle", "numero"]
-
-
-class CategoriaSerializer(ModelSerializer):
-    class Meta:
-        model = Categoria
-        fields = ["nombre"]
-
-
-class EncargadoSerializer(ModelSerializer):
-    class Meta:
-        model = Encargado
-        fields = ["documento", "nombre", "apellido"]
-
-
-class VendedorSerializer(ModelSerializer):
-    class Meta:
-        model = Vendedor
-        fields = ["documento", "nombre", "apellido"]
-
-
-class TipoHabitacionSerializer(ModelSerializer):
-    class Meta:
-        model = TipoHabitacion
-        fields = ["nombre"]
-
-
-# -------------------- Serializadores de 'hotel' --------------------
+from core.serializers import (
+    DireccionSerializer,
+    CategoriaSerializer,
+    EncargadoSerializer,
+    VendedorSerializer,
+)
 
 
 class HotelVendedorSerializer(ModelSerializer):
@@ -84,22 +53,27 @@ class HotelFullSerializer(ModelSerializer):
     encargado = EncargadoSerializer()
     vendedores = SerializerMethodField()
     habitaciones_por_tipo = SerializerMethodField()
+    paquetes = SerializerMethodField()
 
     class Meta:
         model = Hotel
         fields = [
-            "id",
             "nombre",
             "direccion",
             "categoria",
             "encargado",
             "vendedores",
+            "paquetes",
             "habitaciones_por_tipo",
         ]
 
     def get_vendedores(self, obj):
         vendedores = HotelVendedor.objects.filter(hotel=obj)
         return HotelVendedorSerializer(vendedores, many=True).data
+
+    def get_paquetes(self, obj):
+        paquetes = PaquetePromocional.objects.filter(hotel=obj)
+        return PaqueteSerializer(paquetes, many=True).data
 
     def get_habitaciones_por_tipo(self, obj):
         habitaciones = Habitacion.objects.filter(hotel=obj)
@@ -125,7 +99,7 @@ class HotelFullSerializer(ModelSerializer):
 class PaqueteSerializer(ModelSerializer):
     class Meta:
         model = PaquetePromocional
-        fields = "__all__"
+        fields = ["nombre", "fecha_inicio", "fecha_fin", "coeficiente_descuento"]
 
 
 class DescuentoSerializer(ModelSerializer):
