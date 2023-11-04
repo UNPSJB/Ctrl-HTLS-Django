@@ -7,8 +7,8 @@ class Alquiler(models.Model):
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     pasajeros = models.IntegerField()
-    habitaciones = models.ManyToManyField(Habitacion, null=True)
-    paquetes = models.ManyToManyField(PaquetePromocional, null=True)
+    habitaciones = models.ManyToManyField(Habitacion, null=True, blank=True)
+    paquetes = models.ManyToManyField(PaquetePromocional, null=True, blank=True)
     importe = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=True)
 
@@ -40,7 +40,7 @@ class Liquidacion(models.Model):
     fecha_emision = models.DateField()
     fecha_pago = models.DateField(null=True)
     monto = models.DecimalField(max_digits=10, decimal_places=2)
-    detalle_factura = models.ForeignKey(Detalle_factura, on_delete=models.CASCADE)
+    detalle_factura = models.ForeignKey(Detalle_factura, on_delete=models.CASCADE, null=True)
     
     def __str__(self):
         return f"Liquidacion {self.numero} con fecha {self.fecha_emision}"
