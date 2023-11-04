@@ -10,6 +10,7 @@ from core.serializers import (
     EncargadoSerializer,
     VendedorSerializer,
 )
+from django.db.models import Count
 
 
 class HotelVendedorSerializer(ModelSerializer):
@@ -68,32 +69,13 @@ class HotelFullSerializer(ModelSerializer):
         ]
 
     def get_vendedores(self, obj):
-        vendedores = HotelVendedor.objects.filter(hotel=obj)
-        return HotelVendedorSerializer(vendedores, many=True).data
+        return get_vendedores(obj)
 
     def get_paquetes(self, obj):
-        paquetes = PaquetePromocional.objects.filter(hotel=obj)
-        return PaqueteSerializer(paquetes, many=True).data
+        return get_paquetes(obj)
 
     def get_habitaciones_por_tipo(self, obj):
-        habitaciones = Habitacion.objects.filter(hotel=obj)
-        tipos_de_habitacion = set(
-            habitacion.tipo_habitacion for habitacion in habitaciones
-        )
-        return HabitacionPorTipoSerializer(
-            [
-                {
-                    "tipo_habitacion": tipo,
-                    "habitaciones": [
-                        habitacion
-                        for habitacion in habitaciones
-                        if habitacion.tipo_habitacion == tipo
-                    ],
-                }
-                for tipo in tipos_de_habitacion
-            ],
-            many=True,
-        ).data
+        return get_habitaciones_por_tipo(obj)
 
 
 class PaqueteSerializer(ModelSerializer):
@@ -106,3 +88,35 @@ class DescuentoSerializer(ModelSerializer):
     class Meta:
         model = Descuento
         fields = "__all__"
+
+
+# -------------------- Metodos --------------------
+
+
+def get_vendedores(hotel):
+    vendedores = HotelVendedor.objects.filter(hotel=hotel)
+    return HotelVendedorSerializer(vendedores, many=True).data
+
+
+def get_paquetes(hotel):
+    paquetes = PaquetePromocional.objects.filter(hotel=hotel)
+    return PaqueteSerializer(paquetes, many=True).data
+
+
+def get_habitaciones_por_tipo(hotel):
+    habitaciones = Habitacion.objects.filter(hotel=hotel)
+    tipos_de_habitacion = set(habitacion.tipo_habitacion for habitacion in habitaciones)
+    return HabitacionPorTipoSerializer(
+        [
+            {
+                "tipo_habitacion": tipo,
+                "habitaciones": [
+                    habitacion
+                    for habitacion in habitaciones
+                    if habitacion.tipo_habitacion == tipo
+                ],
+            }
+            for tipo in tipos_de_habitacion
+        ],
+        many=True,
+    ).data
