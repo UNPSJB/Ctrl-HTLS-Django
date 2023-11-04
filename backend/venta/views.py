@@ -7,5 +7,5 @@ from .serializers import (
     LiquidacionSerializer,
     DetalleFacturaSerializer,
     PagoSerializer,
-    AlquilerSerializer
+    AlquilerSerializer,
 )
