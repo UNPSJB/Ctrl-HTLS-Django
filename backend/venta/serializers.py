@@ -1,31 +1,16 @@
-from rest_framework.serializers import (
-    ModelSerializer,
-    SerializerMethodField,
-    Serializer,
-)
+from rest_framework.serializers import ModelSerializer
 from .models import Factura, Alquiler, Pago, Detalle_factura, Liquidacion
-from core.models import Cliente
-from hotel.models import PaquetePromocional, Habitacion
-from collections import Counter
 
-"""
-class PaqueteSerializer(ModelSerializer):
+
+class AlquilerSerializer(ModelSerializer):
     class Meta:
-        model = PaquetePromocional
+        model = Alquiler
         fields = "__all__"
-
-"""
 
 
 class FacturaSerializer(ModelSerializer):
     class Meta:
         model = Factura
-        fields = "__all__"
-
-
-class PagoSerializer(ModelSerializer):
-    class Meta:
-        model = Pago
         fields = "__all__"
 
 
@@ -41,13 +26,7 @@ class LiquidacionSerializer(ModelSerializer):
         fields = "__all__"
 
 
-class FacturaSerializer(ModelSerializer):
+class PagoSerializer(ModelSerializer):
     class Meta:
-        model = Factura
-        fields = "__all__"
-
-
-class AlquilerSerializer(ModelSerializer):
-    class Meta:
-        model = Alquiler
+        model = Pago
         fields = "__all__"
