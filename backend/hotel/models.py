@@ -71,3 +71,14 @@ class Descuento(models.Model):
 
     def __str__(self):
         return f"{self.hotel.nombre} - {self.cantidad_habitaciones}"
+
+class Temporada(models.Model):
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    tipo = models.CharField(max_length=20)
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+    porcentaje = models.DecimalField(max_digits=5, decimal_places=2) # Si es menor a 1 es un descuento aplicable, sino corresponde a aumento
+
+    def __str__(self):
+        return f"{self.tipo} - {self.porcentaje}"
+    
