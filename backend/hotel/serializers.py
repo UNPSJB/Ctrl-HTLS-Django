@@ -83,7 +83,7 @@ class HotelMidSerializer(ModelSerializer):
 
 
 class HotelFullSerializer(ModelSerializer):
-    direccion = DireccionSerializer()
+    ubicacion = SerializerMethodField()
     categoria = CategoriaFullSerializer()
     encargado = EncargadoSerializer()
     vendedores = SerializerMethodField()
@@ -96,7 +96,7 @@ class HotelFullSerializer(ModelSerializer):
             "nombre",
             "descripcion",
             "habilitado",
-            "direccion",
+            "ubicacion",
             "categoria",
             "encargado",
             "vendedores",
@@ -141,6 +141,9 @@ class HotelFullSerializer(ModelSerializer):
             many=True,
         ).data
 
+    def get_ubicacion(self, obj):
+        return ubicacion(obj)
+
 
 class PaqueteSerializer(ModelSerializer):
     habitaciones = SerializerMethodField()
@@ -175,3 +178,17 @@ class DescuentoSerializer(ModelSerializer):
 
 
 # -------------------- Metodos --------------------
+
+
+def ubicacion(obj):
+    direccion = obj.direccion
+    ciudad = direccion.ciudad
+    provincia = ciudad.provincia
+    pais = provincia.pais
+    return {
+        "pais": pais.nombre,
+        "provincia": provincia.nombre,
+        "ciudad": ciudad.nombre,
+        "calle": direccion.calle,
+        "numero": direccion.numero,
+    }

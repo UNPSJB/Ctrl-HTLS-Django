@@ -43,13 +43,6 @@ class DireccionSerializer(ModelSerializer):
 # -------------------- Ubicacion Personalizados --------------------
 
 
-# Utilizado en HotelFullSerializer -> hotel/serializers.py
-class DireccionSerializer(ModelSerializer):
-    class Meta:
-        model = Direccion
-        fields = ["calle", "numero", "ciudad"]
-
-
 class PaisMidSerializer(ModelSerializer):
     class Meta:
         model = Pais
