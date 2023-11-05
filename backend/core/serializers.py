@@ -81,6 +81,12 @@ class CategoriaSerializer(ModelSerializer):
         fields = ["nombre"]
 
 
+class TipoHabitacionSerializer(ModelSerializer):
+    class Meta:
+        model = TipoHabitacion
+        fields = "__all__"
+
+
 # -------------------- Persona --------------------
 
 
