@@ -95,7 +95,7 @@ class ServicioSerializer(ModelSerializer):
         fields = "__all__"
 
 
-class CategoriaSerializer(ModelSerializer):
+class CategoriaFullSerializer(ModelSerializer):
     class Meta:
         model = Categoria
         fields = "__all__"
@@ -105,10 +105,10 @@ class CategoriaSerializer(ModelSerializer):
 
 
 # Utilizado en HotelFullSerializer -> hotel/serializers.py
-class CategoriaPerSerializer(ModelSerializer):
+class CategoriaFullSerializer(ModelSerializer):
     class Meta:
         model = Categoria
-        fields = ["nombre"]
+        fields = ["nombre", "estrellas"]
 
 
 class CategoriaMidSerializer(ModelSerializer):

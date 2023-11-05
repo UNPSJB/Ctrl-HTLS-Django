@@ -3,12 +3,19 @@ from rest_framework.serializers import (
     SerializerMethodField,
     Serializer,
 )
-from .models import Hotel, Habitacion, HotelVendedor, PaquetePromocional, Descuento
+from .models import (
+    Hotel,
+    Habitacion,
+    HotelVendedor,
+    PaquetePromocional,
+    Descuento,
+    PrecioPorTipo,
+)
 from core.models import Ciudad
 from core.serializers import (
     DireccionMidSerializer,
     DireccionSerializer,
-    CategoriaPerSerializer,
+    CategoriaFullSerializer,
     CategoriaMidSerializer,
     EncargadoSerializer,
     VendedorSerializer,
@@ -37,19 +44,15 @@ class HabitacionSerializer(ModelSerializer):
 
 
 class HabitacionPorTipoSerializer(Serializer):
-    id = SerializerMethodField()
     nombre = SerializerMethodField()
-    cantidad = SerializerMethodField()
+    descripcion = SerializerMethodField()
     habitaciones = SerializerMethodField()
 
-    def get_id(self, obj):
-        return obj["tipo_habitacion"].id
+    def get_descripcion(self, obj):
+        return obj["tipo_habitacion"].descripcion
 
     def get_nombre(self, obj):
         return obj["tipo_habitacion"].nombre
-
-    def get_cantidad(self, obj):
-        return len(obj["habitaciones"])
 
     def get_habitaciones(self, obj):
         return [habitacion.id for habitacion in obj["habitaciones"]]
@@ -81,7 +84,7 @@ class HotelMidSerializer(ModelSerializer):
 
 class HotelFullSerializer(ModelSerializer):
     direccion = DireccionSerializer()
-    categoria = CategoriaPerSerializer()
+    categoria = CategoriaFullSerializer()
     encargado = EncargadoSerializer()
     vendedores = SerializerMethodField()
     habitaciones_por_tipo = SerializerMethodField()
@@ -91,6 +94,8 @@ class HotelFullSerializer(ModelSerializer):
         model = Hotel
         fields = [
             "nombre",
+            "descripcion",
+            "habilitado",
             "direccion",
             "categoria",
             "encargado",
@@ -139,6 +144,7 @@ class HotelFullSerializer(ModelSerializer):
 
 class PaqueteSerializer(ModelSerializer):
     habitaciones = SerializerMethodField()
+    precio = SerializerMethodField()
 
     class Meta:
         model = PaquetePromocional
@@ -146,6 +152,7 @@ class PaqueteSerializer(ModelSerializer):
             "nombre",
             "fecha_inicio",
             "fecha_fin",
+            "precio",
             "coeficiente_descuento",
             "habitaciones",
         ]
@@ -153,6 +160,12 @@ class PaqueteSerializer(ModelSerializer):
     def get_habitaciones(sefl, obj):
         habitaciones = Habitacion.objects.filter(paquete=obj)
         return [habitacion.id for habitacion in habitaciones]
+
+    def get_precio(self, obj):
+        noches = (obj.fecha_fin - obj.fecha_inicio).days
+        # noches = (ffin - finicio)
+        # precio: noches * (tipohabitacion.precio * cantHabitaciones * temporada) * descuento
+        return noches
 
 
 class DescuentoSerializer(ModelSerializer):
