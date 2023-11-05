@@ -34,9 +34,13 @@ class HabitacionSerializer(ModelSerializer):
 
 
 class HabitacionPorTipoSerializer(Serializer):
+    id = SerializerMethodField()
     nombre = SerializerMethodField()
     cantidad = SerializerMethodField()
     habitaciones = SerializerMethodField()
+
+    def get_id(self, obj):
+        return obj["tipo_habitacion"].id
 
     def get_nombre(self, obj):
         return obj["tipo_habitacion"].nombre
