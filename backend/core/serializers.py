@@ -43,36 +43,6 @@ class DireccionSerializer(ModelSerializer):
 # -------------------- Ubicacion Personalizados --------------------
 
 
-class PaisMidSerializer(ModelSerializer):
-    class Meta:
-        model = Pais
-        fields = ["nombre"]
-
-
-class ProvinciaMidSerializer(ModelSerializer):
-    pais = PaisMidSerializer()
-
-    class Meta:
-        model = Provincia
-        fields = ["nombre", "pais"]
-
-
-class CiudadMidSerializer(ModelSerializer):
-    provincia = ProvinciaMidSerializer()
-
-    class Meta:
-        model = Ciudad
-        fields = ["nombre", "codigo_postal", "provincia"]
-
-
-class DireccionMidSerializer(ModelSerializer):
-    ciudad = CiudadMidSerializer()
-
-    class Meta:
-        model = Direccion
-        fields = ["calle", "numero", "ciudad"]
-
-
 # -------------------- Otros --------------------
 
 
