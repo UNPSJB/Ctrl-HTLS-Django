@@ -4,9 +4,12 @@ from rest_framework.serializers import (
     Serializer,
 )
 from .models import Hotel, Habitacion, HotelVendedor, PaquetePromocional, Descuento
+from core.models import Ciudad
 from core.serializers import (
+    DireccionMidSerializer,
     DireccionSerializer,
-    CategoriaSerializer,
+    CategoriaPerSerializer,
+    CategoriaMidSerializer,
     EncargadoSerializer,
     VendedorSerializer,
 )
@@ -58,9 +61,27 @@ class HotelSerializer(ModelSerializer):
         fields = ["id", "nombre", "direccion", "categoria", "encargado"]
 
 
+class HotelMidSerializer(ModelSerializer):
+    encargado = EncargadoSerializer()
+    categoria = CategoriaMidSerializer()
+    direccion = DireccionMidSerializer()
+
+    class Meta:
+        model = Hotel
+        fields = [
+            "id",
+            "nombre",
+            "encargado",
+            "categoria",
+            "descripcion",
+            "habilitado",
+            "direccion",
+        ]
+
+
 class HotelFullSerializer(ModelSerializer):
     direccion = DireccionSerializer()
-    categoria = CategoriaSerializer()
+    categoria = CategoriaPerSerializer()
     encargado = EncargadoSerializer()
     vendedores = SerializerMethodField()
     habitaciones_por_tipo = SerializerMethodField()

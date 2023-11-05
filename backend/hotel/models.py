@@ -5,6 +5,8 @@ from core.models import Direccion, TipoHabitacion, Categoria, Vendedor, Encargad
 class Hotel(models.Model):
     nombre = models.CharField(max_length=100)
     direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE)
+    descripcion = models.TextField(blank=True)
+    habilitado = models.BooleanField(default=False)
     tipos_de_habitacion = models.ManyToManyField(TipoHabitacion)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True)
     encargado = models.OneToOneField(Encargado, on_delete=models.SET_NULL, null=True)

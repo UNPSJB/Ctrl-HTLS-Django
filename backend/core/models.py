@@ -61,6 +61,7 @@ class Categoria(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     servicios = models.ManyToManyField(Servicio)
+    estrellas = models.DecimalField(max_digits=2, decimal_places=1, default=0)
 
     def __str__(self):
         return f"Categoria {self.nombre}"
@@ -94,4 +95,3 @@ class Encargado(Persona):
 
 class Cliente(Persona):
     puntos = models.IntegerField(default=0)
-    
