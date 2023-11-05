@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../../api";
 
 function HotelCard({ hoteles, setHoteles }) {
+  window.api = api
   const navigate = useNavigate();
   const handleDelete = async (id) => {
     try {
@@ -22,6 +23,7 @@ function HotelCard({ hoteles, setHoteles }) {
           <h1>
             <Link to={`/hotel/${hotel.id}`}>{hotel.nombre}</Link>
           </h1>
+          <p>{hotel.direccion.ciudad.nombre} - {hotel.direccion.ciudad.provincia.nombre} - { hotel.direccion.ciudad.provincia.pais.nombre }</p>
           <div className="space-x-10">
             <button className="text-sky-500" onClick={() => console.log("Modificar")}>
               Modificar
