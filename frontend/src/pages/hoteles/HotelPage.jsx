@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../api";
-import HabitacionesPorTipo from "../../components/hotel/HabitacionesPorTipo";
+import HabitacionList from "../../components/hotel/HabitacionList";
 
 export default function HotelPage() {
   const { id } = useParams();
@@ -25,7 +25,7 @@ export default function HotelPage() {
           <p>
             Encargado: {hotel.encargado.nombre} {hotel.encargado.apellido}
           </p>
-          <HabitacionesPorTipo habitacionesPorTipo={hotel.habitaciones_por_tipo} />
+          <HabitacionList habitaciones={hotel.habitaciones_por_tipo} />
         </>
       ) : (
         <p>Cargando...</p>
