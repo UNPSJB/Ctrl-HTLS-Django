@@ -32,3 +32,6 @@ class LiquidacionViewSet(ModelViewSet):
 class PagoViewSet(ModelViewSet):
     queryset = Pago.objects.all()
     serializer_class = PagoSerializer
+
+
+"""hola holaa holaaa"""
