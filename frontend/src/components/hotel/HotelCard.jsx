@@ -8,6 +8,7 @@ function HotelCard({ hoteles, setHoteles }) {
     try {
       await api.hoteles.delete(id);
       console.log(`Hotel con id ${id} eliminado`);
+      // NO FUNCIONA :/
       const updatedHoteles = hoteles.filter((hotel) => hotel.id !== id);
       setHoteles(updatedHoteles); // Actualiza los hoteles después de la eliminación
       navigate("/hoteles");
