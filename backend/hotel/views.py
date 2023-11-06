@@ -54,3 +54,7 @@ class PaqueteViewSet(viewsets.ModelViewSet):
 class DescuentoViewSet(viewsets.ModelViewSet):
     queryset = Descuento.objects.all()
     serializer_class = DescuentoSerializer
+
+class TemporadaViewSet(viewsets.ModelViewSet):
+    queryset = Temporada.objects.all()
+    serializer_class = TemporadaSerializer

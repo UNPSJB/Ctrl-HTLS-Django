@@ -177,6 +177,12 @@ class DescuentoSerializer(ModelSerializer):
         fields = "__all__"
 
 
+class TemporadaSerializer(ModelSerializer):
+    class Meta:
+        model = Temporada
+        fields = "__all__"
+ 
+
 # -------------------- Metodos --------------------
 
 
