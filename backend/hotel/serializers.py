@@ -21,12 +21,6 @@ from core.serializers import (
 )
 
 
-class HabitacionSerialializer(ModelSerializer):
-    class Meta:
-        model = Habitacion
-        fields = "__all__"
-
-
 class HotelVendedorSerializer(ModelSerializer):
     vendedor = VendedorSerializer()
 
