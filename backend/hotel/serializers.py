@@ -148,7 +148,7 @@ class PaqueteSerializer(ModelSerializer):
             "habitaciones",
         ]
 
-    def get_habitaciones(sefl, obj):
+    def get_habitaciones(self, obj):
         return habitaciones(obj)
 
     def get_precio(self, obj):
@@ -185,7 +185,6 @@ def precio(obj):
         ).precio
         cantidad_habitaciones = obj.hotel.habitacion_set.filter(paquete=obj).count()
 
-        # Faltan las temporadas y el descuento
         precio = noches * precio_tipo_habitacion * cantidad_habitaciones
         return precio
     else:
@@ -209,8 +208,3 @@ def ubicacion(obj):
         "calle": direccion.calle,
         "numero": direccion.numero,
     }
-
-
-def temporada(obj):
-    temporada = Temporada.objects.filter(hotel=obj.hotel)
-    return temporada
