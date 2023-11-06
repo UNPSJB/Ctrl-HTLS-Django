@@ -17,13 +17,14 @@ from core.serializers import (
     CategoriaMidSerializer,
     EncargadoSerializer,
     VendedorSerializer,
+    TipoHabitacionSerializer,
 )
 
 
 class HabitacionSerialializer(ModelSerializer):
     class Meta:
         model = Habitacion
-        fields = ["id"]
+        fields = "__all__"
 
 
 class HotelVendedorSerializer(ModelSerializer):
@@ -41,15 +42,8 @@ class HabitacionSerializer(ModelSerializer):
 
 
 class HabitacionPorTipoSerializer(Serializer):
-    nombre = SerializerMethodField()
-    descripcion = SerializerMethodField()
+    tipo_habitacion = TipoHabitacionSerializer(read_only=True)
     habitaciones = SerializerMethodField()
-
-    def get_descripcion(self, obj):
-        return obj["tipo_habitacion"].descripcion
-
-    def get_nombre(self, obj):
-        return obj["tipo_habitacion"].nombre
 
     def get_habitaciones(self, obj):
         return [habitacion.id for habitacion in obj["habitaciones"]]
