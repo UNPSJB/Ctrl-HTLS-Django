@@ -7,6 +7,7 @@ from .models import (
     Hotel,
     Habitacion,
     HotelVendedor,
+    PrecioPorTipo,
     PaquetePromocional,
     Descuento,
     Temporada,
@@ -106,11 +107,6 @@ class HotelFullSerializer(ModelSerializer):
     def get_vendedores(self, obj):
         return vendedores(obj)
 
-    # Todos los paquetes del Hotel
-    # def get_paquetes(self, obj):
-    #     paquetes = PaquetePromocional.objects.filter(hotel=obj)
-    #     return PaqueteSerializer(paquetes, many=True).data
-
     # Todos los paquetes del Hotel que tengan minimo una Habitacion
     def get_paquetes(self, obj):
         paquetes = PaquetePromocional.objects.filter(hotel=obj)
@@ -164,9 +160,18 @@ class PaqueteSerializer(ModelSerializer):
 
     def get_precio(self, obj):
         noches = (obj.fecha_fin - obj.fecha_inicio).days
-        # noches = (ffin - finicio)
-        # precio: noches * (tipohabitacion.precio * cantHabitaciones * temporada) * descuento
-        return noches
+        habitacion = Habitacion.objects.filter(paquete=obj).first()
+        if habitacion is not None:
+            tipo_habitacion = habitacion.tipo_habitacion
+            precio_tipo_habitacion = PrecioPorTipo.objects.get(
+                hotel=obj.hotel, tipohabitacion=tipo_habitacion
+            ).precio
+            cantidad_habitaciones = obj.hotel.habitacion_set.filter(paquete=obj).count()
+            # Faltan las temporadas y el descuento
+            precio = noches * precio_tipo_habitacion * cantidad_habitaciones
+            return precio
+        else:
+            return None
 
 
 class DescuentoSerializer(ModelSerializer):
