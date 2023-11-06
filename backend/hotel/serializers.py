@@ -149,23 +149,10 @@ class PaqueteSerializer(ModelSerializer):
         ]
 
     def get_habitaciones(sefl, obj):
-        habitaciones = Habitacion.objects.filter(paquete=obj)
-        return [habitacion.id for habitacion in habitaciones]
+        return habitaciones(obj)
 
     def get_precio(self, obj):
-        noches = (obj.fecha_fin - obj.fecha_inicio).days
-        habitacion = Habitacion.objects.filter(paquete=obj).first()
-        if habitacion is not None:
-            tipo_habitacion = habitacion.tipo_habitacion
-            precio_tipo_habitacion = PrecioPorTipo.objects.get(
-                hotel=obj.hotel, tipohabitacion=tipo_habitacion
-            ).precio
-            cantidad_habitaciones = obj.hotel.habitacion_set.filter(paquete=obj).count()
-            # Faltan las temporadas y el descuento
-            precio = noches * precio_tipo_habitacion * cantidad_habitaciones
-            return precio
-        else:
-            return None
+        return precion(obj)
 
 
 class DescuentoSerializer(ModelSerializer):
@@ -181,6 +168,28 @@ class TemporadaSerializer(ModelSerializer):
 
 
 # -------------------- Metodos --------------------
+
+
+def habitaciones(obj):
+    habitaciones = Habitacion.objects.filter(paquete=obj)
+    return [habitacion.id for habitacion in habitaciones]
+
+
+def precio(obj):
+    noches = (obj.fecha_fin - obj.fecha_inicio).days
+    habitacion = Habitacion.objects.filter(paquete=obj).first()
+    if habitacion is not None:
+        tipo_habitacion = habitacion.tipo_habitacion
+        precio_tipo_habitacion = PrecioPorTipo.objects.get(
+            hotel=obj.hotel, tipohabitacion=tipo_habitacion
+        ).precio
+        cantidad_habitaciones = obj.hotel.habitacion_set.filter(paquete=obj).count()
+
+        # Faltan las temporadas y el descuento
+        precio = noches * precio_tipo_habitacion * cantidad_habitaciones
+        return precio
+    else:
+        return None
 
 
 def vendedores(obj):
@@ -200,3 +209,8 @@ def ubicacion(obj):
         "calle": direccion.calle,
         "numero": direccion.numero,
     }
+
+
+def temporada(obj):
+    temporada = Temporada.objects.filter(hotel=obj.hotel)
+    return temporada
