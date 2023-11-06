@@ -8,6 +8,7 @@ function HotelCard({ hoteles, setHoteles }) {
     try {
       await api.hoteles.delete(id);
       console.log(`Hotel con id ${id} eliminado`);
+      // NO FUNCIONA :/
       const updatedHoteles = hoteles.filter((hotel) => hotel.id !== id);
       setHoteles(updatedHoteles); // Actualiza los hoteles después de la eliminación
       navigate("/hoteles");
@@ -29,11 +30,11 @@ function HotelCard({ hoteles, setHoteles }) {
           </div>
 
           <p>
-            {hotel.direccion.ciudad.nombre}
+            {hotel.ubicacion.ciudad}
             {" - "}
-            {hotel.direccion.ciudad.provincia.nombre}
+            {hotel.ubicacion.provincia}
             {" - "}
-            {hotel.direccion.ciudad.provincia.pais.nombre}
+            {hotel.ubicacion.pais}
           </p>
 
           {/* Mostra solo 10 caracteres de la descipcion cambiar y hacerlo con taildwind */}
