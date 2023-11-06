@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from .models import Hotel, Habitacion, PaquetePromocional, Descuento
+from .models import Hotel, Habitacion, PaquetePromocional, Descuento, Temporada
 from .serializers import (
     HotelSerializer,
     HabitacionSerializer,
@@ -9,6 +9,7 @@ from .serializers import (
     HotelFullSerializer,
     PaqueteSerializer,
     DescuentoSerializer,
+    TemporadaSerializer,
 )
 
 
@@ -54,6 +55,7 @@ class PaqueteViewSet(viewsets.ModelViewSet):
 class DescuentoViewSet(viewsets.ModelViewSet):
     queryset = Descuento.objects.all()
     serializer_class = DescuentoSerializer
+
 
 class TemporadaViewSet(viewsets.ModelViewSet):
     queryset = Temporada.objects.all()
