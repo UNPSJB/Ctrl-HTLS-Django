@@ -13,9 +13,7 @@ from .models import (
 )
 from core.models import Ciudad
 from core.serializers import (
-    DireccionMidSerializer,
-    DireccionSerializer,
-    CategoriaFullSerializer,
+    CategoriaMidSerializer,
     CategoriaMidSerializer,
     EncargadoSerializer,
     VendedorSerializer,
@@ -87,7 +85,7 @@ class HotelMidSerializer(ModelSerializer):
 
 class HotelFullSerializer(ModelSerializer):
     ubicacion = SerializerMethodField()
-    categoria = CategoriaFullSerializer()
+    categoria = CategoriaMidSerializer()
     encargado = EncargadoSerializer()
     vendedores = SerializerMethodField()
     habitaciones_por_tipo = SerializerMethodField()

@@ -68,16 +68,10 @@ class CategoriaFullSerializer(ModelSerializer):
 
 
 # Utilizado en HotelFullSerializer -> hotel/serializers.py
-class CategoriaFullSerializer(ModelSerializer):
-    class Meta:
-        model = Categoria
-        fields = ["nombre", "estrellas"]
-
-
 class CategoriaMidSerializer(ModelSerializer):
     class Meta:
         model = Categoria
-        fields = ["estrellas"]
+        fields = ["nombre", "estrellas"]
 
 
 class TipoHabitacionSerializer(ModelSerializer):
