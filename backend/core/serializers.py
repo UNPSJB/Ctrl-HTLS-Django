@@ -74,12 +74,6 @@ class CategoriaMidSerializer(ModelSerializer):
         fields = ["nombre", "estrellas"]
 
 
-class TipoHabitacionSerializer(ModelSerializer):
-    class Meta:
-        model = TipoHabitacion
-        fields = "__all__"
-
-
 # -------------------- Persona --------------------
 
 
@@ -99,20 +93,3 @@ class ClienteSerializer(ModelSerializer):
     class Meta:
         model = Cliente
         fields = "__all__"
-
-
-# -------------------- Persona Personalizados --------------------
-
-
-# Utilizado en HotelFullSerializer -> hotel/serializers.py
-class EncargadoSerializer(ModelSerializer):
-    class Meta:
-        model = Encargado
-        fields = ["documento", "nombre", "apellido"]
-
-
-# Utilizado en HotelFullSerializer -> hotel/serializers.py
-class VendedorSerializer(ModelSerializer):
-    class Meta:
-        model = Vendedor
-        fields = ["documento", "nombre", "apellido"]
