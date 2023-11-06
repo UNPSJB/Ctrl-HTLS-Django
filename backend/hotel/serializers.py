@@ -152,7 +152,7 @@ class PaqueteSerializer(ModelSerializer):
         return habitaciones(obj)
 
     def get_precio(self, obj):
-        return precion(obj)
+        return precio(obj)
 
 
 class DescuentoSerializer(ModelSerializer):

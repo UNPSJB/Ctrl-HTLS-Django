@@ -4,6 +4,7 @@ import api from "../../api";
 import HabitacionList from "../../components/hotel/HabitacionList";
 
 export default function HotelPage() {
+  window.api = api;
   const { id } = useParams();
   const [hotel, setHotel] = useState(null);
 
@@ -19,7 +20,7 @@ export default function HotelPage() {
         <>
           <p>Nombre: {hotel.nombre}</p>
           <p>
-            Dirección: {hotel.direccion.calle} {hotel.direccion.numero}
+            Dirección: {hotel.ubicacion.calle} {hotel.ubicacion.numero}
           </p>
           <p>Categoría: {hotel.categoria.nombre}</p>
           <p>
