@@ -9,16 +9,14 @@ from .models import (
     HotelVendedor,
     PaquetePromocional,
     Descuento,
-    PrecioPorTipo,
+    Temporada,
 )
-from core.models import Ciudad
 from core.serializers import (
     CategoriaMidSerializer,
     CategoriaMidSerializer,
     EncargadoSerializer,
     VendedorSerializer,
 )
-from django.db.models import Count
 
 
 class HabitacionSerialializer(ModelSerializer):
@@ -181,7 +179,7 @@ class TemporadaSerializer(ModelSerializer):
     class Meta:
         model = Temporada
         fields = "__all__"
- 
+
 
 # -------------------- Metodos --------------------
 
