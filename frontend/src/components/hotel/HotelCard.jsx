@@ -29,11 +29,11 @@ function HotelCard({ hoteles, setHoteles }) {
           </div>
 
           <p>
-            {hotel.direccion.ciudad.nombre}
+            {hotel.ubicacion.ciudad}
             {" - "}
-            {hotel.direccion.ciudad.provincia.nombre}
+            {hotel.ubicacion.provincia}
             {" - "}
-            {hotel.direccion.ciudad.provincia.pais.nombre}
+            {hotel.ubicacion.pais}
           </p>
 
           {/* Mostra solo 10 caracteres de la descipcion cambiar y hacerlo con taildwind */}
