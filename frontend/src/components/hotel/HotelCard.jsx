@@ -22,23 +22,29 @@ function HotelCard({ hoteles, setHoteles }) {
       {hoteles.map((hotel) => (
         <div className="flex justify-between space-x-20 " key={hotel.id}>
           <div>
-            <h1>
-              <Link to={`/hotel/${hotel.id}`}>{hotel.nombre}</Link>
-            </h1>
-            <p>Estrellas: {hotel.categoria.estrellas}</p>
-            <input type="checkbox" name="" id="" />
+            <img src="../../public/hotel.jpg" alt="Un hotel"/>
           </div>
-
-          <p>
-            {hotel.ubicacion.ciudad}
-            {" - "}
-            {hotel.ubicacion.provincia}
-            {" - "}
-            {hotel.ubicacion.pais}
-          </p>
+          <div>
+            <div className="flex">
+              <h1 className="text-4xl uppercase font-medium">
+                <Link to={`/hotel/${hotel.id}`}>{hotel.nombre}</Link>
+              </h1>
+              <p>Estrellas: {hotel.categoria.estrellas}</p>
+              <input type="checkbox" name="" id="" />
+            </div>
+            <p>
+              {hotel.ubicacion.ciudad}
+              {" - "}
+              {hotel.ubicacion.provincia}
+              {" - "}
+              {hotel.ubicacion.pais}
+            </p>
+            <p>Descripcion: {hotel.descripcion.substring(0, 10)}</p>
+          </div>
+          
 
           {/* Mostra solo 10 caracteres de la descipcion cambiar y hacerlo con taildwind */}
-          <p>Descripcion: {hotel.descripcion.substring(0, 10)}</p>
+          
 
           <div className="space-x-10">
             <button

@@ -6,8 +6,7 @@ import SelectProvincia from "../../components/selectores/SelectProvincia";
 import SelectCiudad from "../../components/selectores/SelectCiudad";
 import SelectCategoria from "../../components/selectores/SelectCategoria";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import Navigation from "../../components/Navigation";
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function HotelesPage() {
   const [pais, setPais] = useState("");
@@ -28,11 +27,9 @@ export default function HotelesPage() {
   }
 
   return (
-    <div>
-      <Navigation>
-        <Link to="/" className="flex m-4 items-center">
-          <FontAwesomeIcon icon={faHome} className="text-red-500" />
-        </Link>
+    <>
+      <div className="flex justify-evenly bg-purple-950 text-white">
+        <h1>HOTELES</h1>
         <Link to="/hotel-form">
           <FontAwesomeIcon icon={faCirclePlus} />    Agregar Hotel
         </Link>
@@ -54,9 +51,9 @@ export default function HotelesPage() {
             </div>
           )}
         </div>
-      </Navigation>
+      </div>
       {/* Lista de hoteles filtrados */}
       <HotelList pais={pais} provincia={provincia} ciudad={ciudad} categoria={categoria} />
-    </div>
+    </>
   );
 }
