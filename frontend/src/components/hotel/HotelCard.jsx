@@ -1,6 +1,7 @@
 import Estrellas from "../helpers/Estrellas";
 import SwitchButton from "../helpers/SwitchButton";
 import hotelimg from "../../public/hotel2.jpeg";
+import { Link } from "react-router-dom";
 
 function HotelCard({ hotel }) {
   return (
@@ -9,7 +10,7 @@ function HotelCard({ hotel }) {
       <div className="w-3/4">
         <div className="flex items-center">
           <h2 className="text-4xl text-LetraAgregarHotel font-hoteles font-bold mr-2 uppercase">
-            {hotel.nombre}
+            <Link to={`/hotel/${hotel.id}`}>{hotel.nombre}</Link>
           </h2>
           <Estrellas stars={hotel.categoria.estrellas} />
         </div>
