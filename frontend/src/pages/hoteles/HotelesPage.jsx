@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import HotelList from "../../components/hotel/HotelList";
+//import HotelList from "../../components/hotel/HotelList";
 import SelectPais from "../../components/selectores/SelectPais";
 import SelectProvincia from "../../components/selectores/SelectProvincia";
 import SelectCiudad from "../../components/selectores/SelectCiudad";

@@ -1,7 +1,7 @@
 function SecondNavBar() {
-    return (
-        
-    );
+  return (
+    0
+  );
 }
 
 export default SecondNavBar;
