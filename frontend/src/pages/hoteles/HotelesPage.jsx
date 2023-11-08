@@ -29,11 +29,7 @@ export default function HotelesPage() {
 
   return (
     <>
-      <div className="flex justify-evenly bg-purple-950 text-white">
-        <Link to="/hotel-form">
-          <FontAwesomeIcon icon={faCirclePlus} /> Agregar Hotel
-        </Link>
-        <h1>HOTELES</h1>
+      <div className="flex p-2 font-hoteles justify-evenly bg-FondoHotel text-Letras">
         {/* Menú desplegable de filtros */}
         <div className="relative">
           <button
@@ -68,6 +64,12 @@ export default function HotelesPage() {
             </div>
           )}
         </div>
+        <h1 className="text-3xl">HOTELES</h1>
+        <button className="border rounded-md p-2 bg-AgregarHotel text-LetraAgregarHotel">
+          <Link to="/hotel-form">
+            <FontAwesomeIcon icon={faCirclePlus} /> <span>Agregar Hotel</span>
+          </Link>
+        </button>
       </div>
       {/* Lista de hoteles filtrados */}
       {/* <HotelList
