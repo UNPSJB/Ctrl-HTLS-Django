@@ -1,9 +1,11 @@
 import Estrellas from "../helpers/Estrellas";
 import SwitchButton from "../helpers/SwitchButton";
+import hotelimg from "../../public/hotel2.jpeg";
 
 function HotelCard({ hotel }) {
   return (
     <div className="p-4 m-2 border rounded shadow-lg flex justify-between">
+      <img src={hotelimg} width={250} alt="Imagen del hotel" className="mr-2" />
       <div className="w-3/4">
         <div className="flex items-center">
           <h2 className="text-4xl text-LetraAgregarHotel font-hoteles font-bold mr-2 uppercase">
