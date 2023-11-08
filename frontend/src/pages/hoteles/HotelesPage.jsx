@@ -30,10 +30,10 @@ export default function HotelesPage() {
   return (
     <>
       <div className="flex justify-evenly bg-purple-950 text-white">
-        <h1>HOTELES</h1>
         <Link to="/hotel-form">
           <FontAwesomeIcon icon={faCirclePlus} /> Agregar Hotel
         </Link>
+        <h1>HOTELES</h1>
         {/* Menú desplegable de filtros */}
         <div className="relative">
           <button
@@ -43,7 +43,7 @@ export default function HotelesPage() {
             Buscar por
           </button>
           {mostrarFiltros && (
-            <div className="absolute z-10 bg-white border border-gray-300 p-4 mt-2 rounded-md">
+            <div className="absolute z-10 bg-white border border-gray-300 p-4 mt-2 rounded-md text-black">
               <SelectPais pais={pais} setPais={setPais} />
               <SelectProvincia
                 pais={pais}
