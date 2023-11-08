@@ -1,17 +1,4 @@
-import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
-import { faStarHalfAlt as halfStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-function renderStars(stars) {
-  let starComponents = [];
-  for (let i = 0; i < Math.floor(stars); i++) {
-    starComponents.push(<FontAwesomeIcon icon={fullStar} key={i} />);
-  }
-  if (stars % 1 !== 0) {
-    starComponents.push(<FontAwesomeIcon icon={halfStar} key={stars} />);
-  }
-  return starComponents;
-}
+import Estrellas from "../helpers/Estrellas";
 
 function HotelCard({ hotel }) {
   return (
@@ -19,7 +6,7 @@ function HotelCard({ hotel }) {
       <div className="w-3/4">
         <div className="flex items-center">
           <h2 className="text-xl font-bold mr-2 uppercase">{hotel.nombre}</h2>
-          <div>{renderStars(hotel.categoria.estrellas)}</div>
+          <Estrellas stars={hotel.categoria.estrellas} />
         </div>
         <p>
           {hotel.ubicacion.ciudad} - {hotel.ubicacion.provincia} -{" "}
