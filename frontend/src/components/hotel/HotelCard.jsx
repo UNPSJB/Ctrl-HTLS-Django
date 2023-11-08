@@ -1,86 +1,37 @@
-import { Link, useNavigate } from "react-router-dom";
-import api from "../../api";
-import { useState } from "react";
 import Estrellas from "../helpers/Estrellas";
+import SwitchButton from "../helpers/SwitchButton";
 
-function HotelCard({ hoteles, setHoteles }) {
-  const [isOn, setIsOn] = useState(false);
-
-  window.api = api;
-  const navigate = useNavigate();
-  const handleDelete = async (id) => {
-    try {
-      await api.hoteles.delete(id);
-      console.log(`Hotel con id ${id} eliminado`);
-      // NO FUNCIONA :/
-      const updatedHoteles = hoteles.filter((hotel) => hotel.id !== id);
-      setHoteles(updatedHoteles); // Actualiza los hoteles después de la eliminación
-      navigate("/hoteles");
-    } catch (error) {
-      console.error(`Error al eliminar el hotel con id ${id}: `, error);
-    }
-  };
-
-  const toggleSwitch = () => {
-    setIsOn(!isOn);
-  };
-
+function HotelCard({ hotel }) {
   return (
-    <div>
-      {hoteles.map((hotel) => (
-        <div className="flex justify-between space-x-20 m-10" key={hotel.id}>
-          <div>
-            <img src="../../public/hotel.jpg" alt="Un hotel" />
-          </div>
-          <div>
-            <div className="flex">
-              <h1 className="text-4xl uppercase font-medium">
-                <Link to={`/hotel/${hotel.id}`}>{hotel.nombre}</Link>
-              </h1>
-              {/* <p>Estrellas: {hotel.categoria.estrellas}</p> */}
-              <Estrellas estrellas={hotel.categoria.estrellas} />
-            </div>
-            <p>
-              {hotel.ubicacion.ciudad}
-              {" - "}
-              {hotel.ubicacion.provincia}
-              {" - "}
-              {hotel.ubicacion.pais}
-            </p>
-            {/* Mostra solo 10 caracteres de la descipcion cambiar y hacerlo con taildwind */}
-            <p>Descripcion: {hotel.descripcion.substring(0, 100)}</p>
-          </div>
-          <div className="flex-col">
-            {/* <input className="" type="checkbox" name="" id="" /> */}
-            <button
-              onClick={toggleSwitch}
-              className={`relative inline-flex items-center h-6 rounded-full w-11 ${
-                isOn ? "bg-green-400" : "bg-gray-200"
-              }`}
-            >
-              <span
-                className={`inline-block w-4 h-4 transform bg-white rounded-full ${
-                  isOn ? "translate-x-6" : "translate-x-1"
-                }`}
-              ></span>
-            </button>
-            <div className="flex-col mt-10 space-x-4 ">
-              <button
-                className="text-sky-500 "
-                onClick={() => console.log("Modificar")}
-              >
-                Modificar
-              </button>
-              <button
-                className="text-red-500"
-                onClick={() => handleDelete(hotel.id)}
-              >
-                Eliminar
-              </button>
-            </div>
-          </div>
+    <div className="p-4 m-2 border rounded shadow-lg flex justify-between">
+      <div className="w-3/4">
+        <div className="flex items-center">
+          <h2 className="text-4xl text-LetraAgregarHotel font-hoteles font-bold mr-2 uppercase">
+            {hotel.nombre}
+          </h2>
+          <Estrellas stars={hotel.categoria.estrellas} />
         </div>
-      ))}
+        <p className="font-navSitiosFrecuentes text-FrecuentesItems">
+          {hotel.ubicacion.ciudad} - {hotel.ubicacion.provincia} -{" "}
+          {hotel.ubicacion.pais}
+        </p>
+        <p className="mt-2 text-DescripcionHotel">
+          {hotel.descripcion.length > 500
+            ? hotel.descripcion.slice(0, 500) + "..."
+            : hotel.descripcion}
+        </p>
+      </div>
+      <div className="w-1/4 flex flex-col items-end">
+        <SwitchButton />
+        <div className="mt-auto flex">
+          <button className="w-full border rounded-md px-9 py-1 mr-2 text-white bg-ModificarToggle">
+            Modificar
+          </button>
+          <button className="w-full border rounded-md px-9 py-1 mr-2 bg-AgregarHotel text-LetraAgregarHotel">
+            Eliminar
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

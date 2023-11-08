@@ -7,7 +7,7 @@ import SelectCiudad from "../../components/selectores/SelectCiudad";
 import SelectCategoria from "../../components/selectores/SelectCategoria";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-import List from "../../components/hotel/List";
+import List from "../../components/hotel/HotelList";
 
 export default function HotelesPage() {
   const [pais, setPais] = useState("");
@@ -72,12 +72,6 @@ export default function HotelesPage() {
         </button>
       </div>
       {/* Lista de hoteles filtrados */}
-      {/* <HotelList
-        pais={pais}
-        provincia={provincia}
-        ciudad={ciudad}
-        categoria={categoria}
-      /> */}
       <List
         pais={pais}
         provincia={provincia}
