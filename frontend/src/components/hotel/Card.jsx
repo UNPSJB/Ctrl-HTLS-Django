@@ -18,7 +18,7 @@ function HotelCard({ hotel }) {
     <div className="p-4 m-2 border rounded shadow-lg flex justify-between">
       <div className="w-3/4">
         <div className="flex items-center">
-          <h2 className="text-xl font-bold mr-2">{hotel.nombre}</h2>
+          <h2 className="text-xl font-bold mr-2 uppercase">{hotel.nombre}</h2>
           <div>{renderStars(hotel.categoria.estrellas)}</div>
         </div>
         <p>
