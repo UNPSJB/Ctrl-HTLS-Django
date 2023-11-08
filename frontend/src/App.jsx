@@ -8,7 +8,6 @@ import VendedorFormPage from "./pages/vendedores/VendedorFormPage";
 import VendedorPage from "./pages/vendedores/VendedorPage";
 import Navigation from "./components/Navigation";
 
-
 function App() {
   return (
     <div className="">
