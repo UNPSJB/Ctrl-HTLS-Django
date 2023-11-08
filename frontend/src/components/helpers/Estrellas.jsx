@@ -1,28 +1,21 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faStarHalfStroke } from '@fortawesome/free-solid-svg-icons';
+import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
+import { faStarHalfAlt as halfStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Estrellas = ({ estrellas }) => {
-  // Divide las estrellas en parte entera y parte decimal (para las medias estrellas)
-  const integerPart = Math.floor(estrellas);
-  const decimalPart = estrellas - integerPart;
-
-  // Crea arrays para las estrellas enteras y las medias estrellas
-  const integerStarsArray = Array.from({ length: integerPart });
-  const showHalfStar = decimalPart >= 0.5;
-
-  return (
-    <div className="ml-3 mt-2">
-      {integerStarsArray.map((_, index) => (
-        <FontAwesomeIcon icon={faStar} key={index} />
-      ))}
-      {showHalfStar && <FontAwesomeIcon icon={faStarHalfStroke} />}
-    </div>
-  );
-};
+function Estrellas({ stars }) {
+  let starComponents = [];
+  for (let i = 0; i < Math.floor(stars); i++) {
+    starComponents.push(<FontAwesomeIcon icon={fullStar} key={i} />);
+  }
+  if (stars % 1 !== 0) {
+    starComponents.push(<FontAwesomeIcon icon={halfStar} key={stars} />);
+    stars = Math.floor(stars) + 1;
+  }
+  for (let i = stars; i < 5; i++) {
+    starComponents.push(<FontAwesomeIcon icon={emptyStar} key={i} />);
+  }
+  return <div>{starComponents}</div>;
+}
 
 export default Estrellas;
-
-
-
-
-
