@@ -44,7 +44,7 @@ class Habitacion(models.Model):
     )
 
     def __str__(self):
-        return f"Habitacion {self.numero_de_habitacion} en el piso {self.piso}"
+        return f"Habitacion {self.numero_de_habitacion} ({self.tipo_habitacion}). Hotel {self.hotel}"
 
 
 class HotelVendedor(models.Model):
@@ -70,7 +70,7 @@ class Descuento(models.Model):
     porcentaje = models.DecimalField(max_digits=5, decimal_places=3)
 
     def __str__(self):
-        return f"{self.hotel.nombre} - {self.cantidad_habitaciones}"
+        return f"Hotel {self.hotel.nombre} - Cant. Habitaciones {self.cantidad_habitaciones} - Porcentaje {self.porcentaje}"
 
 
 class Temporada(models.Model):
