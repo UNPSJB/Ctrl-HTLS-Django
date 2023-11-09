@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
-export default function Navigation({ children }) {
+function Navigation({ children }) {
   return (
     <div className="flex justify-center space-x-28 bg-NavBar text-Letras py-4 font-navBar font-extralight text-xl">
       <Link to="/" className="px-2 flex items-center">
@@ -24,3 +24,5 @@ export default function Navigation({ children }) {
     </div>
   );
 }
+
+export default Navigation;
