@@ -7,6 +7,7 @@ import VendedoresPage from "./pages/vendedores/VendedoresPage";
 import VendedorFormPage from "./pages/vendedores/VendedorFormPage";
 import VendedorPage from "./pages/vendedores/VendedorPage";
 import Navigation from "./components/Navigation";
+import Alquiler from "./components/ventas/Alquiler";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/vendedores" element={<VendedoresPage />} />
           <Route path="/vendedor-form" element={<VendedorFormPage />} />
           <Route path="/vendedor/:documento" element={<VendedorPage />} />
+          <Route path="/alquiler" element={<Alquiler />} />
         </Routes>
       </BrowserRouter>
     </div>

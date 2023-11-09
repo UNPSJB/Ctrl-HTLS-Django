@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import api from "../../api";
 import HabitacionList from "../../components/hotel/HabitacionList";
+import SelectVendedor from "../../components/selectores/SelectVendedor";
+import PaquetesList from "../../components/hotel/PaquetesList";
 
 export default function HotelPage() {
   window.api = api;
   const { id } = useParams();
   const [hotel, setHotel] = useState(null);
+  const [vendedor, setVendedor] = useState(null);
+  const [habitacionesSeleccionadas, setHabitacionesSeleccionadas] = useState(
+    []
+  );
+  const [paquetesSeleccionados, setPaquetesSeleccionados] = useState([]);
 
   useEffect(() => {
     api.hoteles.get(id, "full").then((res) => {
@@ -26,11 +33,28 @@ export default function HotelPage() {
           <p>
             Encargado: {hotel.encargado.nombre} {hotel.encargado.apellido}
           </p>
-          <HabitacionList habitaciones={hotel.habitaciones_por_tipo} />
+          <SelectVendedor
+            vendedores={hotel.vendedores}
+            vendedor={vendedor}
+            setVendedor={setVendedor}
+          />
+          <HabitacionList
+            habitaciones={hotel.habitaciones_por_tipo}
+            habitacionesSelecionadas={habitacionesSeleccionadas}
+            setHabitacionesSelecionadas={setHabitacionesSeleccionadas}
+          />
+          <PaquetesList
+            paquetes={hotel.paquetes}
+            paquetesSeleccionados={paquetesSeleccionados}
+            setPaquetesSeleccionados={setPaquetesSeleccionados}
+          />
         </>
       ) : (
         <p>Cargando...</p>
       )}
+      <Link to="/alquiler">
+        <button>ALQUILAR</button>
+      </Link>
     </div>
   );
 }

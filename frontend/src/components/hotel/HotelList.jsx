@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../../api";
-import Card from "./HotelCard";
+import HotelCard from "./HotelCard";
 
-function List({ pais, provincia, ciudad, categoria }) {
+function HotelList({ pais, provincia, ciudad, categoria }) {
   const [hoteles, setHoteles] = useState([]);
 
   useEffect(() => {
@@ -16,10 +16,10 @@ function List({ pais, provincia, ciudad, categoria }) {
   return (
     <div>
       {hoteles.map((hotel) => (
-        <Card key={hotel.id} hotel={hotel} />
+        <HotelCard key={hotel.id} hotel={hotel} />
       ))}
     </div>
   );
 }
 
-export default List;
+export default HotelList;

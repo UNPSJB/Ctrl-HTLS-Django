@@ -6,7 +6,7 @@ import SelectCiudad from "../../components/selectores/SelectCiudad";
 import SelectCategoria from "../../components/selectores/SelectCategoria";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-import List from "../../components/hotel/HotelList";
+import HotelList from "../../components/hotel/HotelList";
 import SecondNavBar from "../../components/SecondNavBar";
 
 function HotelesPage() {
@@ -15,6 +15,14 @@ function HotelesPage() {
   const [ciudad, setCiudad] = useState("");
   const [categoria, setCategoria] = useState(null);
   const [mostrarFiltros, setMostrarFiltros] = useState(false);
+
+  const [fechaInicio, setFechaInicio] = useState("");
+  const [fechaFin, setFechaFin] = useState("");
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   onFiltrar(fechaInicio, fechaFin);
+  // };
 
   const toggleFiltros = () => {
     setMostrarFiltros(!mostrarFiltros);
@@ -25,6 +33,8 @@ function HotelesPage() {
     setProvincia("");
     setCiudad("");
     setCategoria(null);
+    setFechaInicio("");
+    setFechaFin("");
   };
 
   return (
@@ -55,6 +65,18 @@ function HotelesPage() {
                 categoria={categoria}
                 setCategoria={setCategoria}
               />
+              <input
+                type="date"
+                placeholder="Fecha de inicio"
+                value={fechaInicio}
+                onChange={(e) => setFechaInicio(e.target.value)}
+              />
+              <input
+                type="date"
+                placeholder="Fecha de fin"
+                value={fechaFin}
+                onChange={(e) => setFechaFin(e.target.value)}
+              />
               <button
                 className="cursor-pointer border rounded-md py-1 px-4 bg-red-500"
                 onClick={handleResetFiltros}
@@ -72,7 +94,7 @@ function HotelesPage() {
         </button>
       </SecondNavBar>
       {/* Lista de hoteles filtrados */}
-      <List
+      <HotelList
         pais={pais}
         provincia={provincia}
         ciudad={ciudad}
