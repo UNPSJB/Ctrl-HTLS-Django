@@ -1,4 +1,4 @@
-export default function ModalGenerico({ isOpen, onClose, children }) {
+export default function Modal({ isOpen, onClose, children }) {
   return (
     isOpen && (
       <div className="modal">

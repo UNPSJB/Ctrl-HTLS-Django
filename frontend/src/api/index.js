@@ -11,6 +11,7 @@ const ENDPOINTS = [
   ["core", "categorias"],
   ["core", "vendedores"],
   ["core", "encargados"],
+  ["core", "clientes"],
   ["core", "tiposhabitaciones"],
 ];
 
