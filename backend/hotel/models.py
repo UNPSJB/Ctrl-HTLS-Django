@@ -85,5 +85,6 @@ class Temporada(models.Model):
         max_digits=5, decimal_places=2
     )  # Si es menor a 1 es un descuento aplicable, sino corresponde a aumento
 
+    
     def __str__(self):
-        return f"{self.tipo} - {self.porcentaje}"
+        return f"Hotel {self.hotel} - Temporada {self.tipo} - Desde dia {self.fecha_inicio} hasta {self.fecha_fin}"
