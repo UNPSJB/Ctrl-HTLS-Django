@@ -79,10 +79,13 @@ class Persona(models.Model):
     documento = models.CharField(max_length=13, primary_key=True)
     nombre = models.CharField(max_length=200)
     apellido = models.CharField(max_length=200)
+    correo = models.CharField(max_length=50, default=1)
+    telefono = models.PositiveIntegerField(default=0)
 
     def save(self, *args, **kwargs):
         self.nombre = self.nombre.capitalize()
         super().save(*args, **kwargs)
+
 
 
 class Vendedor(Persona):
@@ -95,3 +98,8 @@ class Encargado(Persona):
 
 class Cliente(Persona):
     puntos = models.IntegerField(default=0)
+    direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE, null=True)
+
+
+
+

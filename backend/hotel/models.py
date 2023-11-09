@@ -47,6 +47,7 @@ class Habitacion(models.Model):
         return f"Habitacion {self.numero_de_habitacion} ({self.tipo_habitacion}). Hotel {self.hotel}"
 
 
+
 class HotelVendedor(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     vendedor = models.ForeignKey(Vendedor, on_delete=models.CASCADE)
