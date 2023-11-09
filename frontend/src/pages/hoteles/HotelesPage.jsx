@@ -7,6 +7,7 @@ import SelectCategoria from "../../components/selectores/SelectCategoria";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import List from "../../components/hotel/HotelList";
+import SecondNavBar from "../../components/SecondNavBar";
 
 function HotelesPage() {
   const [pais, setPais] = useState("");
@@ -28,7 +29,7 @@ function HotelesPage() {
 
   return (
     <>
-      <div className="flex p-2 font-hoteles justify-evenly bg-FondoHotel text-Letras">
+      <SecondNavBar>
         {/* Menú desplegable de filtros */}
         <div className="relative">
           <button
@@ -69,7 +70,7 @@ function HotelesPage() {
             <FontAwesomeIcon icon={faCirclePlus} /> <span>Agregar Hotel</span>
           </Link>
         </button>
-      </div>
+      </SecondNavBar>
       {/* Lista de hoteles filtrados */}
       <List
         pais={pais}

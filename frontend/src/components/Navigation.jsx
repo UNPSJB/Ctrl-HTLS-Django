@@ -4,7 +4,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 function Navigation() {
   return (
-    <div className="fixed top-0 w-full flex justify-center space-x-28 bg-NavBar text-Letras py-4 font-navBar font-extralight text-xl">
+    <div className="flex justify-evenly sticky top-0 z-10 bg-NavBar text-Letras py-4 font-navBar font-extralight text-xl">
       <Link to="/" className="px-2 flex items-center">
         <FontAwesomeIcon icon={faHome} className="text-neutral-100" />
       </Link>
