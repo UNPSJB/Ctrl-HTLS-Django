@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-//import HotelList from "../../components/hotel/HotelList";
 import SelectPais from "../../components/selectores/SelectPais";
 import SelectProvincia from "../../components/selectores/SelectProvincia";
 import SelectCiudad from "../../components/selectores/SelectCiudad";
@@ -9,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import List from "../../components/hotel/HotelList";
 
-export default function HotelesPage() {
+function HotelesPage() {
   const [pais, setPais] = useState("");
   const [provincia, setProvincia] = useState("");
   const [ciudad, setCiudad] = useState("");
@@ -81,3 +80,5 @@ export default function HotelesPage() {
     </>
   );
 }
+
+export default HotelesPage;

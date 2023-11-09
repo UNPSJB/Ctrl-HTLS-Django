@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
-function Navigation({ children }) {
+function Navigation() {
   return (
-    <div className="flex justify-center space-x-28 bg-NavBar text-Letras py-4 font-navBar font-extralight text-xl">
+    <div className="fixed top-0 w-full flex justify-center space-x-28 bg-NavBar text-Letras py-4 font-navBar font-extralight text-xl">
       <Link to="/" className="px-2 flex items-center">
         <FontAwesomeIcon icon={faHome} className="text-neutral-100" />
       </Link>
@@ -20,7 +20,6 @@ function Navigation({ children }) {
       <Link to="/ventas" className="px-2">
         Ventas
       </Link>
-      <div>{children}</div>
     </div>
   );
 }
