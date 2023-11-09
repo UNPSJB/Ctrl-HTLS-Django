@@ -1,12 +1,12 @@
-import Navigation from "../components/Navigation";
-
 export default function Home() {
   return (
-    <div className="">
-      <Navigation /> 
-      <div className="absolute w-full h-1 bg-gray-600 top-18"></div>
-      <div className="mt-16 p-4">
-        <img src="" alt="Buena Vista" />
+    <div>
+      <div className="flex justify-center space-x-28 bg-SitiosFrecuentes text-Letras py-4  text-xl">
+        <p className="font-navSitiosFrecuentes">Sitios Frecuentes</p>
+      </div>
+      <div className=" flex justify-center space-x-28 bg-FrecuentesItems font-navSitiosFrecuentes text-Letras">
+        <p>Gestion de Hoteles</p>
+        <p>Historial de Ventas</p>
       </div>
     </div>
   );

@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import Hotel, Habitacion, HotelVendedor, PrecioPorTipo, PaquetePromocional, Descuento, Temporada
+from .models import (
+    Hotel,
+    Habitacion,
+    HotelVendedor,
+    PrecioPorTipo,
+    PaquetePromocional,
+    Descuento,
+)
 
 
 class HotelAdmin(admin.ModelAdmin):

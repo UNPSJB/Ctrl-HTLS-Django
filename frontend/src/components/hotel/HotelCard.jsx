@@ -1,37 +1,40 @@
-import { Link, useNavigate } from "react-router-dom";
-import api from "../../api";
+import Estrellas from "../helpers/Estrellas";
+import SwitchButton from "../helpers/SwitchButton";
+import hotelimg from "../../public/hotel2.jpeg";
+import { Link } from "react-router-dom";
 
-function HotelCard({ hoteles, setHoteles }) {
-  const navigate = useNavigate();
-  const handleDelete = async (id) => {
-    try {
-      await api.hoteles.delete(id);
-      console.log(`Hotel con id ${id} eliminado`);
-      const updatedHoteles = hoteles.filter((hotel) => hotel.id !== id);
-      setHoteles(updatedHoteles); // Actualiza los hoteles después de la eliminación
-      navigate("/hoteles");
-    } catch (error) {
-      console.error(`Error al eliminar el hotel con id ${id}: `, error);
-    }
-  };
-
+function HotelCard({ hotel }) {
   return (
-    <div>
-      {hoteles.map((hotel) => (
-        <div className="flex justify-between space-x-20 " key={hotel.id}>
-          <h1>
+    <div className="p-4 m-2 border rounded shadow-lg flex justify-between">
+      <img src={hotelimg} width={250} alt="Imagen del hotel" className="mr-2" />
+      <div className="w-3/4">
+        <div className="flex items-center">
+          <h2 className="text-4xl text-LetraAgregarHotel font-hoteles font-bold mr-2 uppercase">
             <Link to={`/hotel/${hotel.id}`}>{hotel.nombre}</Link>
-          </h1>
-          <div className="space-x-10">
-            <button className="text-sky-500" onClick={() => console.log("Modificar")}>
-              Modificar
-            </button>
-            <button className="text-red-500" onClick={() => handleDelete(hotel.id)}>
-              Eliminar
-            </button>
-          </div>
+          </h2>
+          <Estrellas stars={hotel.categoria.estrellas} />
         </div>
-      ))}
+        <p className="font-navSitiosFrecuentes text-FrecuentesItems">
+          {hotel.ubicacion.ciudad} - {hotel.ubicacion.provincia} -{" "}
+          {hotel.ubicacion.pais}
+        </p>
+        <p className="mt-2 text-DescripcionHotel">
+          {hotel.descripcion.length > 500
+            ? hotel.descripcion.slice(0, 500) + "..."
+            : hotel.descripcion}
+        </p>
+      </div>
+      <div className="w-1/4 flex flex-col items-end">
+        <SwitchButton />
+        <div className="mt-auto flex">
+          <button className="w-full border rounded-md px-9 py-1 mr-2 text-white bg-ModificarToggle">
+            Modificar
+          </button>
+          <button className="w-full border rounded-md px-9 py-1 mr-2 bg-AgregarHotel text-LetraAgregarHotel">
+            Eliminar
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

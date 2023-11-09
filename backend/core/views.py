@@ -18,7 +18,7 @@ from .serializers import (
     DireccionSerializer,
     TipoHabitacionSerializer,
     ServicioSerializer,
-    CategoriaSerializer,
+    CategoriaFullSerializer,
     VendedorSerializer,
     EncargadoSerializer,
     ClienteSerializer,
@@ -69,7 +69,7 @@ class ServicioViewSet(ModelViewSet):
 
 class CategoriaViewSet(ModelViewSet):
     queryset = Categoria.objects.all()
-    serializer_class = CategoriaSerializer
+    serializer_class = CategoriaFullSerializer
 
 
 # -------------------- Persona --------------------

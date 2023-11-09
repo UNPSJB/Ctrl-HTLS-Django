@@ -5,10 +5,15 @@ from .models import Hotel, Habitacion, PaquetePromocional, Descuento, Temporada
 from .serializers import (
     HotelSerializer,
     HabitacionSerializer,
+    HotelMidSerializer,
     HotelFullSerializer,
     PaqueteSerializer,
     DescuentoSerializer,
+<<<<<<< HEAD
     TemporadaSerializer
+=======
+    TemporadaSerializer,
+>>>>>>> develop
 )
 
 
@@ -26,11 +31,20 @@ class HotelViewSet(viewsets.ModelViewSet):
     @action(detail=False, serializer_class=HotelFullSerializer)
     def full(self, request):
         return super().list(request)
-    
+
     # Visualizar todos los datos de un unico hotel
     @action(detail=True, url_path="full", serializer_class=HotelFullSerializer)
     def full_detail(self, request, pk=None):
         return super().retrieve(request, pk)
+
+    @action(detail=False, serializer_class=HotelMidSerializer)
+    def mid(self, request):
+        return super().list(request)
+
+    @action(detail=True, url_path="mid", serializer_class=HotelMidSerializer)
+    def mid_detail(self, request, pk=None):
+        return super().retrieve(request, pk)
+
 
 class HabitacionViewSet(viewsets.ModelViewSet):
     queryset = Habitacion.objects.all()
@@ -41,12 +55,21 @@ class PaqueteViewSet(viewsets.ModelViewSet):
     queryset = PaquetePromocional.objects.all()
     serializer_class = PaqueteSerializer
 
+
 class DescuentoViewSet(viewsets.ModelViewSet):
     queryset = Descuento.objects.all()
     serializer_class = DescuentoSerializer
+<<<<<<< HEAD
     
     
 class TemporadaViewSet(viewsets.ModelViewSet):
     queryset = Temporada.objects.all()
     serializer_class = TemporadaSerializer
 
+=======
+
+
+class TemporadaViewSet(viewsets.ModelViewSet):
+    queryset = Temporada.objects.all()
+    serializer_class = TemporadaSerializer
+>>>>>>> develop

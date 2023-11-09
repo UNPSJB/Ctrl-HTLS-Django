@@ -11,6 +11,7 @@ const ENDPOINTS = [
   ["core", "categorias"],
   ["core", "vendedores"],
   ["core", "encargados"],
+  ["core", "clientes"],
   ["core", "tiposhabitaciones"],
 ];
 
@@ -33,13 +34,24 @@ const crud = ENDPOINTS.reduce((acc, [app, plural]) => {
   const apiPath = `${app}/${plural}`;
 
   const apiMethods = {
-    getAll: (view = "") => client.get(`${apiPath}/${view}`).then(resHandler).catch(handleError),
+    getAll: (view = "") =>
+      client.get(`${apiPath}/${view}`).then(resHandler).catch(handleError),
     get: (id, view = "") =>
-      client.get(`${apiPath}/${id}/${view}`).then(resHandler).catch(handleError),
-    create: (data) => client.post(`${apiPath}/`, data).then(resHandler).catch(handleError),
-    update: (id, data) => client.put(`${apiPath}/${id}/`, data).then(resHandler).catch(handleError),
-    delete: (id) => client.delete(`${apiPath}/${id}`).then(resHandler).catch(handleError),
-    find: (data) => client.get(`${apiPath}/`, { params: data }).then(resHandler).catch(handleError),
+      client
+        .get(`${apiPath}/${id}/${view}`)
+        .then(resHandler)
+        .catch(handleError),
+    create: (data) =>
+      client.post(`${apiPath}/`, data).then(resHandler).catch(handleError),
+    update: (id, data) =>
+      client.put(`${apiPath}/${id}/`, data).then(resHandler).catch(handleError),
+    delete: (id) =>
+      client.delete(`${apiPath}/${id}`).then(resHandler).catch(handleError),
+    find: (data, view = "") =>
+      client
+        .get(`${apiPath}/${view}`, { params: data })
+        .then(resHandler)
+        .catch(handleError),
   };
 
   return { ...acc, [plural]: apiMethods };

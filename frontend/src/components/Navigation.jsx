@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
-
-export default function Navigation() {
+function Navigation() {
   return (
-    <div className="flex justify-center space-x-28 bg-blue-400 py-4 font-normal text-xl">
-      <Link to="/" className="px-2 flex items-center" >
-        <FontAwesomeIcon icon={faHome} className="text-neutral-100"/>
+    <div className="flex justify-evenly sticky top-0 z-10 bg-NavBar text-Letras py-4 font-navBar font-extralight text-xl">
+      <Link to="/" className="px-2 flex items-center">
+        <FontAwesomeIcon icon={faHome} className="text-neutral-100" />
       </Link>
       <Link to="/hoteles" className="px-2">
         Hoteles
@@ -24,3 +23,5 @@ export default function Navigation() {
     </div>
   );
 }
+
+export default Navigation;
