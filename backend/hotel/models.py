@@ -50,7 +50,13 @@ class Habitacion(models.Model):
     def __str__(self):
         return f"Habitacion {self.numero_de_habitacion} ({self.tipo_habitacion}). Hotel {self.hotel}"
 
-
+    def habitacion_disponible(self, inicio, fin, flexible = False):
+        disponible = not self.alquileres.filter(fecha_fin__lt=inicio, fecha_inicio__gt=fin).exists()
+        if flexible:
+            #TODO: Flexibilidad al seleccionar alquileres, si se superpone con 
+            # alquileres por unos dias pero no el total del rango inicio fin retornar True
+            pass
+        return disponible
 
 class HotelVendedor(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)

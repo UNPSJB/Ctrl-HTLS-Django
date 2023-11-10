@@ -1,3 +1,4 @@
+from rest_framework import serializers as srls
 from rest_framework.serializers import (
     ModelSerializer,
     SerializerMethodField,
@@ -160,6 +161,10 @@ class TemporadaSerializer(ModelSerializer):
         model = Temporada
         fields = "__all__"
 
+class DisponibilidadSerializer(srls.Serializer):
+    habitaciones = srls.ListField(child=srls.IntegerField())
+    inicio = srls.DateTimeField()
+    fin = srls.DateTimeField()
 
 # -------------------- Metodos --------------------
 

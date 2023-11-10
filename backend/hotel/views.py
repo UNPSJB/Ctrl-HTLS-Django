@@ -1,6 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from .models import Hotel, Habitacion, PaquetePromocional, Descuento, Temporada
+from rest_framework.response import Response
+
 from .serializers import (
     HotelSerializer,
     HabitacionSerializer,
@@ -9,6 +11,7 @@ from .serializers import (
     PaqueteSerializer,
     DescuentoSerializer,
     TemporadaSerializer,
+    DisponibilidadSerializer
 )
 
 
@@ -39,6 +42,13 @@ class HotelViewSet(viewsets.ModelViewSet):
     @action(detail=True, url_path="mid", serializer_class=HotelMidSerializer)
     def mid_detail(self, request, pk=None):
         return super().retrieve(request, pk)
+
+    @action(detail=True, serializer_class=DisponibilidadSerializer)
+    def disponibilidad(self, request, pk=None):
+        serializer = self.get_serializer(data=request.data)
+        if not serializer.is_valid():
+            return Response({'status': 'error'})    
+        return Response(serializer.data)
 
 
 class HabitacionViewSet(viewsets.ModelViewSet):
