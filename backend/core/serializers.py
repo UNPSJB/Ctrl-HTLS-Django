@@ -3,6 +3,7 @@ from rest_framework.serializers import (
     SerializerMethodField,
     Serializer,
 )
+from rest_framework import serializers
 from .models import (
     Pais,
     Provincia,
@@ -83,9 +84,20 @@ class CategoriaMidSerializer(ModelSerializer):
 
 
 class VendedorSerializer(ModelSerializer):
+    tipo_documento = serializers.CharField(
+        source="get_tipo_documento_display", read_only=True
+    )
+
     class Meta:
         model = Vendedor
-        fields = "__all__"
+        fields = [
+            "documento",
+            "tipo_documento",
+            "nombre",
+            "apellido",
+            "correo",
+            "telefono",
+        ]
 
 
 class VendedorMidSerializer(ModelSerializer):
