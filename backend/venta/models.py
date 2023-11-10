@@ -4,12 +4,11 @@ from core.models import Cliente
 
 
 class Alquiler(models.Model):
-    
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     pasajeros = models.IntegerField()
-    habitaciones = models.ManyToManyField(Habitacion, blank=True, null=True)
-    paquetes = models.ManyToManyField(PaquetePromocional, null=True , blank=True)
+    habitaciones = models.ManyToManyField(Habitacion, blank=True)
+    paquetes = models.ManyToManyField(PaquetePromocional, blank=True)
     importe = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=True)
 

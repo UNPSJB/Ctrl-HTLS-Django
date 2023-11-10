@@ -1,4 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.decorators import action
 from .models import (
     Pais,
     Provincia,
@@ -20,6 +21,7 @@ from .serializers import (
     ServicioSerializer,
     CategoriaFullSerializer,
     VendedorSerializer,
+    VendedorMidSerializer,
     EncargadoSerializer,
     ClienteSerializer,
 )
@@ -78,6 +80,14 @@ class CategoriaViewSet(ModelViewSet):
 class VendedorViewSet(ModelViewSet):
     queryset = Vendedor.objects.all()
     serializer_class = VendedorSerializer
+
+    @action(detail=False, serializer_class=VendedorMidSerializer)
+    def mid(self, request):
+        return super().list(request)
+
+    @action(detail=True, url_path="mid", serializer_class=VendedorMidSerializer)
+    def mid_detail(self, request, pk=None):
+        return super().retrieve(request, pk)
 
 
 class EncargadoViewSet(ModelViewSet):
