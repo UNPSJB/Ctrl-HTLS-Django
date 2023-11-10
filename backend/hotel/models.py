@@ -1,5 +1,7 @@
 from django.db import models
 from core.models import Direccion, TipoHabitacion, Categoria, Vendedor, Encargado
+from django.core.validators import MinValueValidator
+from decimal import Decimal
 
 
 class Hotel(models.Model):
@@ -11,8 +13,10 @@ class Hotel(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True)
     encargado = models.OneToOneField(Encargado, on_delete=models.SET_NULL, null=True)
 
+
     def __str__(self):
         return self.nombre
+
 
     def save(self, *args, **kwargs):
         # Antes de guardar el hotel, verifica si tiene un encargado asignado
@@ -28,15 +32,15 @@ class PaquetePromocional(models.Model):
     nombre = models.CharField(max_length=200)
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
-    coeficiente_descuento = models.DecimalField(max_digits=5, decimal_places=2)
+    coeficiente_descuento = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(Decimal('0'))])
 
     def __str__(self):
         return self.nombre
 
 
 class Habitacion(models.Model):
-    numero_de_habitacion = models.IntegerField()
-    piso = models.IntegerField()
+    numero_de_habitacion = models.PositiveIntegerField()
+    piso = models.PositiveIntegerField()
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     tipo_habitacion = models.ForeignKey(TipoHabitacion, on_delete=models.CASCADE)
     paquete = models.ForeignKey(
@@ -59,7 +63,7 @@ class HotelVendedor(models.Model):
 class PrecioPorTipo(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     tipohabitacion = models.ForeignKey(TipoHabitacion, on_delete=models.CASCADE)
-    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    precio = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(Decimal('0.01'))])
 
     def __str__(self):
         return f"{self.hotel.nombre} - {self.tipohabitacion.nombre}"

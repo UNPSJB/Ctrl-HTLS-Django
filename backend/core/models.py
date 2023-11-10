@@ -79,7 +79,7 @@ class Persona(models.Model):
     documento = models.CharField(max_length=13, primary_key=True)
     nombre = models.CharField(max_length=200)
     apellido = models.CharField(max_length=200)
-    correo = models.CharField(max_length=50, default=1)
+    correo = models.EmailField(max_length=254)
     telefono = models.PositiveIntegerField(default=0)
 
     def save(self, *args, **kwargs):
@@ -97,7 +97,7 @@ class Encargado(Persona):
 
 
 class Cliente(Persona):
-    puntos = models.IntegerField(default=0)
+    puntos = models.PositiveIntegerField(default=0)
     direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE, null=True)
 
 
