@@ -21,8 +21,23 @@ export default function HotelFormPage() {
   const [encargado, setEncargado] = useState(null);
   const [categoria, setCategoria] = useState(null);
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  const capitalizeEachWord = (string) => {
+    return string
+      .toLowerCase()
+      .split(" ")
+      .map((word) => capitalizeFirstLetter(word))
+      .join(" ");
+  };
+
   const onSubmit = handleSubmit(async (data) => {
-    const { nombre, calle, numero } = data;
+     // Convertir nombre y calle a Primera letra en mayuscula y el resto en minuscula
+    const nombre = capitalizeEachWord(data.nombre);
+    const calle = capitalizeEachWord(data.calle);
+    const { numero } = data;
     const newDireccion = { calle, numero, ciudad: ciudad };
 
     const { id: direccion } = await api.direcciones.create(newDireccion);
