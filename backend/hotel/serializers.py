@@ -66,6 +66,7 @@ class HotelMidSerializer(ModelSerializer):
             "habilitado",
             "ubicacion",
             "imagen",
+            "estado",
         ]
 
     def get_ubicacion(self, obj):

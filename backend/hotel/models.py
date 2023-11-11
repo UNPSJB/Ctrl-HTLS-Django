@@ -16,6 +16,7 @@ class Hotel(models.Model):
     imagen = models.ImageField(
         upload_to="./fixtures/img/hoteles", blank=True, null=True
     )
+    estado = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nombre

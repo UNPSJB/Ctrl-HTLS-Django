@@ -1,13 +1,4 @@
-import { useState } from "react";
-import "tailwindcss/tailwind.css";
-
-const SwitchButton = () => {
-  const [isToggled, setToggled] = useState(false);
-
-  const toggle = () => {
-    setToggled(!isToggled);
-  };
-
+const SwitchButton = ({ isToggled, toggle }) => {
   return (
     <div
       onClick={toggle}
