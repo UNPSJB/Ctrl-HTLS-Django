@@ -5,32 +5,37 @@ import { Link } from "react-router-dom";
 
 function HotelCard({ hotel }) {
   return (
-    <div className="p-4 m-2 border rounded shadow-lg flex justify-between">
-      <img src={hotelimg} width={250} alt="Imagen del hotel" className="mr-2" />
-      <div className="w-3/4">
-        <div className="flex items-center">
-          <h2 className="text-4xl text-LetraAgregarHotel font-hoteles font-bold mr-2 uppercase">
-            <Link to={`/hotel/${hotel.id}`}>{hotel.nombre}</Link>
-          </h2>
+    <div className="flex bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="w-1/5">
+        <img
+          src={hotelimg}
+          alt="Imagen del hotel"
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="w-3/5 px-4 py-2">
+        <div className="flex justify-between items-center">
+          <Link
+            to={`/hotel/${hotel.id}`}
+            className="text-lg font-semibold text-gray-700"
+          >
+            {hotel.nombre}
+          </Link>
           <Estrellas stars={hotel.categoria.estrellas} />
         </div>
-        <p className="font-navSitiosFrecuentes text-FrecuentesItems">
+        <p className="text-sm text-gray-600">
           {hotel.ubicacion.ciudad} - {hotel.ubicacion.provincia} -{" "}
           {hotel.ubicacion.pais}
         </p>
-        <p className="mt-2 text-DescripcionHotel">
-          {hotel.descripcion.length > 500
-            ? hotel.descripcion.slice(0, 500) + "..."
-            : hotel.descripcion}
-        </p>
+        <p className="text-sm text-gray-600">{hotel.descripcion}</p>
       </div>
-      <div className="w-1/4 flex flex-col items-end">
+      <div className="w-1/5 flex flex-col items-end justify-between p-4">
         <SwitchButton />
-        <div className="mt-auto flex">
-          <button className="w-full border rounded-md px-9 py-1 mr-2 text-white bg-ModificarToggle">
+        <div className="flex justify-between w-full">
+          <button className="w-1/2 mr-1 bg-blue-500 text-white rounded-md px-2 py-1">
             Modificar
           </button>
-          <button className="w-full border rounded-md px-9 py-1 mr-2 bg-AgregarHotel text-LetraAgregarHotel">
+          <button className="w-1/2 ml-1 bg-red-500 text-white rounded-md px-2 py-1">
             Eliminar
           </button>
         </div>

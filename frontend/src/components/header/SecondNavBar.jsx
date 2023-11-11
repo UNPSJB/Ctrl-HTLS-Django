@@ -1,6 +1,6 @@
 function SecondNavBar({ children }) {
   return (
-    <div className="flex sticky top-16 z-10 p-2 font-hoteles justify-evenly bg-FondoHotel text-Letras">
+    <div className="flex bg-red-500 p-3 justify-around items-center">
       {children}
     </div>
   );

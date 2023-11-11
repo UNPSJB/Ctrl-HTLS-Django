@@ -1,13 +1,22 @@
+import Header from "../components/header/Header";
+import ButtonLink from "../components/helpers/ButtonLink";
+
 export default function Home() {
+  {
+    /** Crear constante que contendra secondNavBarChildren
+     *  const secondNavBarContent = ()
+     */
+  }
+  const secondNavBarContent = (
+    <>
+      <ButtonLink texto={"Agregar Hotel"} url={"/hotel-form"} />
+      <ButtonLink texto={"Agregar Vendedor"} url={"/vendedor-form"} />
+    </>
+  );
   return (
-    <div>
-      <div className="flex justify-center space-x-28 bg-SitiosFrecuentes text-Letras py-4  text-xl">
-        <p className="font-navSitiosFrecuentes">Sitios Frecuentes</p>
-      </div>
-      <div className=" flex justify-center space-x-28 bg-FrecuentesItems font-navSitiosFrecuentes text-Letras">
-        <p>Gestion de Hoteles</p>
-        <p>Historial de Ventas</p>
-      </div>
-    </div>
+    <>
+      {/* el parametro secondNavBarChildren={} son los sitios o acciones mas utilizadas */}
+      <Header secondNavBarChildren={secondNavBarContent} />
+    </>
   );
 }
