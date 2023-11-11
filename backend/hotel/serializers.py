@@ -65,6 +65,7 @@ class HotelMidSerializer(ModelSerializer):
             "descripcion",
             "habilitado",
             "ubicacion",
+            "imagen",
         ]
 
     def get_ubicacion(self, obj):
@@ -161,10 +162,12 @@ class TemporadaSerializer(ModelSerializer):
         model = Temporada
         fields = "__all__"
 
+
 class DisponibilidadSerializer(srls.Serializer):
     habitaciones = srls.ListField(child=srls.IntegerField())
     inicio = srls.DateTimeField()
     fin = srls.DateTimeField()
+
 
 # -------------------- Metodos --------------------
 
