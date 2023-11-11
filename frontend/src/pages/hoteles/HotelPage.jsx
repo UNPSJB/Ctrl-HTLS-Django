@@ -17,12 +17,17 @@ export default function HotelPage() {
   );
   const navigate = useNavigate();
 
-  const [alquiler, setAlquiler] = useState({
-    hotelId: null,
-    vendedor: null,
-    habitaciones: [],
-    paquetes: [],
-  });
+  const handlePaqueteToggle = (id) => {
+    setPaquetesSeleccionados((prevPaquetes) => {
+      if (prevPaquetes.includes(id)) {
+        // If the package is already selected, unselect it
+        return prevPaquetes.filter((paqueteId) => paqueteId !== id);
+      } else {
+        // If the package is not selected, select it
+        return [...prevPaquetes, id];
+      }
+    });
+  };
 
   const handleCountChange = (tipoNombre, newCount) => {
     setHabitacionesSeleccionadas((prevCounts) => ({
@@ -32,16 +37,14 @@ export default function HotelPage() {
   };
 
   const handleAlquilarClick = () => {
-    // Actualiza el objeto alquiler con los datos seleccionados
-    setAlquiler({
-      hotelId: id,
-      vendedor: vendedorElegido,
-      habitaciones: habitacionesSeleccionadas,
-      paquetes: paquetesSeleccionados,
-    });
     // Redirige a la página de alquiler
     navigate("/alquiler", {
-      state: { habitaciones: habitacionesSeleccionadas },
+      state: {
+        hotel: id,
+        habitaciones: habitacionesSeleccionadas,
+        paquetes: paquetesSeleccionados,
+        vendedor: vendedorElegido,
+      },
     });
   };
 
@@ -74,8 +77,7 @@ export default function HotelPage() {
           />
           <PaquetesList
             paquetes={hotel.paquetes}
-            paquetesSeleccionados={paquetesSeleccionados}
-            setPaquetesSeleccionados={setPaquetesSeleccionados}
+            onPaqueteToggle={handlePaqueteToggle}
           />
         </>
       ) : (

@@ -1,4 +1,4 @@
-export default function PaquetesCard({ paquete }) {
+export default function PaquetesCard({ paquete, onToggle }) {
   return (
     <div className="bg-white rounded shadow p-4 mb-4">
       <p>{paquete.nombre}</p>
@@ -6,7 +6,7 @@ export default function PaquetesCard({ paquete }) {
       <p>{paquete.fecha_fin}</p>
       <p>{paquete.precio}</p>
       <p>{paquete.coeficiente_descuento}</p>
-      <input type="checkbox" />
+      <input type="checkbox" onChange={() => onToggle(paquete.id)} />
     </div>
   );
 }

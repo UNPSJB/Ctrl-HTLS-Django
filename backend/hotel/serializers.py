@@ -137,6 +137,7 @@ class PaqueteSerializer(ModelSerializer):
     class Meta:
         model = PaquetePromocional
         fields = [
+            "id",
             "nombre",
             "fecha_inicio",
             "fecha_fin",
