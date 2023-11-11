@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Navigation() {
   return (
-    <div className="bg-blue-500 text-white p-3 flex justify-around">
+    <div className="bg-NavBar text-Letras font-navBar font-extralight text-xl p-3 flex justify-around">
       <Link to="/" className="hover:text-gray-300">
         Inicio
       </Link>

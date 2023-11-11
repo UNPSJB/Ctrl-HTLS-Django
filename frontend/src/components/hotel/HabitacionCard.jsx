@@ -1,17 +1,27 @@
 import { useState } from "react";
 
-function HabitacionCard({ tipo }) {
+function HabitacionCard({ tipo, onCountChange }) {
   const [count, setCount] = useState(0);
 
   const incrementCount = () => {
     if (count < tipo.habitaciones.length) {
-      setCount(count + 1);
+      const newCount = count + 1;
+      setCount(newCount);
+      onCountChange(
+        tipo.tipo_habitacion.nombre,
+        tipo.habitaciones.slice(0, newCount)
+      );
     }
   };
 
   const decrementCount = () => {
     if (count > 0) {
-      setCount(count - 1);
+      const newCount = count - 1;
+      setCount(newCount);
+      onCountChange(
+        tipo.tipo_habitacion.nombre,
+        tipo.habitaciones.slice(0, newCount)
+      );
     }
   };
 

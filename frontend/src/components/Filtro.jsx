@@ -8,7 +8,7 @@ function Filtro({ children }) {
   return (
     <>
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center"
+        className="text-LetraAgregarHotel bg-AgregarHotel hover:bg-purple-100 font-bold py-2 px-4 rounded flex items-center"
         onClick={() => setShowModal(true)}
       >
         Filtrar

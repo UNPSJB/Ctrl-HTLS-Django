@@ -6,7 +6,7 @@ import HotelPage from "./pages/hoteles/HotelPage";
 import VendedoresPage from "./pages/vendedores/VendedoresPage";
 import VendedorFormPage from "./pages/vendedores/VendedorFormPage";
 import VendedorPage from "./pages/vendedores/VendedorPage";
-import Alquiler from "./components/ventas/Alquiler";
+import Alquiler from "./pages/ventas/Alquiler";
 
 function App() {
   return (

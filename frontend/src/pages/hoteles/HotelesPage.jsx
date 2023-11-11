@@ -33,8 +33,10 @@ function HotelesPage() {
         <Fecha />
         <Fecha />
       </Filtro>
-      <h2>HOTELES</h2>
-      <ButtonLink texto={"Agregar Hotel"} url={"/hotel-form"} />
+      <h2 className="text-3xl">HOTELES</h2>
+      <div>
+        <ButtonLink texto={"Agregar Hotel"} url={"/hotel-form"} />
+      </div>
     </>
   );
 

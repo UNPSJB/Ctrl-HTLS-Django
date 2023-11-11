@@ -1,19 +1,49 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../../api";
 import HabitacionList from "../../components/hotel/HabitacionList";
-import SelectVendedor from "../../components/selectores/SelectVendedor";
 import PaquetesList from "../../components/hotel/PaquetesList";
+import SelectVendedorHotel from "../../components/selectores/SelectVendedorHotel";
 
 export default function HotelPage() {
   window.api = api;
   const { id } = useParams();
   const [hotel, setHotel] = useState(null);
-  const [vendedor, setVendedor] = useState(null);
-  const [habitacionesSeleccionadas, setHabitacionesSeleccionadas] = useState(
-    []
-  );
+  const [vendedorElegido, setVendedorElegido] = useState(null);
   const [paquetesSeleccionados, setPaquetesSeleccionados] = useState([]);
+  const [habitacionesSeleccionadas, setHabitacionesSeleccionadas] = useState(
+    {}
+  );
+  const navigate = useNavigate();
+
+  const [alquiler, setAlquiler] = useState({
+    hotelId: null,
+    vendedor: null,
+    habitaciones: [],
+    paquetes: [],
+  });
+
+  const handleCountChange = (tipoNombre, newCount) => {
+    setHabitacionesSeleccionadas((prevCounts) => ({
+      ...prevCounts,
+      [tipoNombre]: newCount,
+    }));
+  };
+
+  const handleAlquilarClick = () => {
+    // Actualiza el objeto alquiler con los datos seleccionados
+    setAlquiler({
+      hotelId: id,
+      vendedor: vendedorElegido,
+      habitaciones: habitacionesSeleccionadas,
+      paquetes: paquetesSeleccionados,
+    });
+    // Redirige a la página de alquiler
+    navigate("/alquiler", {
+      state: { habitaciones: habitacionesSeleccionadas },
+    });
+  };
 
   useEffect(() => {
     api.hoteles.get(id, "full").then((res) => {
@@ -33,15 +63,14 @@ export default function HotelPage() {
           <p>
             Encargado: {hotel.encargado.nombre} {hotel.encargado.apellido}
           </p>
-          <SelectVendedor
+          <SelectVendedorHotel
             vendedores={hotel.vendedores}
-            vendedor={vendedor}
-            setVendedor={setVendedor}
+            vendedorElegido={vendedorElegido}
+            setVendedorElegido={setVendedorElegido}
           />
           <HabitacionList
             habitaciones={hotel.habitaciones_por_tipo}
-            habitacionesSelecionadas={habitacionesSeleccionadas}
-            setHabitacionesSelecionadas={setHabitacionesSeleccionadas}
+            onCountChange={handleCountChange}
           />
           <PaquetesList
             paquetes={hotel.paquetes}
@@ -52,9 +81,7 @@ export default function HotelPage() {
       ) : (
         <p>Cargando...</p>
       )}
-      <Link to="/alquiler">
-        <button>ALQUILAR</button>
-      </Link>
+      <button onClick={handleAlquilarClick}>ALQUILAR</button>
     </div>
   );
 }
