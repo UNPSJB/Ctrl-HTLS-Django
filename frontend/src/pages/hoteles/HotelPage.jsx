@@ -5,48 +5,16 @@ import api from "../../api";
 import HabitacionList from "../../components/hotel/HabitacionList";
 import PaquetesList from "../../components/hotel/PaquetesList";
 import SelectVendedorHotel from "../../components/selectores/SelectVendedorHotel";
+import Header from "../../components/header/Header";
+import Estrellas from "../../components/helpers/Estrellas";
 
-export default function HotelPage() {
-  window.api = api;
+function HotelPage() {
   const { id } = useParams();
   const [hotel, setHotel] = useState(null);
-  const [vendedorElegido, setVendedorElegido] = useState(null);
+  const [vendedor, setVendedor] = useState(null);
   const [paquetesSeleccionados, setPaquetesSeleccionados] = useState([]);
-  const [habitacionesSeleccionadas, setHabitacionesSeleccionadas] = useState(
-    {}
-  );
+  const [habitaciones, setHabitaciones] = useState({});
   const navigate = useNavigate();
-
-  const handlePaqueteToggle = (id) => {
-    setPaquetesSeleccionados((prevPaquetes) => {
-      if (prevPaquetes.includes(id)) {
-        // If the package is already selected, unselect it
-        return prevPaquetes.filter((paqueteId) => paqueteId !== id);
-      } else {
-        // If the package is not selected, select it
-        return [...prevPaquetes, id];
-      }
-    });
-  };
-
-  const handleCountChange = (tipoNombre, newCount) => {
-    setHabitacionesSeleccionadas((prevCounts) => ({
-      ...prevCounts,
-      [tipoNombre]: newCount,
-    }));
-  };
-
-  const handleAlquilarClick = () => {
-    // Redirige a la página de alquiler
-    navigate("/alquiler", {
-      state: {
-        hotel: id,
-        habitaciones: habitacionesSeleccionadas,
-        paquetes: paquetesSeleccionados,
-        vendedor: vendedorElegido,
-      },
-    });
-  };
 
   useEffect(() => {
     api.hoteles.get(id, "full").then((res) => {
@@ -54,26 +22,66 @@ export default function HotelPage() {
     });
   }, [id]);
 
+  const handlePaqueteToggle = (id) => {
+    setPaquetesSeleccionados((prevPaquetes) => {
+      if (prevPaquetes.includes(id)) {
+        return prevPaquetes.filter((paqueteId) => paqueteId !== id);
+      } else {
+        return [...prevPaquetes, id];
+      }
+    });
+  };
+
+  const handleTipoHabitacionCountChange = (tipoNombre, newCount) => {
+    setHabitaciones((prevCounts) => ({
+      ...prevCounts,
+      [tipoNombre]: newCount,
+    }));
+  };
+
+  const handleAlquilarClick = () => {
+    navigate("/alquiler", {
+      state: {
+        hotel: id,
+        habitaciones: habitaciones,
+        paquetes: paquetesSeleccionados,
+        vendedor: vendedor,
+      },
+    });
+  };
+
   return (
     <div>
       {hotel ? (
         <>
-          <p>Nombre: {hotel.nombre}</p>
-          <p>
-            Dirección: {hotel.ubicacion.calle} {hotel.ubicacion.numero}
-          </p>
-          <p>Categoría: {hotel.categoria.nombre}</p>
-          <p>
-            Encargado: {hotel.encargado.nombre} {hotel.encargado.apellido}
-          </p>
-          <SelectVendedorHotel
-            vendedores={hotel.vendedores}
-            vendedorElegido={vendedorElegido}
-            setVendedorElegido={setVendedorElegido}
+          <Header
+            secondNavBarChildren={
+              <h2 className="uppercase text-3xl text-center ">
+                {hotel.nombre}
+              </h2>
+            }
           />
+          <div className="text-center text-gray-600">
+            <Estrellas stars={hotel.categoria.estrellas} />
+            <p className="uppercase">{hotel.categoria.nombre}</p>
+            <p className="font-navSitiosFrecuentes text-FrecuentesItems">
+              {hotel.ubicacion.calle} - {hotel.ubicacion.numero} -{" "}
+              {hotel.ubicacion.ciudad} - {hotel.ubicacion.provincia} -{" "}
+              {hotel.ubicacion.pais}
+            </p>
+            <p>
+              Encargado/a: {hotel.encargado.nombre} {hotel.encargado.apellido}
+            </p>
+            <SelectVendedorHotel
+              vendedores={hotel.vendedores}
+              vendedorElegido={vendedor}
+              setVendedorElegido={setVendedor}
+            />
+          </div>
+
           <HabitacionList
             habitaciones={hotel.habitaciones_por_tipo}
-            onCountChange={handleCountChange}
+            onCountChange={handleTipoHabitacionCountChange}
           />
           <PaquetesList
             paquetes={hotel.paquetes}
@@ -81,9 +89,13 @@ export default function HotelPage() {
           />
         </>
       ) : (
-        <p>Cargando...</p>
+        <p className="text-gray-500">Cargando...</p>
       )}
-      <button onClick={handleAlquilarClick}>ALQUILAR</button>
+      <button className="bg-gray-800 text-white" onClick={handleAlquilarClick}>
+        ALQUILAR
+      </button>
     </div>
   );
 }
+
+export default HotelPage;

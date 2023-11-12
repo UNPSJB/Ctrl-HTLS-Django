@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 function HabitacionCard({ tipo, onCountChange }) {
   const [count, setCount] = useState(0);
@@ -26,25 +28,29 @@ function HabitacionCard({ tipo, onCountChange }) {
   };
 
   return (
-    <div className="bg-white rounded shadow p-4 mb-4">
-      <h3 className="text-xl font-semibold">{tipo.nombre}</h3>
-      <p className="mt-2">Cantidad: {tipo.habitaciones.length}</p>
-      <p className="mt-2">
-        IDs Habitaciones: {tipo.habitaciones.join(", ")} SOLO TESTEO
+    <div>
+      {" "}
+      {/* Aquí se establece el ancho de la tarjeta */}
+      <h3 className="uppercase text-3xl text-blue-600">
+        {tipo.tipo_habitacion.nombre}
+      </h3>
+      <p className="text-gray-600">{tipo.tipo_habitacion.descripcion}</p>
+      <p className="text-green-500">
+        {tipo.habitaciones.length} Habitaciones disponibles
       </p>
-      <div className="mt-4">
+      <div className="flex justify-center items-center space-x-2">
         <button
-          className="bg-blue-500 text-white px-2 py-1 rounded mr-2"
+          className="bg-blue-500 text-white p-2 rounded-full"
           onClick={incrementCount}
         >
-          +
+          <FontAwesomeIcon icon={faPlus} />
         </button>
-        <span>{count}</span>
+        <span className="text-2xl">{count}</span>
         <button
-          className="bg-blue-500 text-white px-2 py-1 rounded ml-2"
+          className="bg-red-500 text-white p-2 rounded-full"
           onClick={decrementCount}
         >
-          -
+          <FontAwesomeIcon icon={faMinus} />
         </button>
       </div>
     </div>

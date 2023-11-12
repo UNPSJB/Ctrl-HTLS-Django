@@ -15,7 +15,7 @@ export default function SelectVendedorHotel({
         onChange={handleChange}
         className="border p-2 rounded-md"
       >
-        <option value="">Seleccionar Vendedor</option>
+        <option value="">Vendedores Asignados</option>
         {vendedores.map((vendedorItem) => (
           <option
             key={vendedorItem.vendedor.documento}

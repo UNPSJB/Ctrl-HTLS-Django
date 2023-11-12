@@ -132,7 +132,7 @@ class HotelFullSerializer(ModelSerializer):
 
 class PaqueteSerializer(ModelSerializer):
     habitaciones = SerializerMethodField()
-    precio = SerializerMethodField()
+    # precio = SerializerMethodField()
 
     class Meta:
         model = PaquetePromocional
@@ -141,7 +141,6 @@ class PaqueteSerializer(ModelSerializer):
             "nombre",
             "fecha_inicio",
             "fecha_fin",
-            "precio",
             "coeficiente_descuento",
             "habitaciones",
         ]
