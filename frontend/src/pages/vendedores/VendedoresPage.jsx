@@ -27,7 +27,7 @@ function VendedoresPage() {
           setCiudad={setCiudad}
         />
       </Filtro>
-      <h2>VENDEDORES</h2>
+      <h3 className="text-3xl">VENDEDORES</h3>
       <ButtonLink texto={"Agregar Vendedor"} url={"/vendedor-form"} />
     </>
   );
