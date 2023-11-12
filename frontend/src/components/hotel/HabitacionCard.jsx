@@ -28,27 +28,28 @@ function HabitacionCard({ tipo, onCountChange }) {
   };
 
   return (
-    <div>
-      {" "}
-      {/* Aquí se establece el ancho de la tarjeta */}
+    <div className="p-4 border rounded shadow">
       <h3 className="uppercase text-3xl text-blue-600">
         {tipo.tipo_habitacion.nombre}
       </h3>
       <p className="text-gray-600">{tipo.tipo_habitacion.descripcion}</p>
       <p className="text-green-500">
-        {tipo.habitaciones.length} Habitaciones disponibles
+        {tipo.habitaciones.length}{" "}
+        {tipo.habitaciones.length == 1
+          ? "Habitación disponible"
+          : "Habitaciones disponibles"}
       </p>
       <div className="flex justify-center items-center space-x-2">
         <button
-          className="bg-blue-500 text-white p-2 rounded-full"
           onClick={incrementCount}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           <FontAwesomeIcon icon={faPlus} />
         </button>
         <span className="text-2xl">{count}</span>
         <button
-          className="bg-red-500 text-white p-2 rounded-full"
           onClick={decrementCount}
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
         >
           <FontAwesomeIcon icon={faMinus} />
         </button>
