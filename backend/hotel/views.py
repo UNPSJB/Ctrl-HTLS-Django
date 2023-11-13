@@ -11,7 +11,8 @@ from .serializers import (
     PaqueteSerializer,
     DescuentoSerializer,
     TemporadaSerializer,
-    DisponibilidadSerializer
+    DisponibilidadSerializer,
+    OfertaSerializer
 )
 
 
@@ -43,12 +44,16 @@ class HotelViewSet(viewsets.ModelViewSet):
     def mid_detail(self, request, pk=None):
         return super().retrieve(request, pk)
 
-    @action(detail=True, serializer_class=DisponibilidadSerializer)
+    @action(detail=True, methods=['post'], serializer_class=DisponibilidadSerializer)
     def disponibilidad(self, request, pk=None):
+        hotel = Hotel.objects.get(pk=pk)
         serializer = self.get_serializer(data=request.data)
-        if not serializer.is_valid():
-            return Response({'status': 'error'})    
-        return Response(serializer.data)
+        if serializer.is_valid():
+            oferta = serializer.verificar(hotel)
+            print(oferta)
+            srlsOferta = OfertaSerializer(oferta)
+            return Response(data=srlsOferta.data, status=200)
+        return Response(data={'status': 'error', "errors": serializer.errors}, status=420)
 
 
 class HabitacionViewSet(viewsets.ModelViewSet):

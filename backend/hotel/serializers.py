@@ -20,6 +20,9 @@ from core.serializers import (
     VendedorSerializer,
     TipoHabitacionSerializer,
 )
+from venta.models import Alquiler
+
+from django.core.exceptions import ValidationError
 
 
 class HotelVendedorSerializer(ModelSerializer):
@@ -163,13 +166,35 @@ class TemporadaSerializer(ModelSerializer):
         model = Temporada
         fields = "__all__"
 
-
 class DisponibilidadSerializer(srls.Serializer):
-    habitaciones = srls.ListField(child=srls.IntegerField())
+    habitaciones = srls.PrimaryKeyRelatedField(queryset=Habitacion.objects.all(), many=True)
     inicio = srls.DateTimeField()
     fin = srls.DateTimeField()
+    #descuento
+    #paquete
+    #temporada
 
 
+    def validate(self, attrs):
+        attrs = super().validate(attrs)
+        habitaciones = attrs["habitaciones"]
+        print(habitaciones)
+        #raise ValidationError("No me gusta tu habitacion")
+        return attrs
+
+    def verificar(self, hotel):
+        habitaciones = self.validated_data["habitaciones"]
+        desde = self.validated_data["inicio"]
+        hasta = self.validated_data["fin"]
+        oferta = Alquiler.objects.ofertar(habitaciones, desde, hasta)
+        return oferta
+
+class OfertaSerializer(srls.Serializer):
+    precio = srls.DecimalField(max_digits=20, decimal_places=2)
+    temporadas = srls.PrimaryKeyRelatedField(queryset=Temporada.objects.all(), many=True)
+    paquetes = srls.ListField(child=PaqueteSerializer())
+    descuentos = srls.ListField(child=DescuentoSerializer())
+    
 # -------------------- Metodos --------------------
 
 
