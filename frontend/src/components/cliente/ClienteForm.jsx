@@ -34,7 +34,6 @@ export default function ClienteForm({ isOpen, onClose }) {
       correo,
       puntos: 0,
     };
-    console.log(newCliente);
     try {
       const res = await api.clientes.create(newCliente);
     } catch (error) {
