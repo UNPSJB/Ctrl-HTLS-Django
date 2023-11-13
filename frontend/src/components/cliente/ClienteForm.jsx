@@ -20,7 +20,7 @@ export default function ClienteForm({ isOpen, onClose }) {
   } = useForm();
 
   const onSubmit = handleSubmit(async (data) => {
-    const { nombre, apellido, documento, calle, numero, telefono, email } =
+    const { nombre, apellido, documento, calle, numero, telefono, correo } =
       data;
     const newDireccion = { calle, numero, ciudad: ciudad };
     const { id: direccion } = await api.direcciones.create(newDireccion);
@@ -31,15 +31,15 @@ export default function ClienteForm({ isOpen, onClose }) {
       tipo_documento: tipoDocumento,
       direccion,
       telefono,
-      email,
+      correo,
       puntos: 0,
     };
     console.log(newCliente);
-    // try {
-    //   const res = await api.clientes.create(newCliente);
-    // } catch (error) {
-    //   console.error("ERROR", error);
-    // }
+    try {
+      const res = await api.clientes.create(newCliente);
+    } catch (error) {
+      console.error("ERROR", error);
+    }
   });
 
   return (
@@ -98,9 +98,9 @@ export default function ClienteForm({ isOpen, onClose }) {
         />
         {errors.telefono && <span>Este campo es requerido</span>}
         <input
-          type="email"
+          type="correo"
           placeholder="e-mail"
-          {...register("email", { required: true })}
+          {...register("correo", { required: true })}
         />
         {errors.email && <span>Este campo es requerido</span>}
 
