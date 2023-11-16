@@ -166,35 +166,42 @@ class TemporadaSerializer(ModelSerializer):
         model = Temporada
         fields = "__all__"
 
+
 class DisponibilidadSerializer(srls.Serializer):
-    habitaciones = srls.PrimaryKeyRelatedField(queryset=Habitacion.objects.all(), many=True)
+    habitaciones = srls.PrimaryKeyRelatedField(
+        queryset=Habitacion.objects.all(), many=True
+    )
     inicio = srls.DateTimeField()
     fin = srls.DateTimeField()
-    #descuento
-    #paquete
-    #temporada
-
+    # descuento
+    # paquete
+    # temporada
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
         habitaciones = attrs["habitaciones"]
         print(habitaciones)
-        #raise ValidationError("No me gusta tu habitacion")
+        # raise ValidationError("No me gusta tu habitacion")
         return attrs
 
-    def verificar(self, hotel):
-        habitaciones = self.validated_data["habitaciones"]
-        desde = self.validated_data["inicio"]
-        hasta = self.validated_data["fin"]
-        oferta = Alquiler.objects.ofertar(habitaciones, desde, hasta)
-        return oferta
+    def create(self, validated_data):
+        hotel = validated_data["hotel"]
+        habitaciones = validated_data["habitaciones"]
+        desde = validated_data["inicio"]
+        hasta = validated_data["fin"]
+        disponibilidad = hotel.verificar_disponibilidad(habitaciones, desde, hasta)
+        return disponibilidad
+
 
 class OfertaSerializer(srls.Serializer):
     precio = srls.DecimalField(max_digits=20, decimal_places=2)
-    temporadas = srls.PrimaryKeyRelatedField(queryset=Temporada.objects.all(), many=True)
+    temporadas = srls.PrimaryKeyRelatedField(
+        queryset=Temporada.objects.all(), many=True
+    )
     paquetes = srls.ListField(child=PaqueteSerializer())
     descuentos = srls.ListField(child=DescuentoSerializer())
-    
+
+
 # -------------------- Metodos --------------------
 
 

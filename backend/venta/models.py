@@ -2,28 +2,42 @@ from django.db import models
 from hotel.models import Hotel, Vendedor, Habitacion, PaquetePromocional
 from core.models import Cliente
 from django.core.exceptions import ValidationError
+
+
 class AlquilerManager(models.Manager):
     def ofertar(self, habitaciones, desde, hasta, flexible=False):
+        # FIXME: limpiame cuando este en hotel
         if len(habitaciones) == 0:
             raise ValidationError("Debe ingresar habitaciones")
         if len(set([h.hotel.pk for h in habitaciones])) != 1:
             raise ValidationError("Las habitaciones deben ser del mismo hotel")
         hotel = habitaciones[0].hotel
         descuentos = hotel.descuentos_disponibles(len(habitaciones))
-        paquetes = hotel.paquetes_disponibles(habitaciones, desde, hasta, flexible=flexible)
+        paquetes = hotel.paquetes_disponibles(
+            habitaciones, desde, hasta, flexible=flexible
+        )
         temporadas = hotel.temporadas_disponibles(desde, hasta, flexible=flexible)
         total = sum([h.precio for h in habitaciones])
-        return {"precio": total, "temporadas": temporadas, "paquetes": paquetes, "descuentos": descuentos}
-    
+        return {
+            "precio": total,
+            "temporadas": temporadas,
+            "paquetes": paquetes,
+            "descuentos": descuentos,
+        }
+
+
 class AlquilerQuerySet(models.QuerySet):
     def para_cliente(self, cliente):
         return self.filter(cliente=cliente)
-    
+
+
 class Alquiler(models.Model):
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     pasajeros = models.IntegerField()
-    habitaciones = models.ManyToManyField(Habitacion, related_name="alquileres", blank=True)
+    habitaciones = models.ManyToManyField(
+        Habitacion, related_name="alquileres", blank=True
+    )
     paquetes = models.ManyToManyField(PaquetePromocional, blank=True)
     importe = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=True)
