@@ -2,7 +2,6 @@ from django.db import models
 from core.models import Direccion, TipoHabitacion, Categoria, Vendedor, Encargado
 from django.core.validators import MinValueValidator
 from decimal import Decimal
-from PIL import Image
 from django.core.exceptions import ValidationError
 
 
@@ -16,9 +15,6 @@ class Hotel(models.Model):
     )
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True)
     encargado = models.OneToOneField(Encargado, on_delete=models.SET_NULL, null=True)
-    imagen = models.ImageField(
-        upload_to="./fixtures/img/hoteles", blank=True, null=True
-    )
     estado = models.BooleanField(default=False)
 
     def __str__(self):
