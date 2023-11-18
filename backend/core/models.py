@@ -87,7 +87,6 @@ class Persona(models.Model):
         super().save(*args, **kwargs)
 
 
-
 class Vendedor(Persona):
     pass
 
@@ -99,7 +98,3 @@ class Encargado(Persona):
 class Cliente(Persona):
     puntos = models.PositiveIntegerField(default=0)
     direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE, null=True)
-
-
-
-
