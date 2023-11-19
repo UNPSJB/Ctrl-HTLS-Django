@@ -15,18 +15,9 @@ class Hotel(models.Model):
     )
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True)
     encargado = models.OneToOneField(Encargado, on_delete=models.SET_NULL, null=True)
-    estado = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nombre
-
-    def save(self, *args, **kwargs):
-        # Antes de guardar el hotel, verifica si tiene un encargado asignado
-        # Si hay un encargado asignado, establece el campo de "encargado_asignado" en True
-        if self.encargado:
-            self.encargado.encargado_asignado = True
-            self.encargado.save()  # Guarda el encargado con el nuevo valor
-        super(Hotel, self).save(*args, **kwargs)
 
     def descuentos_disponibles(self, habitaciones):
         return self.descuentos.filter(cantidad_habitaciones__lte=habitaciones).order_by(
