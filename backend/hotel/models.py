@@ -59,28 +59,11 @@ class Hotel(models.Model):
         }
 
 
-class PaquetePromocional(models.Model):
-    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name="paquetes")
-    nombre = models.CharField(max_length=200)
-    fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
-    coeficiente_descuento = models.DecimalField(
-        max_digits=5, decimal_places=2, validators=[MinValueValidator(Decimal("0"))]
-    )
-    # TODO: HABITACIONES Many to Many, cambiar la relacion con habitaciones y agregar una descripcion
-
-    def __str__(self):
-        return self.nombre
-
-
 class Habitacion(models.Model):
     numero_de_habitacion = models.PositiveIntegerField()
     piso = models.PositiveIntegerField()
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     tipo_habitacion = models.ForeignKey(TipoHabitacion, on_delete=models.CASCADE)
-    paquete = models.ForeignKey(
-        PaquetePromocional, on_delete=models.CASCADE, null=True, blank=True
-    )
 
     def __str__(self):
         return f"Habitacion {self.numero_de_habitacion} ({self.tipo_habitacion}). Hotel {self.hotel}"
@@ -102,6 +85,24 @@ class Habitacion(models.Model):
             # alquileres por unos dias pero no el total del rango inicio fin retornar True
             pass
         return disponible
+
+
+class PaquetePromocional(models.Model):
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name="paquetes")
+    nombre = models.CharField(max_length=200)
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+    coeficiente_descuento = models.DecimalField(
+        max_digits=5, decimal_places=2, validators=[MinValueValidator(Decimal("0"))]
+    )
+    habitaciones = models.ManyToManyField(
+        Habitacion, related_name="paquetes", blank=True
+    )
+    descripcion = models.TextField(blank=True)
+    # TODO: HABITACIONES Many to Many, cambiar la relacion con habitaciones y agregar una descripcion
+
+    def __str__(self):
+        return self.nombre
 
 
 class HotelVendedor(models.Model):
