@@ -163,4 +163,4 @@ class PaqueteHabitacion(models.Model):
     habitacion = models.ForeignKey(Habitacion, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.paquete.nombre} - Habitacion: {self.habitacion.numero}"
+        return f"{self.paquete.nombre} - Habitacion: {self.habitacion.numero_de_habitacion}"

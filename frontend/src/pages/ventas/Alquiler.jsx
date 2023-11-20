@@ -22,7 +22,7 @@ export default function AlquilarPage() {
       </div>
     </>
   );
-
+  console.log(location)
   return (
     <div>
       <Header secondNavBarChildren={secondNavBarChildren} />
@@ -32,6 +32,7 @@ export default function AlquilarPage() {
       />
       {isClienteFormOpen && (
         <ClienteForm
+          title={"Crear Cliente"}
           isOpen={isClienteFormOpen}
           onClose={() => setIsClienteFormOpen(false)}
         />
