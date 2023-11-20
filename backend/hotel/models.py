@@ -96,13 +96,15 @@ class PaquetePromocional(models.Model):
         max_digits=5, decimal_places=2, validators=[MinValueValidator(Decimal("0"))]
     )
     habitaciones = models.ManyToManyField(
-        Habitacion, related_name="paquetes", blank=True
+        Habitacion, related_name="paquetes", through="PaqueteHabitacion"
     )
     descripcion = models.TextField(blank=True)
     # TODO: HABITACIONES Many to Many, cambiar la relacion con habitaciones y agregar una descripcion
 
     def __str__(self):
         return self.nombre
+    
+    
 
 
 class HotelVendedor(models.Model):
@@ -119,7 +121,7 @@ class PrecioPorTipo(models.Model):
         TipoHabitacion, on_delete=models.CASCADE, related_name="tarifas"
     )
     precio = models.DecimalField(
-        max_digits=10, decimal_places=2, validators=[MinValueValidator(Decimal("0.01"))]
+        max_digits=10, decimal_places=2, default=0
     )
 
     def __str__(self):
@@ -153,3 +155,12 @@ class Temporada(models.Model):
 
     def __str__(self):
         return f"Hotel {self.hotel} - Temporada {self.tipo} - Desde dia {self.fecha_inicio} hasta {self.fecha_fin}"
+    
+
+    # Modelo intermedio para representar la relación entre un paquete y una habitación
+class PaqueteHabitacion(models.Model):
+    paquete = models.ForeignKey(PaquetePromocional, on_delete=models.CASCADE)
+    habitacion = models.ForeignKey(Habitacion, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.paquete.nombre} - Habitacion: {self.habitacion.numero}"
