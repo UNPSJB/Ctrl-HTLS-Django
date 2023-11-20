@@ -38,6 +38,7 @@ export default function HotelFormPage() {
     const nombre = capitalizeEachWord(data.nombre);
     const calle = capitalizeEachWord(data.calle);
     const { numero } = data;
+    
     const newDireccion = { calle, numero, ciudad: ciudad };
 
     const { id: direccion } = await api.direcciones.create(newDireccion);

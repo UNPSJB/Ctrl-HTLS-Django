@@ -68,8 +68,6 @@ class HotelMidSerializer(ModelSerializer):
             "descripcion",
             "habilitado",
             "ubicacion",
-            "imagen",
-            "estado",
         ]
 
     def get_ubicacion(self, obj):
@@ -81,8 +79,8 @@ class HotelFullSerializer(ModelSerializer):
     categoria = CategoriaMidSerializer()
     encargado = EncargadoSerializer()
     vendedores = SerializerMethodField()
-    habitaciones_por_tipo = SerializerMethodField()
-    paquetes = SerializerMethodField()
+    #habitaciones_por_tipo = SerializerMethodField()
+    #paquetes = SerializerMethodField()
 
     class Meta:
         model = Hotel
@@ -94,8 +92,8 @@ class HotelFullSerializer(ModelSerializer):
             "categoria",
             "encargado",
             "vendedores",
-            "paquetes",
-            "habitaciones_por_tipo",
+            #"paquetes",
+            #"habitaciones_por_tipo",
         ]
 
     def get_vendedores(self, obj):
