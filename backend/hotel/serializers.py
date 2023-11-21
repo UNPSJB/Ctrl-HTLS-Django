@@ -96,7 +96,7 @@ class HotelFullSerializer(ModelSerializer):
             "vendedores",
             "paquetes",
             "habitaciones_por_tipo",
-            "temporadas"
+            "temporadas",
         ]
 
     def get_vendedores(self, obj):
@@ -132,10 +132,11 @@ class HotelFullSerializer(ModelSerializer):
 
     def get_ubicacion(self, obj):
         return ubicacion(obj)
-    
+
     def get_temporadas(self, obj):
         temporadas = Temporada.objects.filter(hotel=obj)
-        return TemporadaSerializer(temporadas,many=True).data
+        return TemporadaSerializer(temporadas, many=True).data
+
 
 class PaqueteSerializer(ModelSerializer):
     habitaciones = SerializerMethodField()
@@ -247,3 +248,6 @@ def ubicacion(obj):
         "calle": direccion.calle,
         "numero": direccion.numero,
     }
+
+
+# =================================================================================
