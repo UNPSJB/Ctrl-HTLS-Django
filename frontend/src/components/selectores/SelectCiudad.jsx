@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import api from "../../api";
 import Selector from "./Selector";
 
-export default function SelectCiudad({ provincia, ciudad, setCiudad }) {
+export default function SelectCiudad({
+  provincia,
+  ciudad,
+  setCiudad,
+  className,
+}) {
   const [ciudades, setCiudades] = useState([]);
 
   useEffect(() => {
@@ -23,6 +28,7 @@ export default function SelectCiudad({ provincia, ciudad, setCiudad }) {
   return (
     <div>
       <Selector
+        className={className}
         value={ciudad ?? ""}
         handleChange={handleChange}
         options={ciudades}

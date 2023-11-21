@@ -34,11 +34,11 @@ export default function HotelFormPage() {
   };
 
   const onSubmit = handleSubmit(async (data) => {
-     // Convertir nombre y calle a Primera letra en mayuscula y el resto en minuscula
+    // Convertir nombre y calle a Primera letra en mayuscula y el resto en minuscula
     const nombre = capitalizeEachWord(data.nombre);
     const calle = capitalizeEachWord(data.calle);
     const { numero } = data;
-    
+
     const newDireccion = { calle, numero, ciudad: ciudad };
 
     const { id: direccion } = await api.direcciones.create(newDireccion);
@@ -51,23 +51,51 @@ export default function HotelFormPage() {
 
   return (
     <div>
+      <h2>GESTIONAR HOTEL</h2>
+      <h4>- Paso 1 -</h4>
       <form onSubmit={onSubmit}>
-        <input type="text" placeholder="nombre" {...register("nombre", { required: true })} />
+        <input
+          type="text"
+          placeholder="nombre"
+          {...register("nombre", { required: true })}
+        />
         {errors.nombre && <span>Este campo es requerido</span>}
 
-        <input type="text" placeholder="calle" {...register("calle", { required: true })} />
+        <SelectPais
+          pais={pais}
+          setPais={setPais}
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+        />
+        <SelectProvincia
+          pais={pais}
+          provincia={provincia}
+          setProvincia={setProvincia}
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+        />
+        <SelectCiudad
+          provincia={provincia}
+          ciudad={ciudad}
+          setCiudad={setCiudad}
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+        />
+
+        <input
+          type="text"
+          placeholder="calle"
+          {...register("calle", { required: true })}
+        />
         {errors.calle && <span>Este campo es requerido</span>}
 
-        <input type="number" placeholder="numero" {...register("numero", { required: true })} />
+        <input
+          type="number"
+          placeholder="numero"
+          {...register("numero", { required: true })}
+        />
         {errors.numero && <span>Este campo es requerido</span>}
 
-        <SelectPais pais={pais} setPais={setPais} />
-        <SelectProvincia pais={pais} provincia={provincia} setProvincia={setProvincia} />
-        <SelectCiudad provincia={provincia} ciudad={ciudad} setCiudad={setCiudad} />
+        <SelectCategoria categoria={categoria} setCategoria={setCategoria} />
 
         <SelectEncargado encargado={encargado} setEncargado={setEncargado} />
-
-        <SelectCategoria categoria={categoria} setCategoria={setCategoria} />
 
         <button type="submit">Guardar</button>
       </form>
