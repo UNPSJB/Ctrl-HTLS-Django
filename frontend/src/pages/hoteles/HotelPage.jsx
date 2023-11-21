@@ -49,7 +49,6 @@ function HotelPage() {
       },
     });
   };
-
   return (
     <div>
       {hotel ? (
@@ -79,14 +78,14 @@ function HotelPage() {
             />
           </div>
 
-          <HabitacionList
+           <HabitacionList
             habitaciones={hotel.habitaciones_por_tipo}
             onCountChange={handleTipoHabitacionCountChange}
           />
           <PaquetesList
             paquetes={hotel.paquetes}
             onPaqueteToggle={handlePaqueteToggle}
-          />
+          />  
         </>
       ) : (
         <p className="text-gray-500">Cargando...</p>

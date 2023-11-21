@@ -7,7 +7,7 @@ import { useState } from "react";
 import SelectTipoDocumento from "../selectores/SelectTipoDocumento";
 import { useForm } from "react-hook-form";
 
-export default function ClienteForm({ isOpen, onClose }) {
+export default function ClienteForm({ title, isOpen, onClose  }) {
   const [pais, setPais] = useState("");
   const [provincia, setProvincia] = useState("");
   const [ciudad, setCiudad] = useState("");
@@ -42,7 +42,7 @@ export default function ClienteForm({ isOpen, onClose }) {
   });
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal title={title} isOpen={isOpen} onClose={onClose}>
       <form onSubmit={onSubmit}>
         <input
           type="text"
