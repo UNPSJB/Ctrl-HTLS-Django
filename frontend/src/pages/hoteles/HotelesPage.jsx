@@ -18,18 +18,28 @@ function HotelesPage() {
   const secondNavBarContent = (
     <>
       <Filtro>
-        <SelectPais pais={pais} setPais={setPais} />
+        <SelectPais
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+          pais={pais}
+          setPais={setPais}
+        />
         <SelectProvincia
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
           pais={pais}
           provincia={provincia}
           setProvincia={setProvincia}
         />
         <SelectCiudad
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
           provincia={provincia}
           ciudad={ciudad}
           setCiudad={setCiudad}
         />
-        <SelectCategoria categoria={categoria} setCategoria={setCategoria} />
+        <SelectCategoria
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+          categoria={categoria}
+          setCategoria={setCategoria}
+        />
         <Fecha />
         <Fecha />
       </Filtro>

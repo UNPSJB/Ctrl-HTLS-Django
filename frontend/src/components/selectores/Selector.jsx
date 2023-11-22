@@ -6,10 +6,11 @@ function Selector({
   defaultOption,
   getValue,
   getLabel,
+  className,
 }) {
   return (
     <select
-      className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+      className={className}
       value={value}
       onChange={handleChange}
       disabled={disabled}
