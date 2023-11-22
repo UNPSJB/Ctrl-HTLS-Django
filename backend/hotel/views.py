@@ -42,13 +42,19 @@ class HotelViewSet(viewsets.ModelViewSet):
     def mid_detail(self, request, pk=None):
         return super().retrieve(request, pk)
 
-    @action(detail=True, methods=["post"], serializer_class=DisponibilidadSerializer)
-    def disponibilidad(self, request, pk=None):
+    # @action(detail=True, methods=["post"], serializer_class=DisponibilidadSerializer)
+    # def disponibilidad(self, request, pk=None):
+    #     serializer = self.get_serializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     disp = serializer.save(hotel=self.get_object())
+    #     serializer = OfertaSerializer(disp)
+    #     return Response(serializer.data)
+    @action(detail=False, methods=["post"], serializer_class=DisponibilidadSerializer)
+    def disponibilidad(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        disp = serializer.save(hotel=self.get_object())
-        serializer = OfertaSerializer(disp)
-        return Response(serializer.data)
+        disponibilidad = serializer.save()
+        return Response(disponibilidad)
 
 
 class HabitacionViewSet(viewsets.ModelViewSet):

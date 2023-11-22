@@ -22,6 +22,7 @@ from core.serializers import (
     TipoHabitacionSerializer,
 )
 from venta.models import Alquiler
+from .filters import HotelFilter
 
 from django.core.exceptions import ValidationError
 
@@ -173,29 +174,57 @@ class TemporadaSerializer(ModelSerializer):
 
 
 class DisponibilidadSerializer(srls.Serializer):
-    habitaciones = srls.PrimaryKeyRelatedField(
-        queryset=Habitacion.objects.all(), many=True
-    )
+    localidad = srls.CharField()
     inicio = srls.DateTimeField()
     fin = srls.DateTimeField()
-    # descuento
-    # paquete
-    # temporada
+    pasajeros = srls.IntegerField()
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
-        habitaciones = attrs["habitaciones"]
-        print(habitaciones)
-        # raise ValidationError("No me gusta tu habitacion")
         return attrs
 
     def create(self, validated_data):
-        hotel = validated_data["hotel"]
-        habitaciones = validated_data["habitaciones"]
+        localidad = validated_data["localidad"]
         desde = validated_data["inicio"]
         hasta = validated_data["fin"]
-        disponibilidad = hotel.verificar_disponibilidad(habitaciones, desde, hasta)
+        pasajeros = validated_data["pasajeros"]
+        hoteles_filter = HotelFilter(
+            {"ciudad": localidad}, queryset=Hotel.objects.all()
+        )
+
+        hoteles = hoteles_filter.qs
+        print(hoteles)
+        disponibilidad = [
+            hotel.verificar_disponibilidad(desde, hasta, pasajeros) for hotel in hoteles
+        ]
         return disponibilidad
+
+
+# class DisponibilidadSerializer(srls.Serializer):
+#     # print(srls.Serializer)
+#     habitaciones = srls.PrimaryKeyRelatedField(
+#         queryset=Habitacion.objects.all(), many=True
+#     )
+#     inicio = srls.DateTimeField()
+#     fin = srls.DateTimeField()
+#     # descuento
+#     # paquete
+#     # temporada
+
+#     def validate(self, attrs):
+#         attrs = super().validate(attrs)
+#         habitaciones = attrs["habitaciones"]
+#         # print(habitaciones)
+#         # raise ValidationError("No me gusta tu habitacion")
+#         return attrs
+
+#     def create(self, validated_data):
+#         hotel = validated_data["hotel"]
+#         habitaciones = validated_data["habitaciones"]
+#         desde = validated_data["inicio"]
+#         hasta = validated_data["fin"]
+#         disponibilidad = hotel.verificar_disponibilidad(habitaciones, desde, hasta)
+#         return disponibilidad
 
 
 class OfertaSerializer(srls.Serializer):

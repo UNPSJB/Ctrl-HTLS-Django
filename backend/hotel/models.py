@@ -40,23 +40,27 @@ class Hotel(models.Model):
             pass
         return qs
 
-    def verificar_disponibilidad(self, habitaciones, desde, hasta, flexible=False):
-        if len(habitaciones) == 0:
-            raise ValidationError("Debe ingresar habitaciones")
-        if len(set([h.hotel.pk for h in habitaciones])) != 1:
-            raise ValidationError("Las habitaciones deben ser del mismo hotel")
-        descuentos = self.descuentos_disponibles(len(habitaciones))
-        paquetes = self.paquetes_disponibles(
-            habitaciones, desde, hasta, flexible=flexible
-        )
-        temporadas = self.temporadas_disponibles(desde, hasta, flexible=flexible)
-        total = sum([h.precio for h in habitaciones])
-        return {
-            "precio": total,
-            "temporadas": temporadas,
-            "paquetes": paquetes,
-            "descuentos": descuentos,
-        }
+    def verificar_disponibilidad(self, desde, hasta, pasajeros):
+        # TODO: Devolver los hoteles que tengan habitaciones >= pasajeros
+        print("ENTRE AL MODELO")
+
+    # def verificar_disponibilidad(self, habitaciones, desde, hasta, flexible=False):
+    #     if len(habitaciones) == 0:
+    #         raise ValidationError("Debe ingresar habitaciones")
+    #     if len(set([h.hotel.pk for h in habitaciones])) != 1:
+    #         raise ValidationError("Las habitaciones deben ser del mismo hotel")
+    #     descuentos = self.descuentos_disponibles(len(habitaciones))
+    #     paquetes = self.paquetes_disponibles(
+    #         habitaciones, desde, hasta, flexible=flexible
+    #     )
+    #     temporadas = self.temporadas_disponibles(desde, hasta, flexible=flexible)
+    #     total = sum([h.precio for h in habitaciones])
+    #     return {
+    #         "precio": total,
+    #         "temporadas": temporadas,
+    #         "paquetes": paquetes,
+    #         "descuentos": descuentos,
+    #     }
 
 
 class Habitacion(models.Model):
@@ -103,8 +107,6 @@ class PaquetePromocional(models.Model):
 
     def __str__(self):
         return self.nombre
-    
-    
 
 
 class HotelVendedor(models.Model):
@@ -120,9 +122,7 @@ class PrecioPorTipo(models.Model):
     tipohabitacion = models.ForeignKey(
         TipoHabitacion, on_delete=models.CASCADE, related_name="tarifas"
     )
-    precio = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0
-    )
+    precio = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
         return f"{self.hotel.nombre} - {self.tipohabitacion.nombre}"
@@ -155,9 +155,10 @@ class Temporada(models.Model):
 
     def __str__(self):
         return f"Hotel {self.hotel} - Temporada {self.tipo} - Desde dia {self.fecha_inicio} hasta {self.fecha_fin}"
-    
 
     # Modelo intermedio para representar la relación entre un paquete y una habitación
+
+
 class PaqueteHabitacion(models.Model):
     paquete = models.ForeignKey(PaquetePromocional, on_delete=models.CASCADE)
     habitacion = models.ForeignKey(Habitacion, on_delete=models.CASCADE)
