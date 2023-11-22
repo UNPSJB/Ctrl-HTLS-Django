@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from core.models import Direccion, TipoHabitacion, Categoria, Vendedor, Encargado
 from django.core.validators import MinValueValidator
 from decimal import Decimal
@@ -41,8 +42,19 @@ class Hotel(models.Model):
         return qs
 
     def verificar_disponibilidad(self, desde, hasta, pasajeros):
-        # TODO: Devolver los hoteles que tengan habitaciones >= pasajeros
-        print("ENTRE AL MODELO")
+        # Devuelve las habitaciones que puedan alojar la cantidad de pasajeros
+        habitaciones_disponibles = Habitacion.objects.filter(
+            hotel=self, tipo_habitacion__capacidad__gte=pasajeros
+        )
+        # Se filtras la habitaciones obtenidas anteriormente por las fechas desde y hasta
+        habitaciones_disponibles = habitaciones_disponibles.exclude(
+            Q(alquileres__fecha_inicio__lte=hasta, alquileres__fecha_fin__gte=desde)
+            | Q(alquileres__fecha_inicio__gte=desde, alquileres__fecha_fin__lte=hasta)
+        )
+
+        print(habitaciones_disponibles)
+        # return habitaciones_disponilbes
+        return 0
 
     # def verificar_disponibilidad(self, habitaciones, desde, hasta, flexible=False):
     #     if len(habitaciones) == 0:
@@ -67,7 +79,9 @@ class Habitacion(models.Model):
     numero_de_habitacion = models.PositiveIntegerField()
     piso = models.PositiveIntegerField()
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-    tipo_habitacion = models.ForeignKey(TipoHabitacion, on_delete=models.CASCADE)
+    tipo_habitacion = models.ForeignKey(
+        TipoHabitacion, related_name="habitaciones", on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return f"Habitacion {self.numero_de_habitacion} ({self.tipo_habitacion}). Hotel {self.hotel}"
