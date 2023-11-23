@@ -177,7 +177,7 @@ class DisponibilidadSerializer(srls.Serializer):
     localidad = srls.CharField()
     inicio = srls.DateTimeField()
     fin = srls.DateTimeField()
-    pasajeros = srls.IntegerField()
+    # pasajeros = srls.IntegerField()
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
@@ -187,17 +187,20 @@ class DisponibilidadSerializer(srls.Serializer):
         localidad = validated_data["localidad"]
         desde = validated_data["inicio"]
         hasta = validated_data["fin"]
-        pasajeros = validated_data["pasajeros"]
-        hoteles_filter = HotelFilter(
-            {"ciudad": localidad}, queryset=Hotel.objects.all()
-        )
 
-        hoteles = hoteles_filter.qs
-        print(hoteles)
-        disponibilidad = [
-            hotel.verificar_disponibilidad(desde, hasta, pasajeros) for hotel in hoteles
-        ]
-        return disponibilidad
+        hoteles = Hotel.objects.verificar_disponibilidad(desde, hasta, localidad)
+        HotelSerializer = HotelesDisponiblesSerializer(desde, hasta)
+        return HotelSerializer(hoteles, many=True)
+        # pasajeros = validated_data["pasajeros"]
+        # hoteles_filter = HotelFilter(
+        #     {"ciudad": localidad}, queryset=Hotel.objects.all()
+        # )
+
+        # hoteles = hoteles_filter.qs
+        # print(hoteles)
+        # disponibilidad = [
+        #     hotel.verificar_disponibilidad(desde, hasta, pasajeros) for hotel in hoteles
+        # ] 
 
 
 # class DisponibilidadSerializer(srls.Serializer):
@@ -235,7 +238,19 @@ class OfertaSerializer(srls.Serializer):
     paquetes = srls.ListField(child=PaqueteSerializer())
     descuentos = srls.ListField(child=DescuentoSerializer())
 
+def HotelesDisponiblesSerializer(desde, hasta):
+    class HotelSerializer(srls.ModelSerializer):
+        temporadas = SerializerMethodField()
 
+        class Meta:
+            model = Hotel
+            fields = "__all__"
+
+        def get_temporadas(self, obj):
+            temporadas = obj.temporadas.filter(fecha_inicio__gte=desde, fecha_fin__lte=hasta)
+            return TemporadaSerializer(temporadas, many=True).data
+        
+    return HotelSerializer
 # -------------------- Metodos --------------------
 
 

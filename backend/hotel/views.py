@@ -15,6 +15,7 @@ from .serializers import (
     DisponibilidadSerializer,
     OfertaSerializer,
     DisponibilidadSerializer,
+    HotelesDisponiblesSerializer,
 )
 
 
@@ -54,7 +55,7 @@ class HotelViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         disponibilidad = serializer.save()
-        return Response(disponibilidad)
+        return Response(disponibilidad.data)
 
 
 class HabitacionViewSet(viewsets.ModelViewSet):

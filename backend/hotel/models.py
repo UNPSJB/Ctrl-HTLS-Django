@@ -6,6 +6,17 @@ from decimal import Decimal
 from django.core.exceptions import ValidationError
 
 
+class HotelManager(models.Manager):
+    def verificar_disponibilidad(self, desde, hasta, localidad):
+        qs = self.get_queryset()
+        qs = qs.filter(direccion__ciudad=localidad)
+
+        hoteles_disponibles = qs.exclude(habitaciones__alquileres__fecha_inicio__lte=hasta, habitaciones__alquileres__fecha_fin__gte=desde)
+
+        print(hoteles_disponibles)
+        # return habitaciones_disponilbes
+        return hoteles_disponibles
+
 class Hotel(models.Model):
     nombre = models.CharField(max_length=100)
     direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE)
@@ -16,6 +27,7 @@ class Hotel(models.Model):
     )
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True)
     encargado = models.OneToOneField(Encargado, on_delete=models.SET_NULL, null=True)
+    objects = HotelManager()
 
     def __str__(self):
         return self.nombre
@@ -41,20 +53,20 @@ class Hotel(models.Model):
             pass
         return qs
 
-    def verificar_disponibilidad(self, desde, hasta, pasajeros):
-        # Devuelve las habitaciones que puedan alojar la cantidad de pasajeros
-        habitaciones_disponibles = Habitacion.objects.filter(
-            hotel=self, tipo_habitacion__capacidad__gte=pasajeros
-        )
-        # Se filtras la habitaciones obtenidas anteriormente por las fechas desde y hasta
-        habitaciones_disponibles = habitaciones_disponibles.exclude(
-            Q(alquileres__fecha_inicio__lte=hasta, alquileres__fecha_fin__gte=desde)
-            | Q(alquileres__fecha_inicio__gte=desde, alquileres__fecha_fin__lte=hasta)
-        )
+    # def verificar_disponibilidad(self, desde, hasta, pasajeros):
+    #     # Devuelve las habitaciones que puedan alojar la cantidad de pasajeros
+    #     habitaciones_disponibles = Habitacion.objects.filter(
+    #         hotel=self, tipo_habitacion__capacidad__gte=pasajeros
+    #     )
+    #     # Se filtras la habitaciones obtenidas anteriormente por las fechas desde y hasta
+    #     habitaciones_disponibles = habitaciones_disponibles.exclude(
+    #         Q(alquileres__fecha_inicio__lte=hasta, alquileres__fecha_fin__gte=desde)
+    #         | Q(alquileres__fecha_inicio__gte=desde, alquileres__fecha_fin__lte=hasta)
+    #     )
 
-        print(habitaciones_disponibles)
-        # return habitaciones_disponilbes
-        return 0
+    #     print(habitaciones_disponibles)
+    #     # return habitaciones_disponilbes
+    #     return 0
 
     # def verificar_disponibilidad(self, habitaciones, desde, hasta, flexible=False):
     #     if len(habitaciones) == 0:
@@ -78,7 +90,7 @@ class Hotel(models.Model):
 class Habitacion(models.Model):
     numero_de_habitacion = models.PositiveIntegerField()
     piso = models.PositiveIntegerField()
-    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    hotel = models.ForeignKey(Hotel, related_name="habitaciones", on_delete=models.CASCADE)
     tipo_habitacion = models.ForeignKey(
         TipoHabitacion, related_name="habitaciones", on_delete=models.CASCADE
     )
