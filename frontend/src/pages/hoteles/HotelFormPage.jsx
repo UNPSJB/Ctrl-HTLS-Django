@@ -9,7 +9,6 @@ import SelectProvincia from "../../components/selectores/SelectProvincia";
 import SelectCiudad from "../../components/selectores/SelectCiudad";
 import Header from "../../components/header/Header";
 
-
 export default function HotelFormPage() {
   const {
     register,
@@ -51,18 +50,17 @@ export default function HotelFormPage() {
     navigate("/hoteles");
   });
 
-  const secondNavBarContent = (
-    <>
-      Gestionar Hotel
-    </>
-  )
+  const secondNavBarContent = <>Gestionar Hotel</>;
   return (
     <div>
       <Header secondNavBarChildren={secondNavBarContent} />
       <div className="mx-auto w-1/2 bg-FondoHotel p-1 rounded-lg border border-black-300">
         <form onSubmit={onSubmit}>
           <div className="form-group">
-            <label htmlFor="nombre"className="block text-sm font-medium text-gray-700"></label>
+            <label
+              htmlFor="nombre"
+              className="block text-sm font-medium text-gray-700"
+            ></label>
             <input
               type="text"
               id="nombre"
@@ -70,7 +68,9 @@ export default function HotelFormPage() {
               {...register("nombre", { required: true })}
               className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
             />
-          {errors.nombre && <span className="error-message">Este campo es requerido</span>}
+            {errors.nombre && (
+              <span className="error-message">Este campo es requerido</span>
+            )}
           </div>
 
           <SelectPais
@@ -92,39 +92,47 @@ export default function HotelFormPage() {
           />
 
           <div className="form-group">
-          <input
-            type="text"
-            placeholder="Calle"
-            {...register("calle", { required: true })}
-            className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
-          />
-          {errors.calle && <span>Este campo es requerido</span>}
+            <input
+              type="text"
+              placeholder="Calle"
+              {...register("calle", { required: true })}
+              className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
+            />
+            {errors.calle && <span>Este campo es requerido</span>}
           </div>
 
           <div className="form-group">
-          <input
-            type="number"
-            placeholder="Número"
-            {...register("numero", { required: true })}
-            className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
-          />
-          {errors.numero && <span>Este campo es requerido</span>}
+            <input
+              type="number"
+              placeholder="Número"
+              {...register("numero", { required: true })}
+              className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
+            />
+            {errors.numero && <span>Este campo es requerido</span>}
           </div>
 
-          <SelectCategoria categoria={categoria} setCategoria={setCategoria} 
-            className= "select-input text-Letras bg-FondoHotel w-full p-2 rounded-md"
+          <SelectCategoria
+            categoria={categoria}
+            setCategoria={setCategoria}
+            className="select-input text-Letras bg-FondoHotel w-full p-2 rounded-md"
           />
 
           <div className="form-group">
-            <SelectEncargado encargado={encargado} setEncargado={setEncargado}
+            <SelectEncargado
+              encargado={encargado}
+              setEncargado={setEncargado}
               //estilo agregado dentro del componente 'SelectEncargado'
             />
           </div>
 
-          <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Guardar</button>
-
+          <button
+            type="submit"
+            className="mr-2 bg-ModificarToggle text-white p-2 rounded"
+          >
+            Guardar
+          </button>
         </form>
-        </div>
+      </div>
     </div>
   );
 }

@@ -1,13 +1,11 @@
 import Modal from "../Modal";
 import api from "../../api";
-import SelectPais from "../selectores/SelectPais";
-import SelectProvincia from "../selectores/SelectProvincia";
 import { useForm } from "react-hook-form";
+import SelectServicios from "../selectores/SelectServicios";
 import { useState } from "react";
 
-export default function CiudadForm({ title, isOpen, onClose }) {
-  const [pais, setPais] = useState("");
-  const [provincia, setProvincia] = useState("");
+export default function CategoriaForm({ title, isOpen, onClose }) {
+  const [servicioElegido, setServicioElegido] = useState(null);
 
   const {
     register,
@@ -16,14 +14,16 @@ export default function CiudadForm({ title, isOpen, onClose }) {
   } = useForm();
 
   const onSubmit = handleSubmit(async (data) => {
-    const { nombre, codigo } = data;
-    const newCiudad = {
+    const { nombre, descripcion, estrellas } = data;
+    const newCategoria = {
       nombre,
-      codigo_postal: codigo,
-      provincia,
+      descripcion,
+      servicioElegido,
+      estrellas,
     };
+    console.log(newCategoria);
     try {
-      const res = await api.ciudades.create(newCiudad);
+      const res = await api.categorias.create(newCategoria);
     } catch (error) {
       console.error("ERROR", error);
     }
@@ -32,24 +32,28 @@ export default function CiudadForm({ title, isOpen, onClose }) {
   return (
     <Modal title={title} isOpen={isOpen} onClose={onClose}>
       <form onSubmit={onSubmit}>
-        <SelectPais pais={pais} setPais={setPais} />
-        <SelectProvincia
-          pais={pais}
-          provincia={provincia}
-          setProvincia={setProvincia}
-        />
-        <input
-          type="number"
-          placeholder="codigo postal"
-          {...register("codigo", { required: true })}
-        />
-        {errors.codigo && <span>Este campo es requerido</span>}
         <input
           type="text"
           placeholder="nombre"
           {...register("nombre", { required: true })}
         />
         {errors.nombre && <span>Este campo es requerido</span>}
+        <input
+          type="text"
+          placeholder="descripcion"
+          {...register("descripcion", { required: true })}
+        />
+        {errors.descripcion && <span>Este campo es requerido</span>}
+        <SelectServicios
+          servicioElegido={servicioElegido}
+          setServicioElegido={setServicioElegido}
+        />
+        <input
+          type="number"
+          placeholder="estrellas"
+          {...register("estrellas", { required: true })}
+        />
+        {errors.estrellas && <span>Este campo es requerido</span>}
         <div className="flex justify-end mt-4">
           <button
             type="submit"

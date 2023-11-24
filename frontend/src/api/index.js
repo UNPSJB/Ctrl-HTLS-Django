@@ -13,6 +13,7 @@ const ENDPOINTS = [
   ["core", "encargados"],
   ["core", "clientes"],
   ["core", "tiposhabitaciones"],
+  ["core", "servicios"],
 ];
 
 // Manejar los errores de la API

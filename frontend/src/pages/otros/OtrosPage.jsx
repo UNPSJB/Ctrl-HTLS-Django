@@ -5,6 +5,8 @@ import ProvinciaForm from "../../components/otros/ProvinciaForm";
 import PaisForm from "../../components/otros/PaisForm";
 import EncargadoForm from "../../components/otros/EncargadoForm";
 import TipoHabitacionForm from "../../components/otros/TipoHabitacionForm";
+import ServicioForm from "../../components/otros/ServicioForm";
+import CategoriaForm from "../../components/otros/CategoriaForm";
 
 export default function OtrosPage() {
   const [ciudadFormOpen, setCiudadFormOpen] = useState(null);
@@ -12,6 +14,8 @@ export default function OtrosPage() {
   const [paisFormOpen, setPaisFormOpen] = useState(null);
   const [encargadoFormOpen, setEncargadoFormOpen] = useState(null);
   const [tipoHabitacionFormOpen, setTipoHabitacionFormOpen] = useState(null);
+  const [servicioFormOpen, setServicioFormOpen] = useState(null);
+  const [categoriaFormOpen, setCategoriaFormOpen] = useState(null);
 
   const secondNavBarChildren = (
     <>
@@ -35,6 +39,12 @@ export default function OtrosPage() {
         </button>
         <button onClick={() => setTipoHabitacionFormOpen(true)}>
           Crear Tipo Habitacion
+        </button>
+        <button onClick={() => setCategoriaFormOpen(true)}>
+          Crear Categoria
+        </button>
+        <button onClick={() => setServicioFormOpen(true)}>
+          Crear Servicio
         </button>
       </div>
       {ciudadFormOpen && (
@@ -70,6 +80,20 @@ export default function OtrosPage() {
           title={"Crear Tipo Habitacion"}
           isOpen={tipoHabitacionFormOpen}
           onClose={() => setTipoHabitacionFormOpen(false)}
+        />
+      )}
+      {servicioFormOpen && (
+        <ServicioForm
+          title={"Crear Servicio"}
+          isOpen={servicioFormOpen}
+          onClose={() => setServicioFormOpen(false)}
+        />
+      )}
+      {categoriaFormOpen && (
+        <CategoriaForm
+          title={"Crear Categoria"}
+          isOpen={categoriaFormOpen}
+          onClose={() => setCategoriaFormOpen}
         />
       )}
     </div>
