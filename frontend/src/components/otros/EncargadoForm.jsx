@@ -7,7 +7,7 @@ import { useState } from "react";
 import SelectTipoDocumento from "../selectores/SelectTipoDocumento";
 import { useForm } from "react-hook-form";
 
-export default function ClienteForm({ title, isOpen, onClose }) {
+export default function EncargadoForm({ title, isOpen, onClose }) {
   const [pais, setPais] = useState("");
   const [provincia, setProvincia] = useState("");
   const [ciudad, setCiudad] = useState("");
@@ -24,7 +24,7 @@ export default function ClienteForm({ title, isOpen, onClose }) {
       data;
     const newDireccion = { calle, numero, ciudad: ciudad };
     const { id: direccion } = await api.direcciones.create(newDireccion);
-    const newCliente = {
+    const newEncargado = {
       nombre,
       apellido,
       documento,
@@ -32,15 +32,13 @@ export default function ClienteForm({ title, isOpen, onClose }) {
       direccion,
       telefono,
       correo,
-      puntos: 0,
     };
     try {
-      const res = await api.clientes.create(newCliente);
+      const res = await api.encargados.create(newEncargado);
     } catch (error) {
       console.error("ERROR", error);
     }
   });
-
   return (
     <Modal title={title} isOpen={isOpen} onClose={onClose}>
       <form onSubmit={onSubmit}>
