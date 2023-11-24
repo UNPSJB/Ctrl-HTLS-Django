@@ -7,6 +7,7 @@ import SelectCategoria from "../../components/selectores/SelectCategoria";
 import SelectPais from "../../components/selectores/SelectPais";
 import SelectProvincia from "../../components/selectores/SelectProvincia";
 import SelectCiudad from "../../components/selectores/SelectCiudad";
+import Header from "../../components/header/Header";
 
 
 export default function HotelFormPage() {
@@ -50,76 +51,80 @@ export default function HotelFormPage() {
     navigate("/hoteles");
   });
 
+  const secondNavBarContent = (
+    <>
+      Gestionar Hotel
+    </>
+  )
   return (
     <div>
-      <div className="bg-NavBar text-Letras font-navBar font-extralight text-xl p-3 flex justify-around">
-        <h2> GESTIONAR HOTEL</h2>
-      </div>
-      {/*<h4>- Paso 1 -</h4>}*/}
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="nombre"className="block text-sm font-medium text-gray-700"></label>
+      <Header secondNavBarChildren={secondNavBarContent} />
+      <div className="mx-auto w-1/2 bg-FondoHotel p-1 rounded-lg border border-black-300">
+        <form onSubmit={onSubmit}>
+          <div className="form-group">
+            <label htmlFor="nombre"className="block text-sm font-medium text-gray-700"></label>
+            <input
+              type="text"
+              id="nombre"
+              placeholder="Nombre del Hotel"
+              {...register("nombre", { required: true })}
+              className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
+            />
+          {errors.nombre && <span className="error-message">Este campo es requerido</span>}
+          </div>
+
+          <SelectPais
+            pais={pais}
+            setPais={setPais}
+            className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+          />
+          <SelectProvincia
+            pais={pais}
+            provincia={provincia}
+            setProvincia={setProvincia}
+            className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+          />
+          <SelectCiudad
+            provincia={provincia}
+            ciudad={ciudad}
+            setCiudad={setCiudad}
+            className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+          />
+
+          <div className="form-group">
           <input
             type="text"
-            id="nombre"
-            placeholder="Nombre del Hotel"
-            {...register("nombre", { required: true })}
+            placeholder="Calle"
+            {...register("calle", { required: true })}
             className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
           />
-        {errors.nombre && <span className="error-message">Este campo es requerido</span>}
-        </div>
+          {errors.calle && <span>Este campo es requerido</span>}
+          </div>
 
-        <SelectPais
-          pais={pais}
-          setPais={setPais}
-          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
-        />
-        <SelectProvincia
-          pais={pais}
-          provincia={provincia}
-          setProvincia={setProvincia}
-          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
-        />
-        <SelectCiudad
-          provincia={provincia}
-          ciudad={ciudad}
-          setCiudad={setCiudad}
-          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
-        />
-
-        <div className="form-group">
-        <input
-          type="text"
-          placeholder="Calle"
-          {...register("calle", { required: true })}
-          className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
-        />
-        {errors.calle && <span>Este campo es requerido</span>}
-        </div>
-
-        <div className="form-group">
-        <input
-          type="number"
-          placeholder="Número"
-          {...register("numero", { required: true })}
-          className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
-        />
-        {errors.numero && <span>Este campo es requerido</span>}
-        </div>
-
-        <SelectCategoria categoria={categoria} setCategoria={setCategoria} 
-          className= "select-input text-Letras bg-FondoHotel w-full p-2 rounded-md"
-        />
-
-        <div className="form-group">
-          <SelectEncargado encargado={encargado} setEncargado={setEncargado}
-            //estilo agregado dentro del componente 'SelectEncargado'
+          <div className="form-group">
+          <input
+            type="number"
+            placeholder="Número"
+            {...register("numero", { required: true })}
+            className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
           />
+          {errors.numero && <span>Este campo es requerido</span>}
+          </div>
+
+          <SelectCategoria categoria={categoria} setCategoria={setCategoria} 
+            className= "select-input text-Letras bg-FondoHotel w-full p-2 rounded-md"
+          />
+
+          <div className="form-group">
+            <SelectEncargado encargado={encargado} setEncargado={setEncargado}
+              //estilo agregado dentro del componente 'SelectEncargado'
+            />
+          </div>
+
+          <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Guardar</button>
+
+        </form>
         </div>
-
-        <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Guardar</button>
-
-      </form>
     </div>
   );
 }
