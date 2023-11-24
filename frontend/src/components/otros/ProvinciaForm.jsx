@@ -18,6 +18,7 @@ export default function ProvinciaForm({ title, isOpen, onClose }) {
       pais,
       nombre,
     };
+    console.log(newProvincia);
     try {
       const res = await api.provincias.create(newProvincia);
     } catch (error) {
@@ -35,6 +36,20 @@ export default function ProvinciaForm({ title, isOpen, onClose }) {
           {...register("nombre", { required: true })}
         />
         {errors.nombre && <span>Este campo es requerido</span>}
+        <div className="flex justify-end mt-4">
+          <button
+            type="submit"
+            className="mr-2 bg-ModificarToggle text-white p-2 rounded"
+          >
+            Guardar
+          </button>
+          <button
+            onClick={onClose}
+            className="bg-AgregarHotel text-LetraAgregarHotel p-2 rounded"
+          >
+            Cerrar
+          </button>
+        </div>
       </form>
     </Modal>
   );

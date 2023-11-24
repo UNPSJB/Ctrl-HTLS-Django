@@ -22,7 +22,6 @@ export default function AlquilarPage() {
       </div>
     </>
   );
-  console.log(location)
   return (
     <div>
       <Header secondNavBarChildren={secondNavBarChildren} />

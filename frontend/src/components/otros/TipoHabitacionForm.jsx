@@ -3,6 +3,12 @@ import api from "../../api";
 import { useForm } from "react-hook-form";
 
 export default function TipoHabitacionForm({ title, isOpen, onClose }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const onSubmit = handleSubmit(async (data) => {
     const { nombre, descripcion, capacidad } = data;
     const newTipoHabitacion = {
@@ -16,12 +22,6 @@ export default function TipoHabitacionForm({ title, isOpen, onClose }) {
       console.error("ERROR", error);
     }
   });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   return (
     <Modal title={title} isOpen={isOpen} onClose={onClose}>

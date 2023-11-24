@@ -6,7 +6,7 @@ import HotelPage from "./pages/hoteles/HotelPage";
 import VendedoresPage from "./pages/vendedores/VendedoresPage";
 import VendedorFormPage from "./pages/vendedores/VendedorFormPage";
 import VendedorPage from "./pages/vendedores/VendedorPage";
-import Alquiler from "./pages/ventas/Alquiler";
+import Otros from "./pages/otros/OtrosPage";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <Route path="/vendedores" element={<VendedoresPage />} />
         <Route path="/vendedor-form" element={<VendedorFormPage />} />
         <Route path="/vendedor/:documento" element={<VendedorPage />} />
-        <Route path="/alquiler" element={<Alquiler />} />
+        <Route path="/otros" element={<Otros />} />
       </Routes>
     </BrowserRouter>
   );

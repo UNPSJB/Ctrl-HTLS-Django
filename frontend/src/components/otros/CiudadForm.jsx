@@ -33,7 +33,11 @@ export default function CiudadForm({ title, isOpen, onClose }) {
     <Modal title={title} isOpen={isOpen} onClose={onClose}>
       <form onSubmit={onSubmit}>
         <SelectPais pais={pais} setPais={setPais} />
-        <SelectProvincia provincia={provincia} setProvincia={setProvincia} />
+        <SelectProvincia
+          pais={pais}
+          provincia={provincia}
+          setProvincia={setProvincia}
+        />
         <input
           type="number"
           placeholder="codigo"
@@ -46,6 +50,20 @@ export default function CiudadForm({ title, isOpen, onClose }) {
           {...register("nombre", { required: true })}
         />
         {errors.nombre && <span>Este campo es requerido</span>}
+        <div className="flex justify-end mt-4">
+          <button
+            type="submit"
+            className="mr-2 bg-ModificarToggle text-white p-2 rounded"
+          >
+            Guardar
+          </button>
+          <button
+            onClick={onClose}
+            className="bg-AgregarHotel text-LetraAgregarHotel p-2 rounded"
+          >
+            Cerrar
+          </button>
+        </div>
       </form>
     </Modal>
   );
