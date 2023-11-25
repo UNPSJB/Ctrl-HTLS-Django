@@ -52,6 +52,7 @@ class HotelViewSet(viewsets.ModelViewSet):
     #     return Response(serializer.data)
     @action(detail=False, methods=["post"], serializer_class=DisponibilidadSerializer)
     def disponibilidad(self, request):
+        print(request.data)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         disponibilidad = serializer.save()
