@@ -26,7 +26,7 @@ export default function OtrosPage() {
   return (
     <div>
       <Header secondNavBarChildren={secondNavBarChildren} />
-      <div className="grid items-center justify-center">
+      <div className="grid grid-cols-3 items-center justify-center">
         <button className="border" onClick={() => setCiudadFormOpen(true)}>
           Crear Ciudad
         </button>
