@@ -16,7 +16,7 @@ export default function SelectServicios({
 
   return (
     <div>
-      <select value={servicioElegido ?? ""} onChange={handleChange}>
+      <select className= "select-input !text-Letras !bg-FondoHotel w-full p-2 rounded-md" value={servicioElegido ?? ""} onChange={handleChange}>
         <option value="todos">Servicio</option>
         {servicios.map((servicioItem) => (
           <option key={servicioItem.id} value={servicioItem.id}>

@@ -24,19 +24,21 @@ export default function ServicioForm({ title, isOpen, onClose }) {
 
   return (
     <Modal title={title} isOpen={isOpen} onClose={onClose}>
-      <form onSubmit={onSubmit}>
+      <form className="mx-auto bg-FondoHotel p-1 rounded-lg border border-black-300" onSubmit={onSubmit}>
         <input
           type="text"
           placeholder="nombre"
           {...register("nombre", { required: true })}
+          className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
-        {errors.nombre && <span>Este campo es requerido</span>}
+        {errors.nombre && <span className="text-Letras">Este campo es requerido</span>}
         <input
           type="text"
           placeholder="descripcion"
           {...register("descripcion", { required: true })}
+          className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
-        {errors.descripcion && <span>Este campo es requerido</span>}
+        {errors.descripcion && <span className="text-Letras">Este campo es requerido</span>}
         <div className="flex justify-end mt-4">
           <button
             type="submit"
