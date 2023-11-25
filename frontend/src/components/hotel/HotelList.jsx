@@ -22,7 +22,6 @@ function HotelList({ pais, provincia, ciudad, categoria }) {
         fin: "2023-11-02T14:00:00-00:00",
       });
       setHoteles(res.data);
-      console.log(hoteles);
     }
     hotelesDisponibles();
   }, []);
@@ -33,7 +32,7 @@ function HotelList({ pais, provincia, ciudad, categoria }) {
   //   "fin": "2023-11-02T14:00:00-00:00"
   // }
 
-  return 0;
+  return <>{console.log(hoteles)}</>;
   // return (
   //   <div>
   //     {hoteles.map((hotel) => (
