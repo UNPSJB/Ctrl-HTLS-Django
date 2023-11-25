@@ -41,65 +41,77 @@ export default function EncargadoForm({ title, isOpen, onClose }) {
   });
   return (
     <Modal title={title} isOpen={isOpen} onClose={onClose}>
-      <form onSubmit={onSubmit}>
+      <form className="mx-auto bg-FondoHotel p-1 rounded-lg border border-black-300" onSubmit={onSubmit}>
         <input
           type="text"
           placeholder="nombre"
           {...register("nombre", { required: true })}
+          className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
-        {errors.nombre && <span>Este campo es requerido</span>}
+        {errors.nombre && <span className="text-Letras">Este campo es requerido</span>}
 
         <input
           type="text"
           placeholder="apellido"
           {...register("apellido", { required: true })}
+          className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
-        {errors.apellido && <span>Este campo es requerido</span>}
+        {errors.apellido && <span className="text-Letras">Este campo es requerido</span>}
         <SelectTipoDocumento
           tipoDocumento={tipoDocumento}
           setTipoDocumento={setTipoDocumento}
+          className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
         <input
           type="number"
           placeholder="documento"
           {...register("documento", { required: true })}
+          className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
-        {errors.documento && <span>Este campo es requerido</span>}
-        <SelectPais pais={pais} setPais={setPais} />
+        {errors.documento && <span className="text-Letras">Este campo es requerido</span>}
+        <SelectPais pais={pais} setPais={setPais} 
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+        />
         <SelectProvincia
           pais={pais}
           provincia={provincia}
           setProvincia={setProvincia}
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
         <SelectCiudad
           provincia={provincia}
           ciudad={ciudad}
           setCiudad={setCiudad}
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
         <input
           type="text"
           placeholder="calle"
           {...register("calle", { required: true })}
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
-        {errors.calle && <span>Este campo es requerido</span>}
+        {errors.calle && <span className="text-Letras">Este campo es requerido</span>}
         <input
           type="number"
           placeholder="numero"
           {...register("numero", { required: true })}
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
-        {errors.numero && <span>Este campo es requerido</span>}
+        {errors.numero && <span className="text-Letras">Este campo es requerido</span>}
         <input
           type="number"
           placeholder="telefono"
           {...register("telefono", { required: true })}
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
-        {errors.telefono && <span>Este campo es requerido</span>}
+        {errors.telefono && <span className="text-Letras">Este campo es requerido</span>}
         <input
           type="correo"
           placeholder="e-mail"
           {...register("correo", { required: true })}
+          className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
-        {errors.email && <span>Este campo es requerido</span>}
+        {errors.correo && <span className="text-Letras">Este campo es requerido</span>}
 
         {/* Botones en la misma fila */}
         <div className="flex justify-end mt-4">

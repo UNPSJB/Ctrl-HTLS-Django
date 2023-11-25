@@ -27,23 +27,23 @@ export default function OtrosPage() {
     <div>
       <Header secondNavBarChildren={secondNavBarChildren} />
       <div className="grid grid-cols-3 items-center justify-center">
-        <button className="border" onClick={() => setCiudadFormOpen(true)}>
+        <button className="border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setCiudadFormOpen(true)}>
           Crear Ciudad
         </button>
-        <button onClick={() => setProvinciaFormOpen(true)}>
+        <button className= "border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setProvinciaFormOpen(true)}>
           Crear Provincia
         </button>
-        <button onClick={() => setPaisFormOpen(true)}>Crear Pais</button>
-        <button onClick={() => setEncargadoFormOpen(true)}>
+        <button className= "border text-Letras bg-FondoHotel w-full p-2 rounded-md"onClick={() => setPaisFormOpen(true)}>Crear Pais</button>
+        <button className="border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setEncargadoFormOpen(true)}>
           Crear Encargado
         </button>
-        <button onClick={() => setTipoHabitacionFormOpen(true)}>
+        <button className="border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setTipoHabitacionFormOpen(true)}>
           Crear Tipo Habitacion
         </button>
-        <button onClick={() => setCategoriaFormOpen(true)}>
+        <button className="border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setCategoriaFormOpen(true)}>
           Crear Categoria
         </button>
-        <button onClick={() => setServicioFormOpen(true)}>
+        <button className="border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setServicioFormOpen(true)}>
           Crear Servicio
         </button>
       </div>
@@ -93,7 +93,7 @@ export default function OtrosPage() {
         <CategoriaForm
           title={"Crear Categoria"}
           isOpen={categoriaFormOpen}
-          onClose={() => setCategoriaFormOpen}
+          onClose={() => setCategoriaFormOpen(false)}
         />
       )}
     </div>
