@@ -1,7 +1,5 @@
 from rest_framework import serializers
-from rest_framework.serializers import SerializerMethodField
-from hotel.models import Hotel, HotelVendedor, Habitacion
-from core.models import Vendedor
+from hotel.models import Hotel
 from hotel.serializer.otros import (
     TemporadaSerializer,
     HabitacionSerializer,
