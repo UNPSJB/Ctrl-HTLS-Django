@@ -47,13 +47,30 @@ class Hotel(models.Model):
             pass
         return qs
 
-    def paquetes_disponibles(self, habitaciones, inicio, fin, flexible=False):
-        qs = self.paquetes.filter(fecha_inicio__gte=inicio, fecha_fin__lte=fin)
+    def paquetes_disponibles(self, inicio, fin, flexible=False):
+        qs = self.paquetes.filter(fecha_inicio__gt=fin) | self.paquetes.filter(
+            fecha_fin__lt=inicio
+        )
         if flexible:
             # TODO: Flexibilidad al seleccionar alquileres, si se superpone con
             # alquileres por unos dias pero no el total del rango inicio fin retornar True
             pass
         return qs
+
+    def get_vendedores(self):
+        vendedores = HotelVendedor.objects.filter(hotel=self).values_list(
+            "vendedor__documento", flat=True
+        )
+        return Vendedor.objects.filter(documento__in=vendedores)
+
+    def habitaciones_disponibles(self, desde, hasta):
+        habitaciones = self.habitaciones.all()
+        habitaciones_disponibles = [
+            habitacion
+            for habitacion in habitaciones
+            if habitacion.habitacion_disponible(desde, hasta)
+        ]
+        return habitaciones_disponibles
 
 
 class Habitacion(models.Model):

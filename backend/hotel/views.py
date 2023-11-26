@@ -42,9 +42,16 @@ class HotelViewSet(viewsets.ModelViewSet):
         if request.method == "POST":
             serializer = HotelPostSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-            # Aquí puedes manejar la creación de tu objeto
             hotel = self.get_object()
-            return Response(HotelFullSerializer(hotel).data)
+            return Response(
+                HotelFullSerializer(
+                    hotel,
+                    context={
+                        "inicio": serializer.validated_data["inicio"],
+                        "fin": serializer.validated_data["fin"],
+                    },
+                ).data
+            )
         else:
             return super().retrieve(request, pk)
 

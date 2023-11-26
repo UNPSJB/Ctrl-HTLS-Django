@@ -2,7 +2,11 @@ from rest_framework import serializers
 from rest_framework.serializers import SerializerMethodField
 from hotel.models import Hotel, HotelVendedor, Habitacion
 from core.models import Vendedor
-from hotel.serializer.otros import TemporadaSerializer, HabitacionSerializer
+from hotel.serializer.otros import (
+    TemporadaSerializer,
+    HabitacionSerializer,
+    PaqueteSerializer,
+)
 from core.serializer.ubicacion import UbicacionSerializer
 from core.serializer.persona import EncargadoSerializer, VendedorSerializer
 from core.serializer.otro import CategoriaSerializer
@@ -26,17 +30,32 @@ class HotelMidSerializer(HotelSerializer):
 
 class HotelFullSerializer(HotelMidSerializer):
     vendedores = serializers.SerializerMethodField()
+    habitaciones_disponibles = serializers.SerializerMethodField()
+    paquetes_disponibles = serializers.SerializerMethodField()
 
     class Meta(HotelMidSerializer.Meta):
-        fields = HotelMidSerializer.Meta.fields + ["vendedores"]
+        fields = HotelMidSerializer.Meta.fields + [
+            "vendedores",
+            "habitaciones_disponibles",
+            "paquetes_disponibles",
+        ]
 
     def get_vendedores(self, obj):
-        vendedores = HotelVendedor.objects.filter(hotel=obj).values_list(
-            "vendedor__documento", flat=True
-        )
-        return VendedorSerializer(
-            Vendedor.objects.filter(documento__in=vendedores), many=True
-        ).data
+        vendedores = obj.get_vendedores()
+        return VendedorSerializer(vendedores, many=True).data
+
+    def get_habitaciones_disponibles(self, obj):
+        desde = self.context["inicio"]
+        hasta = self.context["fin"]
+        habitaciones_disponibles = obj.habitaciones_disponibles(desde, hasta)
+        return HabitacionSerializer(habitaciones_disponibles, many=True).data
+
+    def get_paquetes_disponibles(self, obj):
+        desde = self.context["inicio"]
+        hasta = self.context["fin"]
+        flexible = self.context.get("flexible", False)
+        paquetes_disponibles = obj.paquetes_disponibles(desde, hasta, flexible)
+        return PaqueteSerializer(paquetes_disponibles, many=True).data
 
 
 class DisponibilidadSerializer(serializers.Serializer):
@@ -62,19 +81,13 @@ class DisponibilidadSerializer(serializers.Serializer):
 class HotelPostSerializer(serializers.Serializer):
     inicio = serializers.DateTimeField()
     fin = serializers.DateTimeField()
-    habitaciones = serializers.SerializerMethodField()
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
         return attrs
 
-    def get_habitaciones(self, obj):
-        habitaciones = Habitacion.objects.filter(hotel=obj)
-        return HabitacionSerializer(habitaciones, many=True).data
-
     def create(self, validated_data):
-        desde = validated_data["inicio"]
-        hasta = validated_data["fin"]
+        hotel = self.context["view"].get_object()
+        hotel_serializado = HotelFullSerializer(hotel).data
 
-        hoteles_serializados = HotelFullSerializer(self, many=True)
-        return hoteles_serializados.data
+        return hotel_serializado
