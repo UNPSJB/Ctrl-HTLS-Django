@@ -40,17 +40,15 @@ class Hotel(models.Model):
         )
 
     def temporadas_disponibles(self, inicio, fin, flexible=False):
-        qs = self.temporadas.filter(fecha_inicio__lte=inicio, fecha_fin__gte=fin)
+        temporadas = self.temporadas.filter(fecha_inicio__lt=inicio, fecha_fin__gt=fin)
         if flexible:
             # TODO: Flexibilidad al seleccionar alquileres, si se superpone con
             # alquileres por unos dias pero no el total del rango inicio fin retornar True
             pass
-        return qs
+        return temporadas
 
     def paquetes_disponibles(self, inicio, fin, flexible=False):
-        qs = self.paquetes.filter(fecha_inicio__gt=fin) | self.paquetes.filter(
-            fecha_fin__lt=inicio
-        )
+        qs = self.paquetes.filter(fecha_inicio__gt=inicio, fecha_fin__lt=fin)
         if flexible:
             # TODO: Flexibilidad al seleccionar alquileres, si se superpone con
             # alquileres por unos dias pero no el total del rango inicio fin retornar True

@@ -32,12 +32,14 @@ class HotelFullSerializer(HotelMidSerializer):
     vendedores = serializers.SerializerMethodField()
     habitaciones_disponibles = serializers.SerializerMethodField()
     paquetes_disponibles = serializers.SerializerMethodField()
+    temporadas = serializers.SerializerMethodField()
 
     class Meta(HotelMidSerializer.Meta):
         fields = HotelMidSerializer.Meta.fields + [
             "vendedores",
             "habitaciones_disponibles",
             "paquetes_disponibles",
+            "temporadas",
         ]
 
     def get_vendedores(self, obj):
@@ -56,6 +58,13 @@ class HotelFullSerializer(HotelMidSerializer):
         flexible = self.context.get("flexible", False)
         paquetes_disponibles = obj.paquetes_disponibles(desde, hasta, flexible)
         return PaqueteSerializer(paquetes_disponibles, many=True).data
+
+    def get_temporadas(self, obj):
+        desde = self.context["inicio"]
+        hasta = self.context["fin"]
+        flexible = self.context.get("flexible", False)
+        temporadas = obj.temporadas_disponibles(desde, hasta, flexible)
+        return TemporadaSerializer(temporadas, many=True).data
 
 
 class DisponibilidadSerializer(serializers.Serializer):
