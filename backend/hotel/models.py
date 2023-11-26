@@ -11,11 +11,13 @@ class HotelManager(models.Manager):
         qs = self.get_queryset()
         qs = qs.filter(direccion__ciudad=localidad)
 
-        hoteles_disponibles = qs.exclude(habitaciones__alquileres__fecha_inicio__lte=hasta, habitaciones__alquileres__fecha_fin__gte=desde)
+        hoteles_disponibles = qs.exclude(
+            habitaciones__alquileres__fecha_inicio__lte=hasta,
+            habitaciones__alquileres__fecha_fin__gte=desde,
+        )
 
-        print(hoteles_disponibles)
-        # return habitaciones_disponilbes
         return hoteles_disponibles
+
 
 class Hotel(models.Model):
     nombre = models.CharField(max_length=100)
@@ -53,44 +55,13 @@ class Hotel(models.Model):
             pass
         return qs
 
-    # def verificar_disponibilidad(self, desde, hasta, pasajeros):
-    #     # Devuelve las habitaciones que puedan alojar la cantidad de pasajeros
-    #     habitaciones_disponibles = Habitacion.objects.filter(
-    #         hotel=self, tipo_habitacion__capacidad__gte=pasajeros
-    #     )
-    #     # Se filtras la habitaciones obtenidas anteriormente por las fechas desde y hasta
-    #     habitaciones_disponibles = habitaciones_disponibles.exclude(
-    #         Q(alquileres__fecha_inicio__lte=hasta, alquileres__fecha_fin__gte=desde)
-    #         | Q(alquileres__fecha_inicio__gte=desde, alquileres__fecha_fin__lte=hasta)
-    #     )
-
-    #     print(habitaciones_disponibles)
-    #     # return habitaciones_disponilbes
-    #     return 0
-
-    # def verificar_disponibilidad(self, habitaciones, desde, hasta, flexible=False):
-    #     if len(habitaciones) == 0:
-    #         raise ValidationError("Debe ingresar habitaciones")
-    #     if len(set([h.hotel.pk for h in habitaciones])) != 1:
-    #         raise ValidationError("Las habitaciones deben ser del mismo hotel")
-    #     descuentos = self.descuentos_disponibles(len(habitaciones))
-    #     paquetes = self.paquetes_disponibles(
-    #         habitaciones, desde, hasta, flexible=flexible
-    #     )
-    #     temporadas = self.temporadas_disponibles(desde, hasta, flexible=flexible)
-    #     total = sum([h.precio for h in habitaciones])
-    #     return {
-    #         "precio": total,
-    #         "temporadas": temporadas,
-    #         "paquetes": paquetes,
-    #         "descuentos": descuentos,
-    #     }
-
 
 class Habitacion(models.Model):
     numero_de_habitacion = models.PositiveIntegerField()
     piso = models.PositiveIntegerField()
-    hotel = models.ForeignKey(Hotel, related_name="habitaciones", on_delete=models.CASCADE)
+    hotel = models.ForeignKey(
+        Hotel, related_name="habitaciones", on_delete=models.CASCADE
+    )
     tipo_habitacion = models.ForeignKey(
         TipoHabitacion, related_name="habitaciones", on_delete=models.CASCADE
     )
