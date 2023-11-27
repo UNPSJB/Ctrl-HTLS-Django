@@ -15,19 +15,23 @@ function VendedoresPage() {
   const secondNavBarContent = (
     <>
       <Filtro>
-        <SelectPais pais={pais} setPais={setPais} />
+        <SelectPais pais={pais} setPais={setPais}
+          className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md" 
+        />
         <SelectProvincia
           pais={pais}
           provincia={provincia}
           setProvincia={setProvincia}
+          className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
         <SelectCiudad
           provincia={provincia}
           ciudad={ciudad}
           setCiudad={setCiudad}
+          className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
       </Filtro>
-      <h3 className="text-3xl">VENDEDORES</h3>
+      <h3 className="text-3xl ">VENDEDORES</h3>
       <ButtonLink texto={"Agregar Vendedor"} url={"/vendedor-form"} />
     </>
   );
