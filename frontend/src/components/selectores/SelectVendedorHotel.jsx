@@ -17,11 +17,8 @@ export default function SelectVendedorHotel({
       >
         <option value="">Vendedores Asignados</option>
         {vendedores.map((vendedorItem) => (
-          <option
-            key={vendedorItem.vendedor.documento}
-            value={vendedorItem.vendedor.documento}
-          >
-            {vendedorItem.vendedor.nombre} {vendedorItem.vendedor.apellido}
+          <option key={vendedorItem.documento} value={vendedorItem.documento}>
+            {vendedorItem.nombre} {vendedorItem.apellido}
           </option>
         ))}
       </select>
