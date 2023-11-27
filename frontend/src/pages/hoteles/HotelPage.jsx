@@ -26,8 +26,8 @@ function HotelPage() {
   useEffect(() => {
     async function obtenerHotel() {
       const res = await getHotel(id, {
-        inicio: "2023-11-02T14:00:00-00:00",
-        fin: "2024-11-02T14:00:00-00:00",
+        inicio: "2020-11-02T14:00:00-00:00",
+        fin: "2030-11-02T14:00:00-00:00",
       });
       setHotel(res.data);
     }
