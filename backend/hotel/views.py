@@ -4,21 +4,22 @@ from rest_framework.response import Response
 from django_filters import rest_framework as filters
 from .filters import HotelFilter
 from .models import Hotel, Habitacion, PaquetePromocional, Descuento, Temporada
-from hotel.serializers import (
-    HotelSerializer,
-    HabitacionSerializer,
-    HotelMidSerializer,
-    PaqueteSerializer,
-    DescuentoSerializer,
-    TemporadaSerializer,
-)
 
 from hotel.serializer.hotel import (
     HotelFullSerializer,
     DisponibilidadSerializer,
     HotelPostSerializer,
+    HotelSerializer,
+    HabitacionSerializer,
+    HotelMidSerializer,
+    
 )
 
+from hotel.serializer.otros import (
+    PaqueteSerializer,
+    DescuentoSerializer,
+    TemporadaSerializer,
+)
 
 class HotelViewSet(viewsets.ModelViewSet):
     queryset = Hotel.objects.all()
