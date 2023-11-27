@@ -22,7 +22,7 @@ export default function SelectEncargado({ encargado, setEncargado }) {
         defaultOption="Encargados"
         getValue={(item) => item.documento}
         getLabel={(item) => item.nombre + " " + item.apellido}
-        className= "select-input !text-Letras !bg-FondoHotel w-full p-2 rounded-md"
+        className="w-full h-full p-2 bg-white rounded-lg border-2 border-violet-500 flex-col justify-start items-start gap-2.5 inline-flex"
       />
     </div>
   );

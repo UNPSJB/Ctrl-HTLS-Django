@@ -67,7 +67,7 @@ export default function HotelFormPage() {
               id="nombre"
               placeholder="Nombre del Hotel"
               {...register("nombre", { required: true })}
-              className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
+              className="w-full h-full p-2 bg-white rounded-lg border-2 border-violet-500 flex-col justify-start items-start gap-2.5 inline-flex"
             />
             {errors.nombre && (
               <span className="error-message">Este campo es requerido</span>
@@ -77,19 +77,19 @@ export default function HotelFormPage() {
           <SelectPais
             pais={pais}
             setPais={setPais}
-            className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+            className="w-full h-full p-2 bg-white rounded-lg border-2 border-violet-500 flex-col justify-start items-start gap-2.5 inline-flex"
           />
           <SelectProvincia
             pais={pais}
             provincia={provincia}
             setProvincia={setProvincia}
-            className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+            className="w-full h-full p-2 bg-white rounded-lg border-2 border-violet-500 flex-col justify-start items-start gap-2.5 inline-flex"
           />
           <SelectCiudad
             provincia={provincia}
             ciudad={ciudad}
             setCiudad={setCiudad}
-            className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
+            className="w-full h-full p-2 bg-white rounded-lg border-2 border-violet-500 flex-col justify-start items-start gap-2.5 inline-flex"
           />
 
           <div className="form-group">
@@ -97,7 +97,7 @@ export default function HotelFormPage() {
               type="text"
               placeholder="Calle"
               {...register("calle", { required: true })}
-              className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
+              className="w-full h-full p-2 bg-white rounded-lg border-2 border-violet-500 flex-col justify-start items-start gap-2.5 inline-flex"
             />
             {errors.calle && <span>Este campo es requerido</span>}
           </div>
@@ -107,7 +107,7 @@ export default function HotelFormPage() {
               type="number"
               placeholder="Número"
               {...register("numero", { required: true })}
-              className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
+              className="w-full h-full p-2 bg-white rounded-lg border-2 border-violet-500 flex-col justify-start items-start gap-2.5 inline-flex"
             />
             {errors.numero && <span>Este campo es requerido</span>}
           </div>
@@ -115,7 +115,7 @@ export default function HotelFormPage() {
           <SelectCategoria
             categoria={categoria}
             setCategoria={setCategoria}
-            className="select-input text-Letras bg-FondoHotel w-full p-2 rounded-md"
+            className="w-full h-full p-2 bg-white rounded-lg border-2 border-violet-500 flex-col justify-start items-start gap-2.5 inline-flex"
           />
 
           <div className="form-group">
@@ -128,9 +128,9 @@ export default function HotelFormPage() {
 
           <button
             type="submit"
-            className="mr-2 bg-ModificarToggle text-white p-2 rounded"
+            className="w-100 h-8 p-2 bg-violet-500 rounded-lg flex-col justify-center items-start gap-2.5 inline-flex"
           >
-            Guardar
+            <div class="text-center text-white text-base font-normal font-['Noto Sans']">Guardar</div>
           </button>
         </form>
       </div>
