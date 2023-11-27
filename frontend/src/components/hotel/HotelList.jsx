@@ -3,7 +3,7 @@ import api from "../../api";
 //import { getHoteles } from "../../api/hotel";
 import HotelCard from "./HotelCard";
 
-function HotelList({ pais, provincia, ciudad, categoria }) {
+function HotelList({ pais, provincia, ciudad, categoria, fechaEntrada, fechaSalida }) {
   const [hoteles, setHoteles] = useState([]);
 
   useEffect(() => {

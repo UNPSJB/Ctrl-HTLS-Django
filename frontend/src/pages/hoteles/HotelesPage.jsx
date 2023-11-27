@@ -5,7 +5,6 @@ import SelectCiudad from "../../components/selectores/SelectCiudad";
 import SelectCategoria from "../../components/selectores/SelectCategoria";
 import HotelList from "../../components/hotel/HotelList";
 import Filtro from "../../components/Filtro";
-import Fecha from "../../components/Fecha";
 import Header from "../../components/header/Header";
 import ButtonLink from "../../components/helpers/ButtonLink";
 
@@ -14,6 +13,8 @@ function HotelesPage() {
   const [provincia, setProvincia] = useState("");
   const [ciudad, setCiudad] = useState("");
   const [categoria, setCategoria] = useState(null);
+  const [fechaEntrada, setFechaEntrada] = useState("");
+  const [fechaSalida, setFechaSalida] = useState("");
 
   const secondNavBarContent = (
     <>
@@ -40,8 +41,8 @@ function HotelesPage() {
           categoria={categoria}
           setCategoria={setCategoria}
         />
-        <Fecha />
-        <Fecha />
+        <input type="date" value={fechaEntrada} onChange={(e) => setFechaEntrada(e.target.value)} />
+        <input type="date" value={fechaSalida} onChange={(e) => setFechaSalida(e.target.value)} />
       </Filtro>
       <h2 className="text-3xl">HOTELES</h2>
       <div>
@@ -58,6 +59,8 @@ function HotelesPage() {
         provincia={provincia}
         ciudad={ciudad}
         categoria={categoria}
+        fechaEntrada={fechaEntrada}
+        fechaSalida={fechaSalida}
       />
     </div>
   );
