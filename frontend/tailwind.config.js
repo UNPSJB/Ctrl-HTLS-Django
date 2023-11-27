@@ -14,7 +14,7 @@ export default {
         Letras: 'rgb(203, 214, 255)',
         FrecuentesItems: 'rgb(45, 41, 73)',
         FondoHotel: 'rgb(45, 41, 73)',
-        AgregarHotel: 'rgb(210, 203, 255)',
+        AgregarHotel: 'rgb(220, 203, 255)',
         LetraAgregarHotel: 'rgb(16, 17, 45)',
         PlusButton: 'rgb(122, 92, 250)',
         ModificarToggle: 'rgb(122, 92, 250)',
