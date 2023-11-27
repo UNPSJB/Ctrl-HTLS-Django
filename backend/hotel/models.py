@@ -40,20 +40,27 @@ class Hotel(models.Model):
         )
 
     def temporadas_disponibles(self, inicio, fin, flexible=False):
-        temporadas = self.temporadas.filter(fecha_inicio__lt=inicio, fecha_fin__gt=fin)
+        temporadas = self.temporadas.filter(fecha_fin__lt=inicio, fecha_inicio__gt=fin)
         if flexible:
             # TODO: Flexibilidad al seleccionar alquileres, si se superpone con
             # alquileres por unos dias pero no el total del rango inicio fin retornar True
             pass
+        print(temporadas)
         return temporadas
 
     def paquetes_disponibles(self, inicio, fin, flexible=False):
-        qs = self.paquetes.filter(fecha_inicio__gt=inicio, fecha_fin__lt=fin)
+        # qs = self.paquetes.filter(fecha_inicio__gt=inicio, fecha_fin__lt=fin)
+        paquetes = self.paquetes.all()
+        paquetes_disponibles = [
+            paquete
+            for paquete in paquetes
+            if paquete.paquete_disponible(inicio, fin)
+        ]
         if flexible:
             # TODO: Flexibilidad al seleccionar alquileres, si se superpone con
             # alquileres por unos dias pero no el total del rango inicio fin retornar True
             pass
-        return qs
+        return paquetes_disponibles
 
     def get_vendedores(self):
         vendedores = HotelVendedor.objects.filter(hotel=self).values_list(
@@ -120,6 +127,9 @@ class PaquetePromocional(models.Model):
     def __str__(self):
         return self.nombre
 
+    def paquete_disponible(self, inicio, fin):
+        disponible = not self.alquileres.filter(fecha_fin__lt=inicio, fecha_inicio__gt=fin).exists()
+        return disponible
 
 class HotelVendedor(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
@@ -167,6 +177,10 @@ class Temporada(models.Model):
 
     def __str__(self):
         return f"Hotel {self.hotel} - Temporada {self.tipo} - Desde dia {self.fecha_inicio} hasta {self.fecha_fin}"
+    
+    # def temporada_disponible(self, inicio, fin):
+    #     disponible = not self.temporadas.filter(fecha_fin__lt=inicio, fecha_inicio__gt=fin).exists()
+    #     return disponible
 
     # Modelo intermedio para representar la relación entre un paquete y una habitación
 
