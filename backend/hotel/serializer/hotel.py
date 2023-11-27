@@ -8,6 +8,7 @@ from hotel.serializer.otros import (
 from core.serializer.ubicacion import UbicacionSerializer
 from core.serializer.persona import EncargadoSerializer, VendedorSerializer
 from core.serializer.otro import CategoriaSerializer
+from collections import defaultdict
 
 
 class HotelSerializer(serializers.ModelSerializer):
@@ -24,6 +25,13 @@ class HotelMidSerializer(HotelSerializer):
 
     class Meta(HotelSerializer.Meta):
         fields = HotelSerializer.Meta.fields + ["categoria"]
+
+
+def agrupar_habitaciones_por_tipo(habitaciones):
+    habitaciones_por_tipo = defaultdict(list)
+    for habitacion in habitaciones:
+        habitaciones_por_tipo[habitacion.tipo_habitacion.nombre].append(habitacion)
+    return habitaciones_por_tipo
 
 
 class HotelFullSerializer(HotelMidSerializer):
@@ -48,7 +56,11 @@ class HotelFullSerializer(HotelMidSerializer):
         desde = self.context["inicio"]
         hasta = self.context["fin"]
         habitaciones_disponibles = obj.habitaciones_disponibles(desde, hasta)
-        return HabitacionSerializer(habitaciones_disponibles, many=True).data
+        habitaciones_agrupadas = agrupar_habitaciones_por_tipo(habitaciones_disponibles)
+        return {
+            tipo: HabitacionSerializer(habitaciones, many=True).data
+            for tipo, habitaciones in habitaciones_agrupadas.items()
+        }
 
     def get_paquetes_disponibles(self, obj):
         desde = self.context["inicio"]
