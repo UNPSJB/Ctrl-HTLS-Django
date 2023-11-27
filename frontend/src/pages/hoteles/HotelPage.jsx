@@ -90,14 +90,14 @@ function HotelPage() {
             />
           </div>
 
-          {/* <HabitacionList
-            habitaciones={hotel.habitaciones_por_tipo}
+          <HabitacionList
+            habitaciones={hotel.habitaciones_disponibles}
             onCountChange={handleTipoHabitacionCountChange}
           />
           <PaquetesList
-            paquetes={hotel.paquetes}
+            paquetes={hotel.paquetes_disponibles}
             onPaqueteToggle={handlePaqueteToggle}
-          /> */}
+          />
         </>
       ) : (
         <p className="text-gray-500">Cargando...</p>

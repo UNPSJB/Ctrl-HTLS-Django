@@ -2,17 +2,14 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
-function HabitacionCard({ tipo, onCountChange }) {
+function HabitacionCard({ tipo, habitaciones, onCountChange }) {
   const [count, setCount] = useState(0);
 
   const incrementCount = () => {
-    if (count < tipo.habitaciones.length) {
+    if (count < habitaciones.length) {
       const newCount = count + 1;
       setCount(newCount);
-      onCountChange(
-        tipo.tipo_habitacion.nombre,
-        tipo.habitaciones.slice(0, newCount)
-      );
+      onCountChange(tipo, habitaciones.slice(0, newCount));
     }
   };
 
@@ -20,22 +17,17 @@ function HabitacionCard({ tipo, onCountChange }) {
     if (count > 0) {
       const newCount = count - 1;
       setCount(newCount);
-      onCountChange(
-        tipo.tipo_habitacion.nombre,
-        tipo.habitaciones.slice(0, newCount)
-      );
+      onCountChange(tipo, habitaciones.slice(0, newCount));
     }
   };
 
   return (
     <div className="p-4 border rounded shadow">
-      <h3 className="uppercase text-3xl text-blue-600">
-        {tipo.tipo_habitacion.nombre}
-      </h3>
-      <p className="text-gray-600">{tipo.tipo_habitacion.descripcion}</p>
+      <h3 className="uppercase text-3xl text-blue-600">{tipo}</h3>
+      {/* <p className="text-gray-600">{tipo.tipo_habitacion.descripcion}</p> */}
       <p className="text-green-500">
-        {tipo.habitaciones.length}{" "}
-        {tipo.habitaciones.length == 1
+        {habitaciones.length}{" "}
+        {habitaciones.length == 1
           ? "Habitación disponible"
           : "Habitaciones disponibles"}
       </p>
