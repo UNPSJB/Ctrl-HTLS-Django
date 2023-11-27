@@ -12,7 +12,7 @@ from hotel.serializer.hotel import (
     HotelSerializer,
     HabitacionSerializer,
     HotelMidSerializer,
-    
+    HotelMiniSerializer
 )
 
 from hotel.serializer.otros import (
@@ -23,7 +23,7 @@ from hotel.serializer.otros import (
 
 class HotelViewSet(viewsets.ModelViewSet):
     queryset = Hotel.objects.all()
-    serializer_class = HotelSerializer
+    serializer_class = HotelMiniSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = HotelFilter
 

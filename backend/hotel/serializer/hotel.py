@@ -11,6 +11,11 @@ from core.serializer.otro import CategoriaSerializer
 from collections import defaultdict
 
 
+class HotelMiniSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Hotel
+        fields= ["id","nombre","encargado","direccion","categoria"]
+
 class HotelSerializer(serializers.ModelSerializer):
     ubicacion = UbicacionSerializer(source="*", read_only=True)
     encargado = EncargadoSerializer()

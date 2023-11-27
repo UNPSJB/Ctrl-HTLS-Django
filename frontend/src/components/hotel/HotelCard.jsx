@@ -5,7 +5,7 @@ import hotelimg from "../../public/hotel2.jpeg";
 import { Link } from "react-router-dom";
 
 function HotelCard({ hotel }) {
-  const [isToggled, setToggled] = useState(hotel.estado);
+  const [isToggled, setToggled] = useState(hotel.habilitado);
 
   const toggle = () => {
     setToggled(!isToggled);

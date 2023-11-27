@@ -5,8 +5,8 @@ function SelectTipoHabitacion({ tipoHabitacion, setTipoHabitacion }) {
   const [tipoHabitaciones, setTipoHabitaciones] = useState([]);
 
   useEffect(() => {
-    api.tipoHabitaciones.getAll().then((res) => {
-      setTipoHabitaciones(res.data);
+    api.tiposhabitaciones.getAll().then((res) => {
+      setTipoHabitaciones(res);
     });
   }, []);
 
@@ -17,7 +17,7 @@ function SelectTipoHabitacion({ tipoHabitacion, setTipoHabitacion }) {
       <select value={tipoHabitacion ?? ""} onChange={handleChange}>
         <option value="todos">Tipos de Habitacion</option>
         {tipoHabitaciones.map((tipoHabitacionItem) => (
-          <option key={tipoHabitacionItem.nombre} value={tipoHabitacionItem.nombre}>
+          <option key={tipoHabitacionItem.nombre} value={tipoHabitacionItem.id}>
             {tipoHabitacionItem.nombre}
           </option>
         ))}

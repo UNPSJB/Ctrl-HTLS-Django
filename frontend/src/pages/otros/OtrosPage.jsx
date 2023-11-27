@@ -7,6 +7,8 @@ import EncargadoForm from "../../components/otros/EncargadoForm";
 import TipoHabitacionForm from "../../components/otros/TipoHabitacionForm";
 import ServicioForm from "../../components/otros/ServicioForm";
 import CategoriaForm from "../../components/otros/CategoriaForm";
+import HabitacionForm from "../../components/otros/HabitacionForm";
+
 
 export default function OtrosPage() {
   const [ciudadFormOpen, setCiudadFormOpen] = useState(null);
@@ -16,6 +18,7 @@ export default function OtrosPage() {
   const [tipoHabitacionFormOpen, setTipoHabitacionFormOpen] = useState(null);
   const [servicioFormOpen, setServicioFormOpen] = useState(null);
   const [categoriaFormOpen, setCategoriaFormOpen] = useState(null);
+  const [habitacionFormOpen, setHabitacionFormOpen] = useState(null);
 
   const secondNavBarChildren = (
     <>
@@ -30,10 +33,10 @@ export default function OtrosPage() {
         <button className="border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setCiudadFormOpen(true)}>
           Crear Ciudad
         </button>
-        <button className= "border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setProvinciaFormOpen(true)}>
+        <button className="border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setProvinciaFormOpen(true)}>
           Crear Provincia
         </button>
-        <button className= "border text-Letras bg-FondoHotel w-full p-2 rounded-md"onClick={() => setPaisFormOpen(true)}>Crear Pais</button>
+        <button className="border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setPaisFormOpen(true)}>Crear Pais</button>
         <button className="border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setEncargadoFormOpen(true)}>
           Crear Encargado
         </button>
@@ -45,6 +48,9 @@ export default function OtrosPage() {
         </button>
         <button className="border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setServicioFormOpen(true)}>
           Crear Servicio
+        </button>
+        <button className="border text-Letras bg-FondoHotel w-full p-2 rounded-md" onClick={() => setHabitacionFormOpen(true)}>
+          Crear Habitacion
         </button>
       </div>
       {ciudadFormOpen && (
@@ -94,6 +100,13 @@ export default function OtrosPage() {
           title={"Crear Categoria"}
           isOpen={categoriaFormOpen}
           onClose={() => setCategoriaFormOpen(false)}
+        />
+      )}
+      {habitacionFormOpen && (
+        <HabitacionForm
+          title={"Crear Habitacion"}
+          isOpen={habitacionFormOpen}
+          onClose={() => setHabitacionFormOpen(false)}
         />
       )}
     </div>
