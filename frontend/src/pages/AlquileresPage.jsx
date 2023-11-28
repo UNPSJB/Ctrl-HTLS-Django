@@ -12,8 +12,8 @@ function AlquileresPage() {
   const [provincia, setProvincia] = useState("");
   const [ciudad, setCiudad] = useState("");
   const [categoria, setCategoria] = useState(null);
-  const [fechaEntrada, setFechaEntrada] = useState("");
-  const [fechaSalida, setFechaSalida] = useState("");
+  const [inicio, setInicio] = useState("");
+  const [fin, setFin] = useState("");
 
   const secondNavBarContent = (
     <>
@@ -42,13 +42,13 @@ function AlquileresPage() {
         />
         <input
           type="date"
-          value={fechaEntrada}
-          onChange={(e) => setFechaEntrada(e.target.value)}
+          value={inicio}
+          onChange={(e) => setInicio(e.target.value)}
         />
         <input
           type="date"
-          value={fechaSalida}
-          onChange={(e) => setFechaSalida(e.target.value)}
+          value={fin}
+          onChange={(e) => setFin(e.target.value)}
         />
       </Filtro>
       <h2 className="text-3xl">HOTELES</h2>
@@ -63,8 +63,8 @@ function AlquileresPage() {
         provincia={provincia}
         ciudad={ciudad}
         categoria={categoria}
-        fechaEntrada={fechaEntrada}
-        fechaSalida={fechaSalida}
+        inicio={inicio}
+        fin={fin}
       />
     </div>
   );

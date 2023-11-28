@@ -22,12 +22,13 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/hoteles" element={<HotelesPage />} />
         <Route path="/hotel-form" element={<HotelFormPage />} />
-        <Route path="/hotel/:id" element={<AlquilarHotel />} />
+        <Route path="/alquilar/:id" element={<AlquilarHotel />} />
+        {/* <Route path="/hotel/:id" element={<AlquilarHotel />} /> */}
         <Route path="/vendedores" element={<VendedoresPage />} />
         <Route path="/vendedor-form" element={<VendedorFormPage />} />
         <Route path="/vendedor/:documento" element={<VendedorPage />} />
         {/* <Route path="/alquiler" element={<Alquiler />} /> */}
-        <Route path="/alquiler" element={<AlquileresPage />} />
+        <Route path="/alquilar" element={<AlquileresPage />} />
         <Route path="/otros" element={<Otros />} />
       </Routes>
     </BrowserRouter>

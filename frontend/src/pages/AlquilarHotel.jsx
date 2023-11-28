@@ -11,7 +11,7 @@ import { getHotel } from "../api/hotel";
 
 function AlquilarHotel() {
   const { id } = useParams();
-  let { inicio, fin } = useLocation();
+  const { state } = useLocation();
   const [hotel, setHotel] = useState(null);
   const [vendedor, setVendedor] = useState(null);
   const [paquetesSeleccionados, setPaquetesSeleccionados] = useState([]);
@@ -21,13 +21,13 @@ function AlquilarHotel() {
   useEffect(() => {
     async function obtenerHotel() {
       const res = await getHotel(id, {
-        inicio: "2020-11-02T14:00:00-00:00",
-        fin: "2030-11-02T14:00:00-00:00",
+        inicio: state.inicio,
+        fin: state.fin,
       });
       setHotel(res.data);
     }
     obtenerHotel();
-  }, [id]);
+  }, [id, state]);
 
   // useEffect(() => {
   //   api.hoteles.get(id, "full").then((res) => {
@@ -64,7 +64,6 @@ function AlquilarHotel() {
   };
   return (
     <div>
-      {console.log(inicio, fin)}
       {hotel ? (
         <>
           <Header

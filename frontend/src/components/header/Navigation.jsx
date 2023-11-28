@@ -15,7 +15,7 @@ function Navigation() {
       <Link to="/clientes" className="hover:text-gray-300">
         Clientes
       </Link>
-      <Link to="/alquiler" className="hover:text-gray-300">
+      <Link to="/alquilar" className="hover:text-gray-300">
         Alquilar
       </Link>
       <Link to="/ventas" className="hover:text-gray-300">
