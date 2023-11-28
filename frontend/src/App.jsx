@@ -8,6 +8,7 @@ import VendedorFormPage from "./pages/vendedores/VendedorFormPage";
 import VendedorPage from "./pages/vendedores/VendedorPage";
 import Alquiler from "./pages/ventas/Alquiler";
 import Otros from "./pages/otros/OtrosPage";
+import HotelListAlquilar from "./components/hotel/HotelListAlquilar";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Route path="/vendedores" element={<VendedoresPage />} />
         <Route path="/vendedor-form" element={<VendedorFormPage />} />
         <Route path="/vendedor/:documento" element={<VendedorPage />} />
-        <Route path="/alquiler" element={<Alquiler />} />
+        {/* <Route path="/alquiler" element={<Alquiler />} /> */}
+        <Route path="/alquiler" element={<HotelListAlquilar />} />
         <Route path="/otros" element={<Otros />} />
       </Routes>
     </BrowserRouter>

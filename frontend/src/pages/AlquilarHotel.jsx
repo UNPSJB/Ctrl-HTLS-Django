@@ -7,6 +7,7 @@ import PaquetesList from "../../components/hotel/PaquetesList";
 import SelectVendedorHotel from "../../components/selectores/SelectVendedorHotel";
 import Header from "../../components/header/Header";
 import Estrellas from "../../components/helpers/Estrellas";
+import { getHotel } from "../../api/hotel";
 
 function HotelPage() {
   const { id } = useParams();
@@ -16,10 +17,21 @@ function HotelPage() {
   const [habitaciones, setHabitaciones] = useState({});
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   api.hoteles.get(id, "full").then((res) => {
+  //     setHotel(res);
+  //   });
+  // }, [id]);
+
   useEffect(() => {
-    api.hoteles.get(id, "full").then((res) => {
-      setHotel(res);
-    });
+    async function obtenerHotel() {
+      const res = await getHotel(id, {
+        inicio: "2020-11-02T14:00:00-00:00",
+        fin: "2030-11-02T14:00:00-00:00",
+      });
+      setHotel(res.data);
+    }
+    obtenerHotel();
   }, [id]);
 
   const handlePaqueteToggle = (id) => {
