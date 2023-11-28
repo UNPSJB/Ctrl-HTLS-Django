@@ -20,6 +20,7 @@ from hotel.serializer.otros import (
     PaqueteSerializer,
     DescuentoSerializer,
     TemporadaSerializer,
+    TarifaSerializer,
 )
 
 
@@ -71,6 +72,14 @@ class HotelViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         hoteles_serializados = serializer.save()
         return Response(hoteles_serializados)
+
+    @action(detail=True, methods=["post"], serializer_class=TarifaSerializer)
+    def tarifar(self, request, pk=None):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            return Response({"total": serializer.validated_data["total"]})
+        else:
+            return Response(serializer.errors, status=400)
 
 
 class HabitacionViewSet(viewsets.ModelViewSet):

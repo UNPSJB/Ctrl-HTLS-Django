@@ -6,6 +6,8 @@ import ClienteForm from "../../components/cliente/ClienteForm";
 
 export default function AlquilarPage() {
   const location = useLocation();
+  const [alquiler, setAlquiler] = useState({});
+  const { vendedor } = location.state;
   const [clienteElegido, setClienteElegido] = useState(null);
   const [isClienteFormOpen, setIsClienteFormOpen] = useState(false);
 
@@ -29,6 +31,8 @@ export default function AlquilarPage() {
         clienteElegido={clienteElegido}
         setClienteElegido={setClienteElegido}
       />
+      {/* Mostrar la cantidad de habitaciones a seleccionadas */}
+      <input type="number" placeholder="cantidad pasajeros" />
       {isClienteFormOpen && (
         <ClienteForm
           title={"Crear Cliente"}
@@ -36,6 +40,7 @@ export default function AlquilarPage() {
           onClose={() => setIsClienteFormOpen(false)}
         />
       )}
+      {/*IMPORTE*/}
     </div>
   );
 }

@@ -45,16 +45,13 @@ class Hotel(models.Model):
             # TODO: Flexibilidad al seleccionar alquileres, si se superpone con
             # alquileres por unos dias pero no el total del rango inicio fin retornar True
             pass
-        print(temporadas)
         return temporadas
 
     def paquetes_disponibles(self, inicio, fin, flexible=False):
         # qs = self.paquetes.filter(fecha_inicio__gt=inicio, fecha_fin__lt=fin)
         paquetes = self.paquetes.all()
         paquetes_disponibles = [
-            paquete
-            for paquete in paquetes
-            if paquete.paquete_disponible(inicio, fin)
+            paquete for paquete in paquetes if paquete.paquete_disponible(inicio, fin)
         ]
         if flexible:
             # TODO: Flexibilidad al seleccionar alquileres, si se superpone con
@@ -128,8 +125,11 @@ class PaquetePromocional(models.Model):
         return self.nombre
 
     def paquete_disponible(self, inicio, fin):
-        disponible = not self.alquileres.filter(fecha_fin__lt=inicio, fecha_inicio__gt=fin).exists()
+        disponible = not self.alquileres.filter(
+            fecha_fin__lt=inicio, fecha_inicio__gt=fin
+        ).exists()
         return disponible
+
 
 class HotelVendedor(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
@@ -177,7 +177,7 @@ class Temporada(models.Model):
 
     def __str__(self):
         return f"Hotel {self.hotel} - Temporada {self.tipo} - Desde dia {self.fecha_inicio} hasta {self.fecha_fin}"
-    
+
     # def temporada_disponible(self, inicio, fin):
     #     disponible = not self.temporadas.filter(fecha_fin__lt=inicio, fecha_inicio__gt=fin).exists()
     #     return disponible

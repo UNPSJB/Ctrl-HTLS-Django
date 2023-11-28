@@ -41,3 +41,18 @@ class PrecioPorTipoSerializer(serializers.ModelSerializer):
 
     def get_tipohabitacion(self, obj):
         return obj.tipohabitacion.nombre
+
+
+class TarifaSerializer(serializers.Serializer):
+    habitaciones = serializers.ListField(child=serializers.IntegerField())
+    noches = serializers.IntegerField()
+
+    def validate(self, data):
+        habitaciones = data["habitaciones"]
+        noches = data["noches"]
+        total = 0
+        for habitacion_id in habitaciones:
+            habitacion = Habitacion.objects.get(id=habitacion_id)
+            total += habitacion.precio * noches
+        data["total"] = total
+        return data
