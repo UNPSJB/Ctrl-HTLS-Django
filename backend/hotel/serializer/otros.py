@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from hotel.models import Habitacion, PaquetePromocional, Temporada, Descuento
+from hotel.models import (
+    Habitacion,
+    PaquetePromocional,
+    Temporada,
+    Descuento,
+    PrecioPorTipo,
+)
 
 
 class HabitacionSerializer(serializers.ModelSerializer):
@@ -24,3 +30,14 @@ class DescuentoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Descuento
         fields = "__all__"
+
+
+class PrecioPorTipoSerializer(serializers.ModelSerializer):
+    tipohabitacion = serializers.SerializerMethodField()
+
+    class Meta:
+        model = PrecioPorTipo
+        fields = ["tipohabitacion", "precio"]
+
+    def get_tipohabitacion(self, obj):
+        return obj.tipohabitacion.nombre

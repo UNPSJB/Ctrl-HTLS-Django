@@ -4,6 +4,7 @@ from hotel.serializer.otros import (
     TemporadaSerializer,
     HabitacionSerializer,
     PaqueteSerializer,
+    PrecioPorTipoSerializer,
 )
 from core.serializer.ubicacion import UbicacionSerializer
 from core.serializer.persona import EncargadoSerializer, VendedorSerializer
@@ -13,8 +14,9 @@ from collections import defaultdict
 
 class HotelMiniSerializer(serializers.ModelSerializer):
     class Meta:
-        model= Hotel
-        fields= ["id","nombre","encargado","direccion","categoria"]
+        model = Hotel
+        fields = ["id", "nombre", "encargado", "direccion", "categoria"]
+
 
 class HotelSerializer(serializers.ModelSerializer):
     ubicacion = UbicacionSerializer(source="*", read_only=True)
@@ -30,6 +32,27 @@ class HotelMidSerializer(HotelSerializer):
 
     class Meta(HotelSerializer.Meta):
         fields = HotelSerializer.Meta.fields + ["categoria"]
+
+
+class HotelSemiFullSerializer(HotelMidSerializer):
+    vendedores = serializers.SerializerMethodField()
+    habitaciones = HabitacionSerializer(many=True, read_only=True)
+    paquetes = PaqueteSerializer(many=True, read_only=True)
+    temporadas = TemporadaSerializer(many=True, read_only=True)
+    tarifas = PrecioPorTipoSerializer(many=True, read_only=True)
+
+    class Meta(HotelMidSerializer.Meta):
+        fields = HotelMidSerializer.Meta.fields + [
+            "vendedores",
+            "habitaciones",
+            "paquetes",
+            "temporadas",
+            "tarifas",
+        ]
+
+    def get_vendedores(self, obj):
+        vendedores = obj.get_vendedores()
+        return VendedorSerializer(vendedores, many=True).data
 
 
 def agrupar_habitaciones_por_tipo(habitaciones):

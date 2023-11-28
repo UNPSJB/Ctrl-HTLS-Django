@@ -12,7 +12,8 @@ from hotel.serializer.hotel import (
     HotelSerializer,
     HabitacionSerializer,
     HotelMidSerializer,
-    HotelMiniSerializer
+    HotelMiniSerializer,
+    HotelSemiFullSerializer,
 )
 
 from hotel.serializer.otros import (
@@ -20,6 +21,7 @@ from hotel.serializer.otros import (
     DescuentoSerializer,
     TemporadaSerializer,
 )
+
 
 class HotelViewSet(viewsets.ModelViewSet):
     queryset = Hotel.objects.all()
@@ -37,13 +39,12 @@ class HotelViewSet(viewsets.ModelViewSet):
         detail=True,
         methods=["get", "post"],
         url_path="full",
-        serializer_class=HotelFullSerializer,
     )
     def full_detail(self, request, pk=None):
+        hotel = self.get_object()
         if request.method == "POST":
             serializer = HotelPostSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-            hotel = self.get_object()
             return Response(
                 HotelFullSerializer(
                     hotel,
@@ -54,7 +55,7 @@ class HotelViewSet(viewsets.ModelViewSet):
                 ).data
             )
         else:
-            return super().retrieve(request, pk)
+            return Response(HotelSemiFullSerializer(hotel).data)
 
     @action(detail=False, serializer_class=HotelMidSerializer)
     def mid(self, request):
