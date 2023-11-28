@@ -8,6 +8,7 @@ import VendedorFormPage from "./pages/vendedores/VendedorFormPage";
 import VendedorPage from "./pages/vendedores/VendedorPage";
 import Alquiler from "./pages/ventas/Alquiler";
 import Otros from "./pages/otros/OtrosPage";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/hoteles" element={<HotelesPage />} />
         <Route path="/hotel-form" element={<HotelFormPage />} />
         <Route path="/hotel/:id" element={<HotelPage />} />
