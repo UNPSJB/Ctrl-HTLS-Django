@@ -85,10 +85,13 @@ class HotelFullSerializer(HotelMidSerializer):
         hasta = self.context["fin"]
         habitaciones_disponibles = obj.habitaciones_disponibles(desde, hasta)
         habitaciones_agrupadas = agrupar_habitaciones_por_tipo(habitaciones_disponibles)
-        return {
-            tipo: HabitacionSerializer(habitaciones, many=True).data
+        return [
+            {
+                "tipo": tipo,
+                "habitaciones": HabitacionSerializer(habitaciones, many=True).data,
+            }
             for tipo, habitaciones in habitaciones_agrupadas.items()
-        }
+        ]
 
     def get_paquetes_disponibles(self, obj):
         desde = self.context["inicio"]
