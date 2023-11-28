@@ -20,11 +20,11 @@ function HotelListAlquilar({
   }, [pais, provincia, ciudad, categoria, inicio, fin]);
 
   return (
-    <div>
+    <>
       {hoteles.map((hotel) => (
-        <HotelCard key={hotel.id} hotel={hotel} />
+        <HotelCard key={hotel.id} hotel={hotel} inicio={inicio} fin={fin} />
       ))}
-    </div>
+    </>
   );
 }
 

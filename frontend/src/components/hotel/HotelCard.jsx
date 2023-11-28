@@ -4,7 +4,7 @@ import SwitchButton from "../helpers/SwitchButton";
 import hotelimg from "../../public/hotel2.jpeg";
 import { Link } from "react-router-dom";
 
-function HotelCard({ hotel }) {
+function HotelCard({ hotel, inicio, fin }) {
   const [isToggled, setToggled] = useState(hotel.habilitado);
 
   const toggle = () => {
@@ -24,10 +24,12 @@ function HotelCard({ hotel }) {
         <div className="flex items-center">
           <Link
             to={`/hotel/${hotel.id}`}
+            state={{ inicio: inicio, fin: fin }}
             className="uppercase text-4xl font-hoteles font-bold text-LetraAgregarHotel mr-2"
           >
             <h3>{hotel.nombre}</h3>
           </Link>
+
           <Estrellas stars={hotel.categoria.estrellas} />
         </div>
 

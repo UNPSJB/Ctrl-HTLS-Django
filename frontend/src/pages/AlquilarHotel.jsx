@@ -1,27 +1,22 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import api from "../../api";
-import HabitacionList from "../../components/hotel/HabitacionList";
-import PaquetesList from "../../components/hotel/PaquetesList";
-import SelectVendedorHotel from "../../components/selectores/SelectVendedorHotel";
-import Header from "../../components/header/Header";
-import Estrellas from "../../components/helpers/Estrellas";
-import { getHotel } from "../../api/hotel";
+import api from "../api";
+import HabitacionList from "../components/hotel/HabitacionList";
+import PaquetesList from "../components/hotel/PaquetesList";
+import SelectVendedorHotel from "../components/selectores/SelectVendedorHotel";
+import Header from "../components/header/Header";
+import Estrellas from "../components/helpers/Estrellas";
+import { getHotel } from "../api/hotel";
 
-function HotelPage() {
+function AlquilarHotel() {
   const { id } = useParams();
+  let { inicio, fin } = useLocation();
   const [hotel, setHotel] = useState(null);
   const [vendedor, setVendedor] = useState(null);
   const [paquetesSeleccionados, setPaquetesSeleccionados] = useState([]);
   const [habitaciones, setHabitaciones] = useState({});
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   api.hoteles.get(id, "full").then((res) => {
-  //     setHotel(res);
-  //   });
-  // }, [id]);
 
   useEffect(() => {
     async function obtenerHotel() {
@@ -33,6 +28,12 @@ function HotelPage() {
     }
     obtenerHotel();
   }, [id]);
+
+  // useEffect(() => {
+  //   api.hoteles.get(id, "full").then((res) => {
+  //     setHotel(res);
+  //   });
+  // });
 
   const handlePaqueteToggle = (id) => {
     setPaquetesSeleccionados((prevPaquetes) => {
@@ -63,6 +64,7 @@ function HotelPage() {
   };
   return (
     <div>
+      {console.log(inicio, fin)}
       {hotel ? (
         <>
           <Header
@@ -109,4 +111,4 @@ function HotelPage() {
   );
 }
 
-export default HotelPage;
+export default AlquilarHotel;

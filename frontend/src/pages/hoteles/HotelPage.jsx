@@ -12,9 +12,6 @@ function HotelPage() {
   const { id } = useParams();
   const [hotel, setHotel] = useState(null);
   const [vendedor, setVendedor] = useState(null);
-  const [paquetesSeleccionados, setPaquetesSeleccionados] = useState([]);
-  const [habitaciones, setHabitaciones] = useState({});
-  const navigate = useNavigate();
 
   useEffect(() => {
     api.hoteles.get(id, "full").then((res) => {
@@ -22,33 +19,6 @@ function HotelPage() {
     });
   }, [id]);
 
-  const handlePaqueteToggle = (id) => {
-    setPaquetesSeleccionados((prevPaquetes) => {
-      if (prevPaquetes.includes(id)) {
-        return prevPaquetes.filter((paqueteId) => paqueteId !== id);
-      } else {
-        return [...prevPaquetes, id];
-      }
-    });
-  };
-
-  const handleTipoHabitacionCountChange = (tipoNombre, newCount) => {
-    setHabitaciones((prevCounts) => ({
-      ...prevCounts,
-      [tipoNombre]: newCount,
-    }));
-  };
-
-  const handleAlquilarClick = () => {
-    navigate("/alquiler", {
-      state: {
-        hotel: id,
-        habitaciones: habitaciones,
-        paquetes: paquetesSeleccionados,
-        vendedor: vendedor,
-      },
-    });
-  };
   return (
     <div>
       {hotel ? (
@@ -78,21 +48,18 @@ function HotelPage() {
             />
           </div>
 
-          <HabitacionList
+          {/* <HabitacionList
             habitaciones={hotel.habitaciones_disponibles}
             onCountChange={handleTipoHabitacionCountChange}
           />
           <PaquetesList
             paquetes={hotel.paquetes_disponibles}
             onPaqueteToggle={handlePaqueteToggle}
-          />
+          /> */}
         </>
       ) : (
         <p className="text-gray-500">Cargando...</p>
       )}
-      <button className="bg-gray-800 text-white" onClick={handleAlquilarClick}>
-        ALQUILAR
-      </button>
     </div>
   );
 }
