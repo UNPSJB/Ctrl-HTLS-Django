@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import fondoHotel from "../public/Buenavista.jpeg"
 
-export default function Home() {
+export default function Login() {
   
   return (
     <div className="flex items-center justify-center h-screen">
