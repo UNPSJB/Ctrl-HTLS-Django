@@ -11,6 +11,7 @@ export default function SelectCliente({ clienteElegido, setClienteElegido }) {
   }, []);
 
   const handleClientChange = (e) => {
+    e.preventDefault();
     setClienteElegido(e.target.value);
   };
 

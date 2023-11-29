@@ -73,11 +73,15 @@ export default function AlquilarPage() {
   return (
     <div>
       <Header secondNavBarChildren={secondNavBarChildren} />
-      <SelectCliente
-        clienteElegido={clienteElegido}
-        setClienteElegido={setClienteElegido}
-      />
-      <form onSubmit={(e) => handleAlquilar(e)}>
+
+      <form
+        onSubmit={(e) => handleAlquilar(e)}
+        className="grid justify-items-center"
+      >
+        <SelectCliente
+          clienteElegido={clienteElegido}
+          setClienteElegido={setClienteElegido}
+        />
         {Object.entries(habitaciones).map(([tipo, habitaciones]) => (
           <div key={tipo}>
             <h3>{tipo}</h3>
@@ -94,16 +98,17 @@ export default function AlquilarPage() {
           onChange={(e) => setPasajeros(e.target.value)}
           placeholder="cantidad pasajeros"
         />
-        {isClienteFormOpen && (
-          <ClienteForm
-            title={"Crear Cliente"}
-            isOpen={isClienteFormOpen}
-            onClose={() => setIsClienteFormOpen(false)}
-          />
-        )}
+        <label>Importe:</label>
         <h2>${importe}</h2>
         <button type="submit">CONFIRMAR</button>
       </form>
+      {isClienteFormOpen && (
+        <ClienteForm
+          title={"Crear Cliente"}
+          isOpen={isClienteFormOpen}
+          onClose={() => setIsClienteFormOpen(false)}
+        />
+      )}
     </div>
   );
 }
