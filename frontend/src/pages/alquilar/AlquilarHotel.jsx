@@ -58,6 +58,8 @@ function AlquilarHotel() {
         habitaciones: habitaciones,
         paquetes: paquetesSeleccionados,
         vendedor: vendedor,
+        inicio: state.inicio,
+        fin: state.fin,
       },
     });
   };

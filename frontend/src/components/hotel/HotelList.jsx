@@ -33,12 +33,6 @@ function HotelList({
   //   hotelesDisponibles();
   // }, []);
 
-  // {
-  //   "localidad": 9120,
-  //   "inicio": "2023-11-02T14:00:00-00:00",
-  //   "fin": "2023-11-02T14:00:00-00:00"
-  // }
-
   return (
     <div>
       {hoteles.map((hotel) => (
