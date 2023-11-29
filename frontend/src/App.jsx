@@ -10,6 +10,7 @@ import Otros from "./pages/otros/OtrosPage";
 import Login from "../src/pages/Login";
 import AlquilarHotel from "../src/pages/alquilar/AlquilarHotel";
 import AlquileresPage from "./pages/alquilar/AlquileresPage";
+import HotelCreatePage from "./pages/hoteles/HotelCreatePage";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/hoteles" element={<HotelesPage />} />
-        <Route path="/hotel-form" element={<HotelFormPage />} />
+        <Route path="/hotel-form" element={<HotelCreatePage />} />
         <Route path="/alquilar/:id" element={<AlquilarHotel />} />
         <Route path="/vendedores" element={<VendedoresPage />} />
         <Route path="/vendedor-form" element={<VendedorFormPage />} />

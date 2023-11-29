@@ -122,7 +122,7 @@ export default function HotelFormPage() {
             <SelectEncargado
               encargado={encargado}
               setEncargado={setEncargado}
-            //estilo agregado dentro del componente 'SelectEncargado'
+              //estilo agregado dentro del componente 'SelectEncargado'
             />
           </div>
 
@@ -130,7 +130,9 @@ export default function HotelFormPage() {
             type="submit"
             className="w-100 h-8 p-2 bg-violet-500 rounded-lg flex-col justify-center items-start gap-2.5 inline-flex"
           >
-            <div class="text-center text-white text-base font-normal font-['Noto Sans']">Guardar</div>
+            <div className="text-center text-white text-base font-normal font-['Noto Sans']">
+              Guardar
+            </div>
           </button>
         </form>
       </div>
