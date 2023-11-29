@@ -7,7 +7,7 @@ import ClienteForm from "../../components/cliente/ClienteForm";
 export default function AlquilarPage() {
   const location = useLocation();
   const [alquiler, setAlquiler] = useState({});
-  const { vendedor } = location.state;
+  const { vendedor, habitaciones } = location.state;
   const [clienteElegido, setClienteElegido] = useState(null);
   const [isClienteFormOpen, setIsClienteFormOpen] = useState(false);
 
@@ -32,6 +32,18 @@ export default function AlquilarPage() {
         setClienteElegido={setClienteElegido}
       />
       {/* Mostrar la cantidad de habitaciones a seleccionadas */}
+      {console.log(location.state)}
+      {Object.entries(habitaciones).map(([tipo, habitaciones]) => (
+        <div key={tipo}>
+          <h3>{tipo}</h3>
+          {habitaciones.map((habitacion) => (
+            <p key={habitacion.id}>
+              Número de habitación: {habitacion.numero_de_habitacion}, Piso:{" "}
+              {habitacion.piso}
+            </p>
+          ))}
+        </div>
+      ))}
       <input type="number" placeholder="cantidad pasajeros" />
       {isClienteFormOpen && (
         <ClienteForm

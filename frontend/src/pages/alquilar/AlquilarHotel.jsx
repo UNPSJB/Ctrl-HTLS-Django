@@ -63,6 +63,7 @@ function AlquilarHotel() {
   };
   return (
     <div>
+      {console.log(habitaciones)}
       {hotel ? (
         <>
           <Header
