@@ -15,7 +15,7 @@ from collections import defaultdict
 class HotelMiniSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hotel
-        fields = ["id", "nombre", "encargado", "direccion", "categoria"]
+        fields = ["id", "nombre", "direccion", "categoria"]
 
 
 class HotelSerializer(serializers.ModelSerializer):
