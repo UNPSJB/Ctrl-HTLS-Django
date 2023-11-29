@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api";
-import HotelCard from "./HotelCard";
+import HotelCard from "../hotel/HotelCard";
 
 function HotelListAlquilar({
   pais,

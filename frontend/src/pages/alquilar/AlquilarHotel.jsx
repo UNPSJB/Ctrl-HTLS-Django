@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import api from "../api";
-import HabitacionList from "../components/hotel/HabitacionList";
-import PaquetesList from "../components/hotel/PaquetesList";
-import SelectVendedorHotel from "../components/selectores/SelectVendedorHotel";
-import Header from "../components/header/Header";
-import Estrellas from "../components/helpers/Estrellas";
-import { getHotel } from "../api/hotel";
+import HabitacionList from "../../components/habitacion/HabitacionList";
+import PaquetesList from "../../components/hotel/PaquetesList";
+import SelectVendedorHotel from "../../components/selectores/SelectVendedorHotel";
+import Header from "../../components/header/Header";
+import Estrellas from "../../components/helpers/Estrellas";
+import { getHotel } from "../../api/hotel";
 
 function AlquilarHotel() {
   const { id } = useParams();

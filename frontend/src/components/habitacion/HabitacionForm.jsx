@@ -1,5 +1,4 @@
 import Modal from "../Modal";
-import api from "../../api";
 import { useForm } from "react-hook-form";
 import SelectTipoHabitacion from "../selectores/SelectTipoHabitacion";
 import { useState } from "react";
@@ -13,7 +12,7 @@ export default function HabitacionForm({ title, isOpen, onClose }) {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = handleSubmit(async (data) => {});
+  const onSubmit = handleSubmit(async () => {});
 
   return (
     <Modal title={title} isOpen={isOpen} onClose={onClose}>

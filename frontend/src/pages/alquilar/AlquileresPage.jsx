@@ -1,11 +1,11 @@
 import { useState } from "react";
-import SelectPais from "../components/selectores/SelectPais";
-import SelectProvincia from "../components/selectores/SelectProvincia";
-import SelectCiudad from "../components/selectores/SelectCiudad";
-import SelectCategoria from "../components/selectores/SelectCategoria";
-import Filtro from "../components/Filtro";
-import Header from "../components/header/Header";
-import HotelListAlquilar from "../components/hotel/HotelListAlquilar";
+import SelectPais from "../../components/selectores/SelectPais";
+import SelectProvincia from "../../components/selectores/SelectProvincia";
+import SelectCiudad from "../../components/selectores/SelectCiudad";
+import SelectCategoria from "../../components/selectores/SelectCategoria";
+import Filtro from "../../components/Filtro";
+import Header from "../../components/header/Header";
+import HotelListAlquilar from "../../components/alquilar/HotelListAlquilar";
 
 function AlquileresPage() {
   const [pais, setPais] = useState("");
