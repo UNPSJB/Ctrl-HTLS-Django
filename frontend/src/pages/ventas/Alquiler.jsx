@@ -71,37 +71,46 @@ export default function AlquilarPage() {
   };
 
   return (
-    <div>
+    <>
       <Header secondNavBarChildren={secondNavBarChildren} />
-
-      <form
-        onSubmit={(e) => handleAlquilar(e)}
-        className="grid justify-items-center"
-      >
-        <SelectCliente
-          clienteElegido={clienteElegido}
-          setClienteElegido={setClienteElegido}
-        />
-        {Object.entries(habitaciones).map(([tipo, habitaciones]) => (
-          <div key={tipo}>
-            <h3>{tipo}</h3>
-            {habitaciones.map((habitacion) => (
-              <p key={habitacion.id}>
-                Número de habitación: {habitacion.numero_de_habitacion}, Piso:{" "}
-                {habitacion.piso}
-              </p>
-            ))}
+      <div className="flex justify-center">
+        <form
+          onSubmit={(e) => handleAlquilar(e)}
+          className="grid items-center w-1/4 bg-white rounded shadow-md  text-center"
+        >
+          <SelectCliente
+            clienteElegido={clienteElegido}
+            setClienteElegido={setClienteElegido}
+          />
+          {Object.entries(habitaciones).map(([tipo, habitaciones]) => (
+            <div key={tipo}>
+              <h3>{tipo}</h3>
+              {habitaciones.map((habitacion) => (
+                <p key={habitacion.id}>
+                  Número de habitación: {habitacion.numero_de_habitacion}, Piso:{" "}
+                  {habitacion.piso}
+                </p>
+              ))}
+            </div>
+          ))}
+          <input
+            type="number"
+            onChange={(e) => setPasajeros(e.target.value)}
+            placeholder="cantidad pasajeros"
+            className=""
+          />
+          <label>Importe:</label>
+          <h2>${importe}</h2>
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="w-1/2 border rounded-md px-9 py-1 mr-2 text-white bg-ModificarToggle"
+            >
+              CONFIRMAR
+            </button>
           </div>
-        ))}
-        <input
-          type="number"
-          onChange={(e) => setPasajeros(e.target.value)}
-          placeholder="cantidad pasajeros"
-        />
-        <label>Importe:</label>
-        <h2>${importe}</h2>
-        <button type="submit">CONFIRMAR</button>
-      </form>
+        </form>
+      </div>
       {isClienteFormOpen && (
         <ClienteForm
           title={"Crear Cliente"}
@@ -109,6 +118,6 @@ export default function AlquilarPage() {
           onClose={() => setIsClienteFormOpen(false)}
         />
       )}
-    </div>
+    </>
   );
 }
