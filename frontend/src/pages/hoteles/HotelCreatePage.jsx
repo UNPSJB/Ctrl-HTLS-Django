@@ -6,6 +6,8 @@ import SelectCategoria from "../../components/selectores/SelectCategoria";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import api from "../../api";
+import SuccessModal from '../../components/successModal'; 
+
 
 export default function HotelCreatePage() {
   const [pais, setPais] = useState("");
@@ -13,11 +15,13 @@ export default function HotelCreatePage() {
   const [ciudad, setCiudad] = useState("");
   const [categoria, setCategoria] = useState(null);
   const [hotelCreado, setHotelCreado] = useState(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset, 
   } = useForm();
 
   const onSubmit1 = async (data) => {
@@ -32,6 +36,11 @@ export default function HotelCreatePage() {
     const newHotel = { nombre, direccion, categoria };
     const res = await api.hoteles.create(newHotel);
     if (res) setHotelCreado(res);
+
+    setShowSuccessModal(true);
+    
+    reset(); // Reiniciar el formulario
+    
   };
 
   const onSubmit2 = async (data) => {
@@ -48,10 +57,10 @@ export default function HotelCreatePage() {
         </h2>
         <h3>Datos obligatorios</h3>
         <form
-          className="flex flex-col w-full"
+          className="flex flex-col w-full space-y-3"
           onSubmit={handleSubmit(onSubmit1)}
         >
-          <label className="mb-2">Nombre</label>
+          <label className="">Nombre</label>
           <input
             className="border-2 h-11 border-ModificarToggle rounded-lg focus:border-ModificarToggle focus:outline-none"
             type="text"
@@ -61,27 +70,28 @@ export default function HotelCreatePage() {
           {errors.nombre && (
             <span className="error-message">Este campo es requerido</span>
           )}
-          <label className="mb-2">Pais</label>
+          <label className="">Pais</label>
           <SelectPais
             pais={pais}
             setPais={setPais}
             className="w-full h-full p-2 bg-white rounded-lg border-2 border-ModificarToggle flex-col justify-start items-start gap-2.5 inline-flex focus:border-ModificarToggle focus:outline-none"
           />
-          <label className="mb-2">Provincia</label>
+          <label className="">Provincia</label>
           <SelectProvincia
             pais={pais}
             provincia={provincia}
             setProvincia={setProvincia}
             className="w-full h-full p-2 bg-white rounded-lg border-2 border-ModificarToggle flex-col justify-start items-start gap-2.5 inline-flex focus:border-ModificarToggle focus:outline-none"
           />
-          <label className="mb-2">Ciudad</label>
+          <label className="">Ciudad</label>
           <SelectCiudad
+            pais={pais}
             provincia={provincia}
             ciudad={ciudad}
             setCiudad={setCiudad}
             className="w-full h-full p-2 bg-white rounded-lg border-2 border-ModificarToggle flex-col justify-start items-start gap-2.5 inline-flex focus:border-ModificarToggle focus:outline-none"
           />
-          <label className="mb-2">Calle</label>
+          <label className="">Calle</label>
           <input
             type="text"
             placeholder="Calle"
@@ -89,7 +99,7 @@ export default function HotelCreatePage() {
             className="border-2 h-11 border-ModificarToggle rounded-lg focus:border-ModificarToggle focus:outline-none"
           />
           {errors.calle && <span>Este campo es requerido</span>}
-          <label className="mb-2">Numero</label>
+          <label className="">Numero</label>
           <input
             type="number"
             placeholder="Número"
@@ -97,7 +107,7 @@ export default function HotelCreatePage() {
             className="border-2 h-11 border-ModificarToggle rounded-lg focus:border-ModificarToggle focus:outline-none"
           />
           {errors.numero && <span>Este campo es requerido</span>}
-          <label className="mb-2">Categoria</label>
+          <label className="">Categoria</label>
           <SelectCategoria
             className="w-full h-full p-2 bg-white rounded-lg border-2 border-ModificarToggle flex-col justify-start items-start gap-2.5 inline-flex focus:border-ModificarToggle focus:outline-none"
             categoria={categoria}
@@ -110,17 +120,26 @@ export default function HotelCreatePage() {
             >
               Guardar
             </button>
-            <button className="w-40 h-10 bg-AgregarHotel rounded-lg text-black font-bold font-['Noto Sans']">
+            <button
+              type="button"  
+              onClick={() => {
+                
+                reset(); // Reiniciar el formulario al hacer clic en "Cancelar"
+                
+                setShowSuccessModal(false); // Ocultar el modal de éxito
+              }}
+              className="w-40 h-10 bg-AgregarHotel rounded-lg text-black font-bold font-['Noto Sans']"
+            >
               Cancelar
             </button>
           </div>
         </form>
       </section>
+       {/* Mostrar el modal de éxito */}
+       <SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
+      
       {hotelCreado && (
         <section>
-          <form onSubmit={handleSubmit(onSubmit2)}>
-            <h1>CREE UN HOTEL</h1>
-          </form>
         </section>
       )}
     </>
