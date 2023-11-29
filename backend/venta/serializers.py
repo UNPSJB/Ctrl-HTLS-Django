@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Factura, Alquiler, Pago, Detalle_factura, Liquidacion
+from .models import Factura, Alquiler, Pago, DetalleFactura, Liquidacion
 
 
 class AlquilerSerializer(ModelSerializer):
@@ -16,7 +16,7 @@ class FacturaSerializer(ModelSerializer):
 
 class DetalleFacturaSerializer(ModelSerializer):
     class Meta:
-        model = Detalle_factura
+        model = DetalleFactura
         fields = "__all__"
 
 

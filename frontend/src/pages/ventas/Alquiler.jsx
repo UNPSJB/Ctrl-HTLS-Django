@@ -4,14 +4,18 @@ import SelectCliente from "../../components/selectores/SelectCliente";
 import Header from "../../components/header/Header";
 import ClienteForm from "../../components/cliente/ClienteForm";
 import { tarifar } from "../../api/hotel";
+import api from "../../api";
 
 export default function AlquilarPage() {
   const location = useLocation();
   const [alquiler, setAlquiler] = useState({});
-  const { hotel, vendedor, habitaciones } = location.state;
+  const [hotel, setHotel] = useState(location.state.hotel);
+  const [vendedor, setVendedor] = useState(location.state.vendedor);
+  const [habitaciones, setHabitaciones] = useState(location.state.habitaciones);
   const [clienteElegido, setClienteElegido] = useState(null);
   const [isClienteFormOpen, setIsClienteFormOpen] = useState(false);
   const [importe, setImporte] = useState(0);
+  const [pasajeros, setPasajeros] = useState(0);
 
   const fecha1 = new Date(location.state.inicio);
   const fecha2 = new Date(location.state.fin);
@@ -47,6 +51,25 @@ export default function AlquilarPage() {
     </>
   );
 
+  const handleAlquilar = (e) => {
+    e.preventDefault();
+    async function Alquilar() {
+      const alquiler = {
+        fecha_inicio: location.state.inicio,
+        fecha_fin: location.state.fin,
+        habitaciones: ids,
+        vendedor,
+        importe,
+        paquetes: location.state.paquetes,
+        pasajeros,
+        cliente: clienteElegido,
+      };
+      const res = await api.alquileres.create(alquiler);
+      console.log("esto es res: ", res);
+    }
+    Alquilar();
+  };
+
   return (
     <div>
       <Header secondNavBarChildren={secondNavBarChildren} />
@@ -54,26 +77,33 @@ export default function AlquilarPage() {
         clienteElegido={clienteElegido}
         setClienteElegido={setClienteElegido}
       />
-      {Object.entries(habitaciones).map(([tipo, habitaciones]) => (
-        <div key={tipo}>
-          <h3>{tipo}</h3>
-          {habitaciones.map((habitacion) => (
-            <p key={habitacion.id}>
-              Número de habitación: {habitacion.numero_de_habitacion}, Piso:{" "}
-              {habitacion.piso}
-            </p>
-          ))}
-        </div>
-      ))}
-      <input type="number" placeholder="cantidad pasajeros" />
-      {isClienteFormOpen && (
-        <ClienteForm
-          title={"Crear Cliente"}
-          isOpen={isClienteFormOpen}
-          onClose={() => setIsClienteFormOpen(false)}
+      <form onSubmit={(e) => handleAlquilar(e)}>
+        {Object.entries(habitaciones).map(([tipo, habitaciones]) => (
+          <div key={tipo}>
+            <h3>{tipo}</h3>
+            {habitaciones.map((habitacion) => (
+              <p key={habitacion.id}>
+                Número de habitación: {habitacion.numero_de_habitacion}, Piso:{" "}
+                {habitacion.piso}
+              </p>
+            ))}
+          </div>
+        ))}
+        <input
+          type="number"
+          onChange={(e) => setPasajeros(e.target.value)}
+          placeholder="cantidad pasajeros"
         />
-      )}
-      <h2>${importe}</h2>
+        {isClienteFormOpen && (
+          <ClienteForm
+            title={"Crear Cliente"}
+            isOpen={isClienteFormOpen}
+            onClose={() => setIsClienteFormOpen(false)}
+          />
+        )}
+        <h2>${importe}</h2>
+        <button type="submit">CONFIRMAR</button>
+      </form>
     </div>
   );
 }
