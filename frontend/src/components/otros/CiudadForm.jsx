@@ -4,10 +4,12 @@ import SelectPais from "../selectores/SelectPais";
 import SelectProvincia from "../selectores/SelectProvincia";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import SuccessModal from '../../components/successModal'; 
 
 export default function CiudadForm({ title, isOpen, onClose }) {
   const [pais, setPais] = useState("");
   const [provincia, setProvincia] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const {
     register,
@@ -27,6 +29,9 @@ export default function CiudadForm({ title, isOpen, onClose }) {
     } catch (error) {
       console.error("ERROR", error);
     }
+
+    setShowSuccessModal(true);
+
   });
 
   return (
@@ -71,6 +76,8 @@ export default function CiudadForm({ title, isOpen, onClose }) {
           </button>
         </div>
       </form>
+      {/* Mostrar el modal de éxito */}
+      <SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
     </Modal>
   );
 }

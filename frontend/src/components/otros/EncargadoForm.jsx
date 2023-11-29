@@ -6,12 +6,14 @@ import api from "../../api";
 import { useState } from "react";
 import SelectTipoDocumento from "../selectores/SelectTipoDocumento";
 import { useForm } from "react-hook-form";
+import SuccessModal from '../../components/successModal'; 
 
 export default function EncargadoForm({ title, isOpen, onClose }) {
   const [pais, setPais] = useState("");
   const [provincia, setProvincia] = useState("");
   const [ciudad, setCiudad] = useState("");
   const [tipoDocumento, setTipoDocumento] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const {
     register,
@@ -38,6 +40,9 @@ export default function EncargadoForm({ title, isOpen, onClose }) {
     } catch (error) {
       console.error("ERROR", error);
     }
+
+    setShowSuccessModal(true);
+
   });
   return (
     <Modal title={title} isOpen={isOpen} onClose={onClose}>
@@ -129,6 +134,8 @@ export default function EncargadoForm({ title, isOpen, onClose }) {
           </button>
         </div>
       </form>
+      {/* Mostrar el modal de éxito */}
+      <SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
     </Modal>
   );
 }

@@ -3,9 +3,11 @@ import api from "../../api";
 import { useForm } from "react-hook-form";
 import SelectServicios from "../selectores/SelectServicios";
 import { useState } from "react";
+import SuccessModal from '../../components/successModal'; 
 
 export default function CategoriaForm({ title, isOpen, onClose }) {
   const [servicioElegido, setServicioElegido] = useState(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const {
     register,
@@ -27,6 +29,9 @@ export default function CategoriaForm({ title, isOpen, onClose }) {
     } catch (error) {
       console.error("ERROR", error);
     }
+
+    setShowSuccessModal(true);
+
   });
 
   return (
@@ -73,6 +78,9 @@ export default function CategoriaForm({ title, isOpen, onClose }) {
           </button>
         </div>
       </form>
+      {/* Mostrar el modal de éxito */}
+      <SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
+      
     </Modal>
   );
 }

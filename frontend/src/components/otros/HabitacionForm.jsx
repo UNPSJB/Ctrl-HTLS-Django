@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import SelectHotel from "../selectores/SelectHotel";
 import SelectTipoHabitacion from "../selectores/SelectTipoHabitacion";
-export default function HabitacionForm({ title, isOpen, onClose }) {
+import SuccessModal from '../../components/successModal'; 
 
+export default function HabitacionForm({ title, isOpen, onClose }) {
+	const [showSuccessModal, setShowSuccessModal] = useState(false);
 	const [hotel, setHotel] = useState(null)
 	const [tipoHabitacion, setTipoHabitacion] = useState(null)
 	const {
@@ -28,6 +30,9 @@ export default function HabitacionForm({ title, isOpen, onClose }) {
 		} catch (error) {
 			console.error("ERROR", error);
 		}
+
+		setShowSuccessModal(true);
+
 	});
 
 	return (
@@ -70,6 +75,8 @@ export default function HabitacionForm({ title, isOpen, onClose }) {
 					</button>
 				</div>
 			</form>
+			{/* Mostrar el modal de éxito */}
+			<SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
 		</Modal>
 	)
 }
