@@ -53,11 +53,10 @@ export default function AlquilarPage() {
 
   const handleAlquilar = (e) => {
     e.preventDefault();
-    console.log("estoy en el handle");
     async function Alquilar() {
       const alquiler = {
-        fecha_inicio: fecha1,
-        fecha_fin: fecha2,
+        fecha_inicio: location.state.inicio,
+        fecha_fin: location.state.fin,
         habitaciones: ids,
         vendedor,
         importe,
@@ -65,8 +64,7 @@ export default function AlquilarPage() {
         pasajeros,
         cliente: clienteElegido,
       };
-      console.log("esto es alquiler: ", alquiler);
-      const res = await api.alquileres.create({ alquiler });
+      const res = await api.alquileres.create(alquiler);
       console.log("esto es res: ", res);
     }
     Alquilar();
@@ -74,7 +72,6 @@ export default function AlquilarPage() {
 
   return (
     <div>
-      {console.log(location.state)}
       <Header secondNavBarChildren={secondNavBarChildren} />
       <SelectCliente
         clienteElegido={clienteElegido}
