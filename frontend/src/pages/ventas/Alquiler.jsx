@@ -4,6 +4,7 @@ import SelectCliente from "../../components/selectores/SelectCliente";
 import Header from "../../components/header/Header";
 import ClienteForm from "../../components/cliente/ClienteForm";
 import { tarifar } from "../../api/hotel";
+import api from "../../api";
 
 export default function AlquilarPage() {
   const location = useLocation();
@@ -60,7 +61,9 @@ export default function AlquilarPage() {
         pasajeros,
         cliente: clienteElegido,
       });
+      await api.alquileres.create({ alquiler });
     }
+    Alquilar();
   };
 
   return (
