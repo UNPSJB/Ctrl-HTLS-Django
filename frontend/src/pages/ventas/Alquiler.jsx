@@ -9,7 +9,9 @@ import api from "../../api";
 export default function AlquilarPage() {
   const location = useLocation();
   const [alquiler, setAlquiler] = useState({});
-  const { hotel, vendedor, habitaciones } = location.state;
+  const [hotel, setHotel] = useState(location.state.hotel);
+  const [vendedor, setVendedor] = useState(location.state.vendedor);
+  const [habitaciones, setHabitaciones] = useState(location.state.habitaciones);
   const [clienteElegido, setClienteElegido] = useState(null);
   const [isClienteFormOpen, setIsClienteFormOpen] = useState(false);
   const [importe, setImporte] = useState(0);
@@ -49,9 +51,11 @@ export default function AlquilarPage() {
     </>
   );
 
-  const handleAlquilar = () => {
+  const handleAlquilar = (e) => {
+    e.preventDefault();
+    console.log("estoy en el handle");
     async function Alquilar() {
-      setAlquiler({
+      const alquiler = {
         fecha_inicio: fecha1,
         fecha_fin: fecha2,
         habitaciones: ids,
@@ -60,20 +64,23 @@ export default function AlquilarPage() {
         paquetes: location.state.paquetes,
         pasajeros,
         cliente: clienteElegido,
-      });
-      await api.alquileres.create({ alquiler });
+      };
+      console.log("esto es alquiler: ", alquiler);
+      const res = await api.alquileres.create({ alquiler });
+      console.log("esto es res: ", res);
     }
     Alquilar();
   };
 
   return (
     <div>
+      {console.log(location.state)}
       <Header secondNavBarChildren={secondNavBarChildren} />
       <SelectCliente
         clienteElegido={clienteElegido}
         setClienteElegido={setClienteElegido}
       />
-      <form onSubmit={handleAlquilar}>
+      <form onSubmit={(e) => handleAlquilar(e)}>
         {Object.entries(habitaciones).map(([tipo, habitaciones]) => (
           <div key={tipo}>
             <h3>{tipo}</h3>
@@ -98,6 +105,7 @@ export default function AlquilarPage() {
           />
         )}
         <h2>${importe}</h2>
+        <button type="submit">CONFIRMAR</button>
       </form>
     </div>
   );
