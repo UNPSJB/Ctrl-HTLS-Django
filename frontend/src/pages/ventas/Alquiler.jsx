@@ -12,6 +12,7 @@ export default function AlquilarPage() {
   const [clienteElegido, setClienteElegido] = useState(null);
   const [isClienteFormOpen, setIsClienteFormOpen] = useState(false);
   const [importe, setImporte] = useState(0);
+  const [pasajeros, setPasajeros] = useState(0);
 
   const fecha1 = new Date(location.state.inicio);
   const fecha2 = new Date(location.state.fin);
@@ -47,6 +48,21 @@ export default function AlquilarPage() {
     </>
   );
 
+  const handleAlquilar = () => {
+    async function Alquilar() {
+      setAlquiler({
+        fecha_inicio: fecha1,
+        fecha_fin: fecha2,
+        habitaciones: ids,
+        vendedor,
+        importe,
+        paquetes: location.state.paquetes,
+        pasajeros,
+        cliente: clienteElegido,
+      });
+    }
+  };
+
   return (
     <div>
       <Header secondNavBarChildren={secondNavBarChildren} />
@@ -54,26 +70,32 @@ export default function AlquilarPage() {
         clienteElegido={clienteElegido}
         setClienteElegido={setClienteElegido}
       />
-      {Object.entries(habitaciones).map(([tipo, habitaciones]) => (
-        <div key={tipo}>
-          <h3>{tipo}</h3>
-          {habitaciones.map((habitacion) => (
-            <p key={habitacion.id}>
-              Número de habitación: {habitacion.numero_de_habitacion}, Piso:{" "}
-              {habitacion.piso}
-            </p>
-          ))}
-        </div>
-      ))}
-      <input type="number" placeholder="cantidad pasajeros" />
-      {isClienteFormOpen && (
-        <ClienteForm
-          title={"Crear Cliente"}
-          isOpen={isClienteFormOpen}
-          onClose={() => setIsClienteFormOpen(false)}
+      <form onSubmit={handleAlquilar}>
+        {Object.entries(habitaciones).map(([tipo, habitaciones]) => (
+          <div key={tipo}>
+            <h3>{tipo}</h3>
+            {habitaciones.map((habitacion) => (
+              <p key={habitacion.id}>
+                Número de habitación: {habitacion.numero_de_habitacion}, Piso:{" "}
+                {habitacion.piso}
+              </p>
+            ))}
+          </div>
+        ))}
+        <input
+          type="number"
+          onChange={(e) => setPasajeros(e.target.value)}
+          placeholder="cantidad pasajeros"
         />
-      )}
-      <h2>${importe}</h2>
+        {isClienteFormOpen && (
+          <ClienteForm
+            title={"Crear Cliente"}
+            isOpen={isClienteFormOpen}
+            onClose={() => setIsClienteFormOpen(false)}
+          />
+        )}
+        <h2>${importe}</h2>
+      </form>
     </div>
   );
 }
