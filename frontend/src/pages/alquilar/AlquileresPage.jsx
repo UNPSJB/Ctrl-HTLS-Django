@@ -12,8 +12,10 @@ function AlquileresPage() {
   const [provincia, setProvincia] = useState("");
   const [ciudad, setCiudad] = useState("");
   const [categoria, setCategoria] = useState(null);
-  const [inicio, setInicio] = useState("");
-  const [fin, setFin] = useState("");
+
+  const fechaActual = new Date().toISOString().split("T")[0];
+  const [inicio, setInicio] = useState(fechaActual);
+  const [fin, setFin] = useState(fechaActual);
 
   const secondNavBarContent = (
     <>

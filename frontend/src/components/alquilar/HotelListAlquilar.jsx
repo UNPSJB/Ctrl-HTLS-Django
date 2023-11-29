@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api";
-import HotelCard from "../hotel/HotelCard";
+import AlquilarHotelCard from "../alquilar/AlquilarHotelCard";
 
 function HotelListAlquilar({
   pais,
@@ -22,7 +22,12 @@ function HotelListAlquilar({
   return (
     <>
       {hoteles.map((hotel) => (
-        <HotelCard key={hotel.id} hotel={hotel} inicio={inicio} fin={fin} />
+        <AlquilarHotelCard
+          key={hotel.id}
+          hotel={hotel}
+          inicio={inicio}
+          fin={fin}
+        />
       ))}
     </>
   );

@@ -13,8 +13,8 @@ function HotelesPage() {
   const [provincia, setProvincia] = useState("");
   const [ciudad, setCiudad] = useState("");
   const [categoria, setCategoria] = useState(null);
-  const [fechaEntrada, setFechaEntrada] = useState("");
-  const [fechaSalida, setFechaSalida] = useState("");
+  const [fechaEntrada, setFechaEntrada] = useState("2000-01-01");
+  const [fechaSalida, setFechaSalida] = useState("2999-12-30");
 
   const secondNavBarContent = (
     <>
@@ -41,8 +41,16 @@ function HotelesPage() {
           categoria={categoria}
           setCategoria={setCategoria}
         />
-        <input type="date" value={fechaEntrada} onChange={(e) => setFechaEntrada(e.target.value)} />
-        <input type="date" value={fechaSalida} onChange={(e) => setFechaSalida(e.target.value)} />
+        <input
+          type="date"
+          value={fechaEntrada}
+          onChange={(e) => setFechaEntrada(e.target.value)}
+        />
+        <input
+          type="date"
+          value={fechaSalida}
+          onChange={(e) => setFechaSalida(e.target.value)}
+        />
       </Filtro>
       <h2 className="text-3xl">HOTELES</h2>
       <div>
