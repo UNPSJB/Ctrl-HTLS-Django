@@ -1,8 +1,12 @@
 import Modal from "../Modal";
 import api from "../../api";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import SuccessModal from '../../components/successModal'; 
+
 
 export default function ServicioForm({ title, isOpen, onClose }) {
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const {
     register,
     handleSubmit,
@@ -20,6 +24,7 @@ export default function ServicioForm({ title, isOpen, onClose }) {
     } catch (error) {
       console.error("ERROR", error);
     }
+    setShowSuccessModal(true);
   });
 
   return (
@@ -54,6 +59,8 @@ export default function ServicioForm({ title, isOpen, onClose }) {
           </button>
         </div>
       </form>
+      {/* Mostrar el modal de éxito */}
+      <SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
     </Modal>
   );
 }

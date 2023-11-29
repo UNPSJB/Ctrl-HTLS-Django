@@ -3,19 +3,27 @@ import SelectPais from "../../components/selectores/SelectPais";
 import SelectProvincia from "../../components/selectores/SelectProvincia";
 import SelectCiudad from "../../components/selectores/SelectCiudad";
 import Header from "../../components/header/Header";
+import SuccessModal from '../../components/successModal'; 
 
 export default function VendedorFormPage() {
   const [pais, setPais] = useState("");
   const [provincia, setProvincia] = useState("");
   const [ciudad, setCiudad] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const secondNavBarContent = <>Gestionar Vendedor</>;
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();  // Evitar que el formulario haga una recarga de página
+
+    setShowSuccessModal(true);
+  };
   return (
     <div>
       <Header secondNavBarChildren={secondNavBarContent} />
       <div className="mx-auto w-1/2 bg-FondoHotel p-1 rounded-lg border border-black-300">
         <div>
-          <form>
+          <form onSubmit={handleFormSubmit}>
             <div className="form-group">
               <input
                 type="text"
@@ -86,6 +94,8 @@ export default function VendedorFormPage() {
           </form>
         </div>
       </div>
+       {/* Mostrar el modal de éxito */}
+       <SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
     </div>
   );
 }

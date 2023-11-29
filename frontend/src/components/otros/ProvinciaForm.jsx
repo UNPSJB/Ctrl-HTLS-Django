@@ -3,8 +3,10 @@ import api from "../../api";
 import SelectPais from "../selectores/SelectPais";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import SuccessModal from '../../components/successModal'; 
 
 export default function ProvinciaForm({ title, isOpen, onClose }) {
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [pais, setPais] = useState("");
   const {
     register,
@@ -24,6 +26,8 @@ export default function ProvinciaForm({ title, isOpen, onClose }) {
     } catch (error) {
       console.error("ERROR", error);
     }
+
+    setShowSuccessModal(true);
   });
 
   return (
@@ -54,6 +58,8 @@ export default function ProvinciaForm({ title, isOpen, onClose }) {
           </button>
         </div>
       </form>
+       {/* Mostrar el modal de éxito */}
+       <SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
     </Modal>
   );
 }
