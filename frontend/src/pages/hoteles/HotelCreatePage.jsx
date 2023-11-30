@@ -6,8 +6,7 @@ import SelectCategoria from "../../components/selectores/SelectCategoria";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import api from "../../api";
-import SuccessModal from '../../components/successModal'; 
-
+import SuccessModal from "../../components/successModal";
 
 export default function HotelCreatePage() {
   const [pais, setPais] = useState("");
@@ -21,7 +20,7 @@ export default function HotelCreatePage() {
     register,
     handleSubmit,
     formState: { errors },
-    reset, 
+    reset,
   } = useForm();
 
   const onSubmit1 = async (data) => {
@@ -38,9 +37,8 @@ export default function HotelCreatePage() {
     if (res) setHotelCreado(res);
 
     setShowSuccessModal(true);
-    
+
     reset(); // Reiniciar el formulario
-    
   };
 
   const onSubmit2 = async (data) => {
@@ -121,11 +119,10 @@ export default function HotelCreatePage() {
               Guardar
             </button>
             <button
-              type="button"  
+              type="button"
               onClick={() => {
-                
                 reset(); // Reiniciar el formulario al hacer clic en "Cancelar"
-                
+
                 setShowSuccessModal(false); // Ocultar el modal de éxito
               }}
               className="w-40 h-10 bg-AgregarHotel rounded-lg text-black font-bold font-['Noto Sans']"
@@ -135,11 +132,18 @@ export default function HotelCreatePage() {
           </div>
         </form>
       </section>
-       {/* Mostrar el modal de éxito */}
-       <SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
-      
+      {/* Mostrar el modal de éxito */}
+      <SuccessModal
+        show={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+      />
+
       {hotelCreado && (
         <section>
+          <h2 className="text-2xl font-semibold text-gray-400 font-['Noto Sans']">
+            - Paso 2 -
+          </h2>
+          <h3>Datos obligatorios</h3>
         </section>
       )}
     </>
