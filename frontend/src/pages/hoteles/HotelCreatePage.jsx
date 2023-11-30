@@ -7,6 +7,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import api from "../../api";
 import SuccessModal from "../../components/successModal";
+import SelectEncargado from "../../components/selectores/SelectEncargado";
+import EncargadoForm from "../../components/otros/EncargadoForm";
 
 export default function HotelCreatePage() {
   const [pais, setPais] = useState("");
@@ -15,6 +17,8 @@ export default function HotelCreatePage() {
   const [categoria, setCategoria] = useState(null);
   const [hotelCreado, setHotelCreado] = useState(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [encargadoElegido, setEncargadoElegido] = useState(null);
+  const [isEncargadoFormOpen, setIsEncargadoFormOpen] = useState(false);
 
   const {
     register,
@@ -42,7 +46,7 @@ export default function HotelCreatePage() {
   };
 
   const onSubmit2 = async (data) => {
-    // ... tu lógica para el segundo formulario aquí ...
+    // Guardar datos del paso 2
   };
 
   const secondNavBarContent = <h1 className="text-3xl">Crear Hotel</h1>;
@@ -139,11 +143,36 @@ export default function HotelCreatePage() {
       />
 
       {hotelCreado && (
-        <section>
+        <section className="grid grid-cols-1 place-items-center mx-auto w-1/3">
           <h2 className="text-2xl font-semibold text-gray-400 font-['Noto Sans']">
             - Paso 2 -
           </h2>
           <h3>Datos obligatorios</h3>
+          <form
+            className="flex flex-col w-full space-y-3"
+            onSubmit={handleSubmit(onSubmit2)}
+          >
+            <div className="flex">
+              <SelectEncargado
+                className=""
+                encargado={encargadoElegido}
+                setEncargado={setEncargadoElegido}
+              />
+              <button
+                className="border border-violet-600"
+                onClick={() => setIsEncargadoFormOpen(true)}
+              >
+                Agregar Encargado
+              </button>
+              {isEncargadoFormOpen && (
+                <EncargadoForm
+                  title={"Crear Encargado"}
+                  isOpen={isEncargadoFormOpen}
+                  onClose={() => setIsEncargadoFormOpen(false)}
+                />
+              )}
+            </div>
+          </form>
         </section>
       )}
     </>
