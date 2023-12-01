@@ -1,8 +1,10 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Factura, Alquiler, Pago, DetalleFactura, Liquidacion
+from hotel.serializer.hotel import HabitacionSerializer
 
 
 class AlquilerSerializer(ModelSerializer):
+    habitaciones = HabitacionSerializer(many=True, read_only=True)
     class Meta:
         model = Alquiler
         fields = "__all__"
