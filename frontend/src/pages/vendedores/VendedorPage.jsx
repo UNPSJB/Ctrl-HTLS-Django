@@ -6,12 +6,20 @@ import Header from "../../components/header/Header";
 export default function VendedorPage() {
   const { documento } = useParams();
   const [vendedor, setVendedor] = useState(null);
+  const [alquilerVendedor, setAlquilerVendedor] = useState([])
 
   useEffect(() => {
-    api.vendedores.get(documento).then((res) => {
+    let isMounted = true;
+    api.vendedores.get(documento, "full").then((res) => {
+      if (isMounted) return;
       setVendedor(res);
+      setAlquilerVendedor(res.alquileres);
     });
+    return () => {
+      isMounted = false;
+    };
   }, [documento]);
+
 
   const secondNavBarChildren = (
     <>
@@ -34,6 +42,18 @@ export default function VendedorPage() {
       ) : (
         <p>Cargando...</p>
       )}
+      </div>
+      <div>
+      <div className="grid justify-center mt-2">
+      <h2 className="text-2xl font-bold mb-2 grid justify-center">Alquileres</h2>
+      {alquilerVendedor.map((alquilerItem) => (
+          <div key={alquilerItem.id} className="p-6 bg-white rounded shadow-md mb-2 w-80 text-center" >
+            <p><span className="font-bold"> Fecha Inicio: </span> {alquilerItem.fecha_inicio}</p>
+            <p><span className="font-bold"> Fecha Fin: </span> {alquilerItem.fecha_fin} </p>
+            <p><span className="font-bold"> Importe: </span>{alquilerItem.importe} </p>
+          </div>          
+        ))}
+        </div>
       </div>
     </div>
   );

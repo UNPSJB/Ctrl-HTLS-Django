@@ -46,7 +46,7 @@ export default function ClientePage() {
       <div className="grid justify-center mt-2">
         <h2 className="text-2xl font-bold mb-2 grid justify-center">Alquileres</h2>
         {alquilerCliente.map((alquilerItem) => (
-          <div className="p-6 bg-white rounded shadow-md mb-2 w-80 text-center" >
+          <div key={alquilerItem.id}className="p-6 bg-white rounded shadow-md mb-2 w-80 text-center" >
             <p><span className="font-bold"> Fecha Inicio: </span> {alquilerItem.fecha_inicio}</p>
             <p><span className="font-bold"> Fecha Fin: </span> {alquilerItem.fecha_fin} </p>
             <p><span className="font-bold"> Importe: </span>{alquilerItem.importe} </p>
