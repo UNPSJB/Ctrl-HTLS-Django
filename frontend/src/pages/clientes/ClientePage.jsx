@@ -43,14 +43,18 @@ export default function ClientePage() {
           <p>Cargando...</p>
         )}
       </div>
-      {alquilerCliente.map((alquilerItem) => (
-        <div>
-          <p>{alquilerItem.fecha_inicio}</p>
-          <p>{alquilerItem.fecha_fin}</p>
-          <p>{alquilerItem.importe}</p>
-          <p>{alquilerItem.habitaciones}</p>
-        </div>
-      ))}
+      <div className="grid justify-center mt-2">
+        <h2 className="text-2xl font-bold mb-2 grid justify-center">Alquileres</h2>
+        {alquilerCliente.map((alquilerItem) => (
+          <div className="p-6 bg-white rounded shadow-md mb-2 w-80 text-center" >
+            <p><span className="font-bold"> Fecha Inicio: </span> {alquilerItem.fecha_inicio}</p>
+            <p><span className="font-bold"> Fecha Fin: </span> {alquilerItem.fecha_fin} </p>
+            <p><span className="font-bold"> Importe: </span>{alquilerItem.importe} </p>
+            {/*<p><span className="font-bold">Habitaciones </span> {alquilerItem.habitaciones} </p>*/}
+          </div>
+        ))}
+      </div>
+      
     </div>
   );
 }
