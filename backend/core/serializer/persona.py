@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from core.models import Persona, Vendedor, Encargado, Cliente
+from venta.serializers import AlquilerSerializer
 
 
 class PersonaSerializer(serializers.ModelSerializer):
@@ -16,6 +17,22 @@ class VendedorSerializer(PersonaSerializer):
         fields = "__all__"
 
 
+class VendedorFullSerializer(serializers.ModelSerializer):
+    alquileres = AlquilerSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Vendedor
+        fields = [
+            "tipo_documento",
+            "documento",
+            "nombre",
+            "apellido",
+            "correo",
+            "telefono",
+            "alquileres",
+        ]
+
+
 class EncargadoSerializer(PersonaSerializer):
     class Meta:
         model = Encargado
@@ -26,3 +43,20 @@ class ClienteSerializer(PersonaSerializer):
     class Meta:
         model = Cliente
         fields = "__all__"
+
+
+class ClienteFullSerializer(serializers.ModelSerializer):
+    alquileres = AlquilerSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Cliente
+        fields = [
+            "tipo_documento",
+            "documento",
+            "nombre",
+            "apellido",
+            "correo",
+            "telefono",
+            "puntos",
+            "alquileres",
+        ]

@@ -38,9 +38,16 @@ class Alquiler(models.Model):
     habitaciones = models.ManyToManyField(
         Habitacion, related_name="alquileres", blank=True
     )
-    paquetes = models.ManyToManyField(PaquetePromocional, related_name="alquileres", blank=True)
+    paquetes = models.ManyToManyField(
+        PaquetePromocional, related_name="alquileres", blank=True
+    )
     importe = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=True)
+    vendedor = models.ForeignKey(
+        Vendedor, on_delete=models.CASCADE, null=True, related_name="alquileres"
+    )
+    cliente = models.ForeignKey(
+        Cliente, on_delete=models.CASCADE, null=True, related_name="alquileres"
+    )
     objects = AlquilerManager.from_queryset(AlquilerQuerySet)()
 
     def __str__(self):

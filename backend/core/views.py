@@ -12,18 +12,23 @@ from .models import (
     Encargado,
     Cliente,
 )
-from .serializers import (
+from core.serializer.ubicacion import (
     PaisSerializer,
     ProvinciaSerializer,
     CiudadSerializer,
     DireccionSerializer,
-    TipoHabitacionSerializer,
-    ServicioSerializer,
-    CategoriaFullSerializer,
+)
+from core.serializer.persona import (
     VendedorSerializer,
-    VendedorMidSerializer,
+    VendedorFullSerializer,
     EncargadoSerializer,
     ClienteSerializer,
+    ClienteFullSerializer,
+)
+from core.serializer.otro import (
+    TipoHabitacionSerializer,
+    ServicioSerializer,
+    CategoriaSerializer,
 )
 from django_filters import rest_framework as filters
 from .filters import ProvinciaFilter, CiudadFilter, EncargadoFilter
@@ -71,7 +76,7 @@ class ServicioViewSet(ModelViewSet):
 
 class CategoriaViewSet(ModelViewSet):
     queryset = Categoria.objects.all()
-    serializer_class = CategoriaFullSerializer
+    serializer_class = CategoriaSerializer
 
 
 # -------------------- Persona --------------------
@@ -81,12 +86,16 @@ class VendedorViewSet(ModelViewSet):
     queryset = Vendedor.objects.all()
     serializer_class = VendedorSerializer
 
-    @action(detail=False, serializer_class=VendedorMidSerializer)
+    @action(detail=False, serializer_class=VendedorSerializer)
     def mid(self, request):
         return super().list(request)
 
-    @action(detail=True, url_path="mid", serializer_class=VendedorMidSerializer)
+    @action(detail=True, url_path="mid", serializer_class=VendedorSerializer)
     def mid_detail(self, request, pk=None):
+        return super().retrieve(request, pk)
+
+    @action(detail=True, url_path="full", serializer_class=VendedorFullSerializer)
+    def full(self, request, pk=None):
         return super().retrieve(request, pk)
 
 
@@ -100,3 +109,7 @@ class EncargadoViewSet(ModelViewSet):
 class ClienteViewSet(ModelViewSet):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
+
+    @action(detail=True, url_path="full", serializer_class=ClienteFullSerializer)
+    def full(self, request, pk=None):
+        return super().retrieve(request, pk)
