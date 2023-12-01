@@ -7,7 +7,7 @@ export default function ClienteCard({ cliente }) {
       <div className="w-3/4">
         <div className="flex items-center">
           <h2 className="text-4xl text-LetraAgregarHotel font-hoteles font-bold mr-2 uppercase">
-            <Link to={`/clientes/${cliente.documento}`}>
+            <Link to={`/cliente/${cliente.documento }`}>
               {cliente.nombre} {cliente.apellido}
             </Link>
           </h2>
