@@ -23,7 +23,7 @@ class Hotel(models.Model):
     nombre = models.CharField(max_length=100)
     direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE)
     descripcion = models.TextField(blank=True)
-    habilitado = models.BooleanField(default=False)
+    habilitado = models.BooleanField(default=True)
     tipos_de_habitacion = models.ManyToManyField(
         TipoHabitacion, through="PrecioPorTipo", related_name="hoteles"
     )
