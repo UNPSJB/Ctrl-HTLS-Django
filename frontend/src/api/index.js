@@ -36,8 +36,8 @@ const crud = ENDPOINTS.reduce((acc, [app, plural]) => {
   const apiPath = `${app}/${plural}`;
 
   const apiMethods = {
-    getAll: (view = "") =>
-      client.get(`${apiPath}/${view}`).then(resHandler).catch(handleError),
+    getAll: () =>
+      client.get(`${apiPath}/`).then(resHandler).catch(handleError),
     get: (id, view = "") =>
       client
         .get(`${apiPath}/${id}/${view}`)

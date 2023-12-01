@@ -11,8 +11,9 @@ import Login from "../src/pages/Login";
 import AlquilarHotel from "../src/pages/alquilar/AlquilarHotel";
 import AlquileresPage from "./pages/alquilar/AlquileresPage";
 import HotelCreatePage from "./pages/hoteles/HotelCreatePage";
-import ClientesPage from "./pages/clientes/ClientesPage"
-import ClientePage from "./pages/clientes/ClientePage"
+import ClientesPage from "./pages/clientes/ClientesPage";
+import ClientePage from "./pages/clientes/ClientePage";
+import HotelPage from "./pages/hoteles/HotelPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/hoteles" element={<HotelesPage />} />
+        <Route path="/hotel/:id" element={<HotelPage />} />
         <Route path="/hotel-form" element={<HotelCreatePage />} />
         <Route path="/alquilar/:id" element={<AlquilarHotel />} />
         <Route path="/vendedores" element={<VendedoresPage />} />

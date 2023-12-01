@@ -23,7 +23,7 @@ function HotelCard({ hotel, inicio, fin }) {
       <div className="w-3/5 px-4 py-2">
         <div className="flex items-center">
           <Link
-            to={`/alquilar/${hotel.id}`}
+            to={`/hotel/${hotel.id}`}
             state={{ inicio, fin }}
             className="uppercase text-4xl font-hoteles font-bold text-LetraAgregarHotel mr-2"
           >
