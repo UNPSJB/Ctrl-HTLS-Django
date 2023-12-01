@@ -65,7 +65,6 @@ export default function AlquilarPage() {
         cliente: clienteElegido,
       };
       const res = await api.alquileres.create(alquiler);
-      console.log("esto es res: ", res);
     }
     Alquilar();
   };
