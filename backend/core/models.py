@@ -86,8 +86,8 @@ class Persona(models.Model):
         self.nombre = self.nombre.capitalize()
         super().save(*args, **kwargs)
 
-    def tipo_documento_display(self):
-        return self.get_tipo_documento_display()
+    def tipo_documento(self):
+        return self.tipo_documento()
 
 
 class Vendedor(Persona):

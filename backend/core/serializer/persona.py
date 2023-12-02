@@ -4,7 +4,6 @@ from venta.serializers import AlquilerSerializer
 
 
 class PersonaSerializer(serializers.ModelSerializer):
-    tipo_documento = serializers.CharField(source="tipo_documento_display")
 
     class Meta:
         model = Persona

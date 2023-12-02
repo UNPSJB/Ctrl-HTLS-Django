@@ -22,17 +22,17 @@ export default function HotelFormPage() {
   const [encargado, setEncargado] = useState(null);
   const [categoria, setCategoria] = useState(null);
 
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
+  // const capitalizeFirstLetter = (string) => {
+  //   return string.charAt(0).toUpperCase() + string.slice(1);
+  // };
 
-  const capitalizeEachWord = (string) => {
-    return string
-      .toLowerCase()
-      .split(" ")
-      .map((word) => capitalizeFirstLetter(word))
-      .join(" ");
-  };
+  // const capitalizeEachWord = (string) => {
+  //   return string
+  //     .toLowerCase()
+  //     .split(" ")
+  //     .map((word) => capitalizeFirstLetter(word))
+  //     .join(" ");
+  // };
 
   const onSubmit = handleSubmit(async (data) => {
     // Convertir nombre y calle a Primera letra en mayuscula y el resto en minuscula

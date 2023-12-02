@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import api from "../../api"
+import api from "../../api";
 import Header from "../../components/header/Header";
-import SuccessModal from '../../components/successModal';
+import SuccessModal from "../../components/successModal";
 
 export default function VendedorFormPage() {
   const {
@@ -11,29 +11,31 @@ export default function VendedorFormPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const secondNavBarContent = <>Gestionar Vendedor</>;
-  
-  
+
   const onSubmit = handleSubmit(async (data) => {
+    const newVendedor = {
+      nombre: data.nombre,
+      apellido: data.apellido,
+      documento: data.documento,
+      correo: data.email,
+      telefono: data.telefono,
+    };
 
-    // await api.vendedores.create(newVendedor);
-
-    // navigate("/vendedores");
-  });
-  const handleFormSubmit = (data) => {
-    data.preventDefault();  // Evitar que el formulario haga una recarga de página
-    const newVendedor = { nombre:data.nombre, apellido:data.apellido, documento:data.documento, correo:data.correo , telefono:data.telefono };
     console.log(newVendedor);
-    setShowSuccessModal(true);
-  };
+    await api.vendedores.create(newVendedor);
+    navigate("/vendedores");
+  });
+
   return (
     <div>
       <Header secondNavBarChildren={secondNavBarContent} />
       <div className="mx-auto w-1/2 bg-FondoHotel p-1 rounded-lg border border-black-300">
         <div>
-          <form onSubmit={handleFormSubmit}>
+          <form onSubmit={onSubmit}>
             <div className="form-group">
               <input
                 type="text"
@@ -48,7 +50,7 @@ export default function VendedorFormPage() {
             </div>
 
             <div className="form-group">
-            <input
+              <input
                 type="text"
                 id="apellido"
                 placeholder="Apellido del Vendedor"
@@ -73,7 +75,7 @@ export default function VendedorFormPage() {
               )}
             </div>
             <div className="form-group">
-            <input
+              <input
                 type="number"
                 id="telefono"
                 placeholder="Telefono del Vendedor"
@@ -106,7 +108,10 @@ export default function VendedorFormPage() {
         </div>
       </div>
       {/* Mostrar el modal de éxito */}
-      <SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
+      <SuccessModal
+        show={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+      />
     </div>
   );
 }
