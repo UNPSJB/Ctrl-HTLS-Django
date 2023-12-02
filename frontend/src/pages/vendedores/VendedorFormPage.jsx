@@ -20,12 +20,13 @@ export default function VendedorFormPage() {
     const newVendedor = {
       nombre: data.nombre,
       apellido: data.apellido,
+      //falta controlar el tipo de documento (no funciona desde el backend)
       documento: data.documento,
       correo: data.email,
       telefono: data.telefono,
     };
 
-    console.log(newVendedor);
+    // Se crea perfectamente
     await api.vendedores.create(newVendedor);
     navigate("/vendedores");
   });
