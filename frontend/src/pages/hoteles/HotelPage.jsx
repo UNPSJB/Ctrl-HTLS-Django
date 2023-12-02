@@ -5,7 +5,9 @@ import SelectVendedorHotel from "../../components/selectores/SelectVendedorHotel
 import Header from "../../components/header/Header";
 import Estrellas from "../../components/helpers/Estrellas";
 import HabitacionesTable from "../../components/habitacion/HabitacionTable";
-import PaquetesTable from "../../components/paquete/PaqueteTable";
+import PaquetesTable from "../../components/cosas-hotel/PaquetesTable";
+import TemporadasTable from "../../components/cosas-hotel/TemporadasTable";
+import TarifasTable from "../../components/cosas-hotel/TarifasTable";
 
 function HotelPage() {
   const { id } = useParams();
@@ -32,6 +34,8 @@ function HotelPage() {
     vendedores,
     habitaciones,
     paquetes,
+    temporadas,
+    tarifas,
   } = hotel;
 
   return (
@@ -57,11 +61,17 @@ function HotelPage() {
           setVendedorElegido={setVendedor}
         />
         <div className="grid grid-cols-2 gap-4">
-          <div className="m-4">
+          <div className="m-4 h-auto">
             <HabitacionesTable habitaciones={habitaciones} />
           </div>
-          <div className="m-4">
+          <div className="m-4 h-auto">
             <PaquetesTable paquetes={paquetes} />
+          </div>
+          <div className="m-4 h-auto">
+            <TemporadasTable temporadas={temporadas} />
+          </div>
+          <div className="m-4 h-auto">
+            <TarifasTable tarifas={tarifas} />
           </div>
         </div>
       </div>
