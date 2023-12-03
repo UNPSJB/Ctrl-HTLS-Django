@@ -17,7 +17,7 @@ class ServicioSerializer(serializers.ModelSerializer):
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categoria
-        fields = ["nombre", "descripcion", "estrellas"]
+        fields = ["id","nombre", "descripcion", "estrellas"]
 
 
 class CategoriaMidSerializer(CategoriaSerializer):
