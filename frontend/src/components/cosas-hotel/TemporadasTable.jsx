@@ -1,6 +1,6 @@
 function TemporadasTable({ temporadas }) {
   return (
-    <div className="border border-violet-600">
+    <div className="border border-violet-600 p-6 bg-white rounded shadow-md text-center">
       {temporadas.length > 0 ? (
         temporadas.map((temporada) => {
           return (
@@ -12,7 +12,7 @@ function TemporadasTable({ temporadas }) {
           );
         })
       ) : (
-        <p>Sin Temporadas</p>
+        <p className="text-red-600 font-medium text-lg">Sin Temporadas</p>
       )}
     </div>
   );

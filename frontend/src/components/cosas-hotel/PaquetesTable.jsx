@@ -1,6 +1,6 @@
 function PaquetesTable({ paquetes }) {
   return (
-    <div className="border border-violet-600">
+    <div className="border border-violet-600 p-6 bg-white rounded shadow-md text-center">
       {paquetes.length > 0 ? (
         paquetes.map((paquete) => {
           return (
@@ -11,7 +11,7 @@ function PaquetesTable({ paquetes }) {
           );
         })
       ) : (
-        <p>Sin Paquetes</p>
+        <p className="text-red-600 font-medium text-lg">Sin Paquetes</p>
       )}
     </div>
   );

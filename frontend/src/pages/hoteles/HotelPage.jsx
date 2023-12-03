@@ -47,31 +47,37 @@ function HotelPage() {
       />
       <div className="text-center text-gray-600">
         <Estrellas stars={categoria.estrellas} />
-        <p className="uppercase">{categoria.nombre}</p>
+        <p className="font-navSitiosFrecuentes text-FrecuentesItems text-2xl">{categoria.nombre}</p>
         <p className="font-navSitiosFrecuentes text-FrecuentesItems">
           {ubicacion.calle} - {ubicacion.numero} - {ubicacion.ciudad} -{" "}
           {ubicacion.provincia} - {ubicacion.pais}
         </p>
         <p>
-          Encargado/a: {encargado.nombre} {encargado.apellido}
+          <strong>Encargado/a:</strong>  {encargado.nombre} {encargado.apellido}
         </p>
         <SelectVendedorHotel
           vendedores={vendedores}
           vendedorElegido={vendedor}
           setVendedorElegido={setVendedor}
         />
-        <div className="grid grid-cols-2 gap-4">
-          <div className="m-4 h-auto">
-            <HabitacionesTable habitaciones={habitaciones} />
-          </div>
-          <div className="m-4 h-auto">
-            <PaquetesTable paquetes={paquetes} />
-          </div>
-          <div className="m-4 h-auto">
-            <TemporadasTable temporadas={temporadas} />
-          </div>
-          <div className="m-4 h-auto">
-            <TarifasTable tarifas={tarifas} />
+        <div className="p-6 bg-white rounded shadow-md text-center">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="m-4 h-auto">
+              <h2 className="font-navSitiosFrecuentes text-FrecuentesItems text-2xl">Habitaciones</h2>
+              <HabitacionesTable habitaciones={habitaciones} />
+            </div>
+            <div className="m-4 h-auto">
+              <h2 className="font-navSitiosFrecuentes text-FrecuentesItems text-2xl">Paquetes Promocionales</h2>
+              <PaquetesTable paquetes={paquetes} />
+            </div>
+            <div className="m-4 h-auto">
+              <h2 className="font-navSitiosFrecuentes text-FrecuentesItems text-2xl">Temporadas</h2>
+              <TemporadasTable temporadas={temporadas} />
+            </div>
+            <div className="m-4 h-auto">
+            <h2 className="font-navSitiosFrecuentes text-FrecuentesItems text-2xl">Tarifas</h2>
+              <TarifasTable tarifas={tarifas} />
+            </div>
           </div>
         </div>
       </div>
