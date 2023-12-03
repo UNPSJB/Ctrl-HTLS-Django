@@ -2,13 +2,19 @@ import { useState } from "react";
 import Estrellas from "../helpers/Estrellas";
 import SwitchButton from "../helpers/SwitchButton";
 import hotelimg from "../../public/hotel2.jpeg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function HotelCard({ hotel, inicio, fin }) {
   const [isToggled, setToggled] = useState(hotel.habilitado);
+  const navigate = useNavigate();
 
   const toggle = () => {
     setToggled(!isToggled);
+  };
+
+  const handleModificarClick = () => {
+    localStorage.setItem("hotelExistente", JSON.stringify(hotel));
+    navigate("/hotel-form");
   };
 
   return (
@@ -43,7 +49,10 @@ function HotelCard({ hotel, inicio, fin }) {
       <div className="w-1/5 flex flex-col items-end justify-between p-4">
         <SwitchButton isToggled={isToggled} toggle={toggle} />
         <div className="flex justify-between w-full">
-          <button className="w-1/2 mr-1 bg-ModificarToggle text-white rounded-md px-2 py-1">
+          <button
+            onClick={handleModificarClick}
+            className="w-1/2 mr-1 bg-ModificarToggle text-white rounded-md px-2 py-1"
+          >
             Modificar
           </button>
           <button className="w-1/2 ml-1 bg-AgregarHotel text-LetraAgregarHotel rounded-md px-2 py-1">
