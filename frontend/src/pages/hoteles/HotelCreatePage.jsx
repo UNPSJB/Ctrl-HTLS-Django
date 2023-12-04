@@ -20,6 +20,7 @@ export default function HotelCreatePage({ location }) {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [encargadoElegido, setEncargadoElegido] = useState(null);
   const [isEncargadoFormOpen, setIsEncargadoFormOpen] = useState(false);
+  const [isHabitacionFormOpen, setIsHabitacionFormOpen] = useState(false);
   const [hotelExistente, setHotelExistente] = useState(null);
   const navigate = useNavigate();
 
@@ -85,7 +86,10 @@ export default function HotelCreatePage({ location }) {
   return (
     <>
       <Header secondNavBarChildren={secondNavBarContent} />
-      <section className="grid grid-cols-1 place-items-center mx-auto w-1/3">
+      <section
+        id="PASO 1"
+        className="grid grid-cols-1 place-items-center mx-auto w-1/3"
+      >
         <h2 className="text-2xl font-semibold text-gray-400 font-['Noto Sans']">
           - Paso 1 -
         </h2>
@@ -193,9 +197,25 @@ export default function HotelCreatePage({ location }) {
         show={showSuccessModal}
         onClose={() => setShowSuccessModal(false)}
       />
+      {/* {hotelCreado && ( */}
       {hotelCreado && (
-        <section>
-          <h1>PASO 2</h1>
+        <section
+          id="PASO 2"
+          className="grid grid-cols-1 place-items-center mx-auto w-1/3"
+        >
+          <div className="flex w-full">
+            <SelectEncargado />
+            <button onClick={() => setIsEncargadoFormOpen(true)}>ADD</button>
+          </div>
+          {isEncargadoFormOpen && (
+            <EncargadoForm
+              title={"Crear Encargado"}
+              isOpen={isEncargadoFormOpen}
+              onClose={() => setIsEncargadoFormOpen(false)}
+            />
+          )}
+          {/**ACA VA LA HABITACION */}
+          <div className="flex w-full"></div>
         </section>
       )}
     </>
