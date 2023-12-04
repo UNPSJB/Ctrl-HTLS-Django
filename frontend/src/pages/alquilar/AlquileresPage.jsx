@@ -45,11 +45,13 @@ function AlquileresPage() {
         <input
           type="date"
           value={inicio}
+          min={fechaActual}
           onChange={(e) => setInicio(e.target.value)}
         />
         <input
           type="date"
           value={fin}
+          min={fechaActual}
           onChange={(e) => setFin(e.target.value)}
         />
       </Filtro>

@@ -14,8 +14,10 @@ function HotelesPage() {
   const [provincia, setProvincia] = useState("");
   const [ciudad, setCiudad] = useState("");
   const [categoria, setCategoria] = useState(null);
-  const [fechaEntrada, setFechaEntrada] = useState("2000-01-01");
-  const [fechaSalida, setFechaSalida] = useState("2999-12-30");
+
+  const fechaActual = new Date().toISOString().split("T")[0];
+  const [inicio, setInicio] = useState(fechaActual);
+  const [fin, setFin] = useState(fechaActual);
 
   const navigate = useNavigate();
 
@@ -51,13 +53,15 @@ function HotelesPage() {
         />
         <input
           type="date"
-          value={fechaEntrada}
-          onChange={(e) => setFechaEntrada(e.target.value)}
+          value={inicio}
+          min={fechaActual}
+          onChange={(e) => setInicio(e.target.value)}
         />
         <input
           type="date"
-          value={fechaSalida}
-          onChange={(e) => setFechaSalida(e.target.value)}
+          value={fin}
+          min={fechaActual}
+          onChange={(e) => setFin(e.target.value)}
         />
       </Filtro>
       <h2 className="text-3xl">HOTELES</h2>
@@ -80,8 +84,8 @@ function HotelesPage() {
         provincia={provincia}
         ciudad={ciudad}
         categoria={categoria}
-        fechaEntrada={fechaEntrada}
-        fechaSalida={fechaSalida}
+        inicio={inicio}
+        fin={fin}
       />
     </div>
   );
