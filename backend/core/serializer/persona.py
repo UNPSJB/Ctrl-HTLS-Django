@@ -22,7 +22,7 @@ class VendedorFullSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendedor
         fields = [
-            "tipo_documento",
+            #"tipo_documento",
             "documento",
             "nombre",
             "apellido",
