@@ -6,7 +6,7 @@ import api from "../../api";
 import { useState } from "react";
 import SelectTipoDocumento from "../selectores/SelectTipoDocumento";
 import { useForm } from "react-hook-form";
-import SuccessModal from '../../components/successModal'; 
+import SuccessModal from '../../components/successModal';
 
 export default function ClienteForm({ title, isOpen, onClose }) {
   const [pais, setPais] = useState("");
@@ -30,7 +30,6 @@ export default function ClienteForm({ title, isOpen, onClose }) {
       nombre,
       apellido,
       documento,
-      tipo_documento: tipoDocumento,
       direccion,
       telefono,
       correo,
@@ -77,8 +76,8 @@ export default function ClienteForm({ title, isOpen, onClose }) {
         />
         {errors.documento && <span>Este campo es requerido</span>}
         <SelectPais pais={pais} setPais={setPais}
-        className="w-full h-10 p-2 mb-2 bg-white rounded-lg border-2 border-violet-500 flex-col justify-start items-start gap-2.5 inline-flex"
-         />
+          className="w-full h-10 p-2 mb-2 bg-white rounded-lg border-2 border-violet-500 flex-col justify-start items-start gap-2.5 inline-flex"
+        />
         <SelectProvincia
           pais={pais}
           provincia={provincia}
@@ -119,7 +118,7 @@ export default function ClienteForm({ title, isOpen, onClose }) {
           className="w-full h-9 p-2 mb-2 bg-white rounded-lg border-2 border-violet-500 flex-col justify-start items-start gap-2.5 inline-flex"
         />
         {errors.email && <span>Este campo es requerido</span>}
-        
+
 
         {/* Botones en la misma fila */}
         <div className="flex justify-end mt-4">
