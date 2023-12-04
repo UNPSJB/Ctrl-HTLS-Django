@@ -35,7 +35,7 @@ export default function ClientePage() {
           <div className="p-6 bg-white rounded shadow-md w-80 text-center">
             <h2 className="text-2xl font-bold mb-2">Información del Cliente</h2>
             <p><span className="font-bold">Documento:</span> {cliente.documento}</p>
-            <p><span className="font-bold">Tipo de Documento:</span> {cliente.tipo_documento}</p>
+            {/*<p><span className="font-bold">Tipo de Documento:</span> {cliente.tipo_documento}</p> */}
             <p><span className="font-bold">Nombre:</span> {cliente.nombre}</p>
             <p><span className="font-bold">Apellido:</span> {cliente.apellido}</p>
           </div>

@@ -50,7 +50,7 @@ class ClienteFullSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
         fields = [
-            "tipo_documento",
+            # "tipo_documento",
             "documento",
             "nombre",
             "apellido",
