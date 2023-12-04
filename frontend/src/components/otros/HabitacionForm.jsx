@@ -4,10 +4,12 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import SelectTipoHabitacion from "../selectores/SelectTipoHabitacion";
 import SuccessModal from "../../components/successModal";
+import SelectHotel from "../selectores/SelectHotel";
 
 export default function HabitacionForm({ title, isOpen, onClose }) {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [tipoHabitacion, setTipoHabitacion] = useState(null);
+  const [hotel, setHotel] = useState(null)
   const {
     register,
     handleSubmit,
@@ -18,6 +20,7 @@ export default function HabitacionForm({ title, isOpen, onClose }) {
     const { numeroHabitacion, piso } = data;
     const newHabitacion = {
       numero_de_habitacion: numeroHabitacion,
+      hotel,
       piso,
       tipo_habitacion: tipoHabitacion,
     };
@@ -35,6 +38,10 @@ export default function HabitacionForm({ title, isOpen, onClose }) {
         className="mx-auto bg-FondoHotel p-1 rounded-lg border border-black-300"
         onSubmit={onSubmit}
       >
+        <SelectHotel
+          hotelElegido={hotel}
+          setHotelElegido={setHotel}
+        />
         <input
           type="number"
           placeholder="numero de habitacion"
