@@ -6,7 +6,7 @@ import api from "../../api";
 import { useState } from "react";
 import SelectTipoDocumento from "../selectores/SelectTipoDocumento";
 import { useForm } from "react-hook-form";
-import SuccessModal from '../../components/successModal'; 
+import SuccessModal from '../../components/successModal';
 
 export default function EncargadoForm({ title, isOpen, onClose }) {
   const [pais, setPais] = useState("");
@@ -30,7 +30,6 @@ export default function EncargadoForm({ title, isOpen, onClose }) {
       nombre,
       apellido,
       documento,
-      tipo_documento: tipoDocumento,
       direccion,
       telefono,
       correo,
@@ -74,7 +73,7 @@ export default function EncargadoForm({ title, isOpen, onClose }) {
           className="form-input placeholder: text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
         {errors.documento && <span className="text-Letras">Este campo es requerido</span>}
-        <SelectPais pais={pais} setPais={setPais} 
+        <SelectPais pais={pais} setPais={setPais}
           className="text-Letras bg-FondoHotel w-full p-2 rounded-md"
         />
         <SelectProvincia
