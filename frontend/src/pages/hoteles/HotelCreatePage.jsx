@@ -159,6 +159,15 @@ export default function HotelCreatePage({ location }) {
             }
           />
           {errors.numero && <span>Este campo es requerido</span>}
+          <label className="">Categoria</label>
+          <SelectCategoria
+            className="w-full h-full p-2 bg-white rounded-lg border-2 border-ModificarToggle flex-col justify-start items-start gap-2.5 inline-flex focus:border-ModificarToggle focus:outline-none"
+            categoria={categoria}
+            setCategoria={setCategoria}
+            initialValue={
+              hotelExistente ? hotelExistente.categoria.nombre : null
+            }
+          />
           <div className="flex justify-evenly  mt-3">
             <button
               type="submit"
@@ -186,15 +195,7 @@ export default function HotelCreatePage({ location }) {
       />
       {hotelCreado && (
         <section>
-          <label className="">Categoria</label>
-          <SelectCategoria
-            className="w-full h-full p-2 bg-white rounded-lg border-2 border-ModificarToggle flex-col justify-start items-start gap-2.5 inline-flex focus:border-ModificarToggle focus:outline-none"
-            categoria={categoria}
-            setCategoria={setCategoria}
-            initialValue={
-              hotelExistente ? hotelExistente.categoria.nombre : null
-            }
-          />
+          <h1>PASO 2</h1>
         </section>
       )}
     </>
