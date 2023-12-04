@@ -23,7 +23,6 @@ export default function CategoriaForm({ title, isOpen, onClose }) {
       servicioElegido,
       estrellas,
     };
-    console.log(newCategoria);
     try {
       const res = await api.categorias.create(newCategoria);
     } catch (error) {

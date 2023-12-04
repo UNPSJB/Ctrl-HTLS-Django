@@ -45,7 +45,6 @@ export default function HotelFormPage() {
     const { id: direccion } = await api.direcciones.create(newDireccion);
 
     const newHotel = { nombre, direccion, categoria, encargado };
-    console.log(newHotel);
     await api.hoteles.create(newHotel);
 
     navigate("/hoteles");

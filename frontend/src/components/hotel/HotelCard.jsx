@@ -47,7 +47,6 @@ function HotelCard({ hotel, inicio, fin }) {
         <p className="text-sm text-DescripcionHotel">{hotel.descripcion}</p>
       </div>
       <div className="w-1/5 flex flex-col items-end justify-between p-4">
-        {console.log(hotel.habilitado)}
         <SwitchButton isToggled={hotel.habilitado} toggle={toggle} />
         <div className="flex justify-between w-full">
           <button

@@ -21,7 +21,6 @@ export default function HabitacionForm({ title, isOpen, onClose }) {
       piso,
       tipo_habitacion: tipoHabitacion,
     };
-    console.log(newHabitacion);
     try {
       const res = await api.habitaciones.create(newHabitacion);
       if (res) setShowSuccessModal(true);

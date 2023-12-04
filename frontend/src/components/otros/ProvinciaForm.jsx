@@ -20,7 +20,6 @@ export default function ProvinciaForm({ title, isOpen, onClose }) {
       pais,
       nombre,
     };
-    console.log(newProvincia);
     try {
       const res = await api.provincias.create(newProvincia);
     } catch (error) {
