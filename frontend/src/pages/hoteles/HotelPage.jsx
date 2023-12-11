@@ -9,11 +9,14 @@ import PaquetesTable from "../../components/cosas-hotel/PaquetesTable";
 import TemporadasTable from "../../components/cosas-hotel/TemporadasTable";
 import TarifasTable from "../../components/cosas-hotel/TarifasTable";
 
+
 function HotelPage() {
   const { id } = useParams();
   const [hotel, setHotel] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [vendedor, setVendedor] = useState(null);
+  const [activeTab, setActiveTab] = useState("informacion"); // Pestaña activa
+  
 
   useEffect(() => {
     api.hoteles.get(id, "full").then((res) => {
@@ -38,14 +41,49 @@ function HotelPage() {
     tarifas,
   } = hotel;
 
+  const switchTab = (tab) => {
+    setActiveTab(tab);
+  };
+
   return (
     <div>
       <Header
         secondNavBarChildren={
-          <h2 className="uppercase text-3xl text-center ">{nombre}</h2>
+          <div className="text-center">
+            <h2 className="uppercase text-3xl">{nombre}</h2>
+            <div className="flex justify-center mt-2">
+              <button
+                className={`cursor-pointer mx-2 ${activeTab === "informacion" ? "font-bold" : ""}`}
+                onClick={() => switchTab("informacion")}
+              >
+                Información del Hotel
+              </button>
+              <button
+                className={`cursor-pointer mx-2 ${activeTab === "habitaciones" ? "font-bold" : ""}`}
+                onClick={() => {
+                  setActiveTab("habitaciones")
+                }}
+              >
+                Agregar Habitaciones
+              </button>
+              <button
+                className={`cursor-pointer mx-2 ${activeTab === "paquetes" ? "font-bold" : ""}`}
+                onClick={() => switchTab("paquetes")}
+              >
+                Agregar Paquetes Promocionales
+              </button>
+              <button
+                className={`cursor-pointer mx-2 ${activeTab === "temporadas" ? "font-bold" : ""}`}
+                onClick={() => switchTab("temporadas")}
+              >
+                Agregar Temporadas
+              </button>
+            </div>
+          </div>
         }
       />
-      <div className="text-center text-gray-600">
+        {activeTab === "informacion" && (
+        <div className="text-center text-gray-600">
         <Estrellas stars={categoria.estrellas} />
         <p className="font-navSitiosFrecuentes text-FrecuentesItems text-2xl">{categoria.nombre}</p>
         <p className="font-navSitiosFrecuentes text-FrecuentesItems">
@@ -59,7 +97,7 @@ function HotelPage() {
           vendedores={vendedores}
           vendedorElegido={vendedor}
           setVendedorElegido={setVendedor}
-        />
+        />  
         <div className="p-6 bg-white rounded shadow-md text-center">
           <div className="grid grid-cols-2 gap-4">
             <div className="m-4 h-auto">
@@ -80,7 +118,14 @@ function HotelPage() {
             </div>
           </div>
         </div>
-      </div>
+        </div>
+        )}
+        {activeTab === "habitaciones" && (
+          <div className="p-6 bg-white rounded shadow-md text-center">
+            <h2 className="font-navSitiosFrecuentes text-FrecuentesItems text-2xl">Agregar Habitaciones</h2>
+          </div>
+        )}
+
     </div>
   );
 }

@@ -20,6 +20,12 @@ function HotelesPage() {
   const [fin, setFin] = useState(fechaActual);
 
   const navigate = useNavigate();
+  const [sortOption, setSortOption] = useState("alfabetico");
+
+  const handleSortChange = (event) => {
+    setSortOption(event.target.value);
+  };
+  
 
   const handleAgregarHotelClick = () => {
     localStorage.removeItem("hotelExistente");
@@ -73,9 +79,21 @@ function HotelesPage() {
           Agregar Hotel
         </button>
       </div>
+      <div className="">
+          <label className="text-Letras mx-2">Ordenar por:</label>
+          <select
+            value={sortOption}
+            onChange={handleSortChange}
+            className="text-Letras bg-FondoHotel w-25 p-2 rounded-md"
+          >
+            <option value="alfabetico">Alfabético</option>
+            <option value="categoria">Categoría </option>
+            <option value="estadoLogico">Disponibilidad</option>
+          </select>
+        </div>
     </>
   );
-
+  //const HotelesPage = () => {
   return (
     <div>
       <Header secondNavBarChildren={secondNavBarContent} />
@@ -86,6 +104,7 @@ function HotelesPage() {
         categoria={categoria}
         inicio={inicio}
         fin={fin}
+        sortOption={sortOption}
       />
     </div>
   );

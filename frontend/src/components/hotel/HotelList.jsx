@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../api";
 //import { getHoteles } from "../../api/hotel";
 import HotelCard from "./HotelCard";
+import { useMemo } from "react";
 
 function HotelList({
   pais,
@@ -10,8 +11,10 @@ function HotelList({
   categoria,
   fechaEntrada,
   fechaSalida,
+  sortOption={sortOption}
 }) {
   const [hoteles, setHoteles] = useState([]);
+
 
   useEffect(() => {
     api.hoteles
@@ -21,6 +24,24 @@ function HotelList({
       });
   }, [pais, provincia, ciudad, categoria]);
 
+  
+  const sortedHotels = useMemo(() => {
+    if (!hoteles.length) return [];
+  
+    return [...hoteles].sort((hotelA, hotelB) => {
+      switch (sortOption) {
+        case "alfabetico":
+          return hotelA.nombre.localeCompare(hotelB.nombre);
+        case "categoria":
+          return hotelB.estrellas - hotelA.estrellas;
+        case "estadoLogico":
+          return hotelA.activo - hotelB.activo;
+        default:
+          return 0;
+      }
+    });
+  }, [hoteles, sortOption]);
+  
   // useEffect(() => {
   //   async function hotelesDisponibles() {
   //     const res = await getHoteles({
@@ -35,7 +56,7 @@ function HotelList({
 
   return (
     <div>
-      {hoteles.map((hotel) => (
+      {sortedHotels.map((hotel) => (
         <HotelCard key={hotel.id} hotel={hotel} />
       ))}
     </div>
