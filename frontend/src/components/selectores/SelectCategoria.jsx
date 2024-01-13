@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import api from "../../api";
 import Selector from "./Selector";
 
-export default function SelectCategoria({ categoria, setCategoria }) {
+export default function SelectCategoria({
+  categoria,
+  setCategoria,
+  className,
+}) {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
@@ -16,6 +20,7 @@ export default function SelectCategoria({ categoria, setCategoria }) {
   return (
     <div>
       <Selector
+        className={className}
         value={categoria ?? ""}
         handleChange={handleChange}
         options={categorias}

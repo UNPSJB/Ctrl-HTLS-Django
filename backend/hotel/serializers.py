@@ -1,32 +1,3 @@
-<<<<<<< HEAD
-from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from .models import Hotel, Habitacion, HotelVendedor, PaquetePromocional, Descuento, Temporada
-from core.models import Categoria, Vendedor, Encargado, Direccion
-
-
-class DireccionSerializer(ModelSerializer):
-    class Meta:
-        model = Direccion
-        fields = ["calle", "numero"]
-
-
-class CategoriaSerializer(ModelSerializer):
-    class Meta:
-        model = Categoria
-        fields = ["nombre"]
-
-
-class EncargadoSerializer(ModelSerializer):
-    class Meta:
-        model = Encargado
-        fields = ["documento", "nombre", "apellido"]
-
-
-class VendedorSerializer(ModelSerializer):
-    class Meta:
-        model = Vendedor
-        fields = ["documento", "nombre", "apellido"]
-=======
 from rest_framework.serializers import (
     ModelSerializer,
     SerializerMethodField,
@@ -48,7 +19,6 @@ from core.serializers import (
     VendedorSerializer,
     TipoHabitacionSerializer,
 )
->>>>>>> develop
 
 
 class HotelVendedorSerializer(ModelSerializer):
@@ -183,19 +153,12 @@ class DescuentoSerializer(ModelSerializer):
     class Meta:
         model = Descuento
         fields = "__all__"
-<<<<<<< HEAD
-        
-=======
 
 
->>>>>>> develop
 class TemporadaSerializer(ModelSerializer):
     class Meta:
         model = Temporada
         fields = "__all__"
-<<<<<<< HEAD
-        
-=======
 
 
 # -------------------- Metodos --------------------
@@ -239,4 +202,3 @@ def ubicacion(obj):
         "calle": direccion.calle,
         "numero": direccion.numero,
     }
->>>>>>> develop

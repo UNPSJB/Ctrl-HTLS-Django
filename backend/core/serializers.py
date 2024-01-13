@@ -1,4 +1,9 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import (
+    ModelSerializer,
+    SerializerMethodField,
+    Serializer,
+)
+from rest_framework import serializers
 from .models import (
     Pais,
     Provincia,
@@ -11,6 +16,7 @@ from .models import (
     Encargado,
     Cliente,
 )
+from hotel.models import HotelVendedor
 
 
 # -------------------- Ubicacion --------------------
@@ -78,9 +84,31 @@ class CategoriaMidSerializer(ModelSerializer):
 
 
 class VendedorSerializer(ModelSerializer):
+    tipo_documento = serializers.CharField(
+        source="get_tipo_documento_display", read_only=True
+    )
+
     class Meta:
         model = Vendedor
-        fields = "__all__"
+        fields = [
+            "documento",
+            "tipo_documento",
+            "nombre",
+            "apellido",
+            "correo",
+            "telefono",
+        ]
+
+
+class VendedorMidSerializer(ModelSerializer):
+    hoteles = SerializerMethodField()
+
+    class Meta:
+        model = Vendedor
+        fields = ["nombre", "apellido", "documento", "hoteles"]
+
+    def get_hoteles(self, obj):
+        return hoteles(obj)
 
 
 class EncargadoSerializer(ModelSerializer):
@@ -93,3 +121,9 @@ class ClienteSerializer(ModelSerializer):
     class Meta:
         model = Cliente
         fields = "__all__"
+
+
+def hoteles(obj):
+    hoteles = HotelVendedor.objects.filter(vendedor=obj)
+    # return VendedorHotelSerializer(hoteles, many=True).data
+    return "hola"

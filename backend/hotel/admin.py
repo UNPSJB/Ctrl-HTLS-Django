@@ -6,6 +6,7 @@ from .models import (
     PrecioPorTipo,
     PaquetePromocional,
     Descuento,
+    Temporada,
 )
 
 
@@ -40,3 +41,4 @@ admin.site.register(PrecioPorTipo)
 admin.site.register(PaquetePromocional)
 admin.site.register(Descuento)
 admin.site.register(Temporada)
+admin.site.register(PaqueteHabitacion)

@@ -1,6 +1,20 @@
-function Selector({ value, handleChange, options, disabled, defaultOption, getValue, getLabel }) {
+function Selector({
+  value,
+  handleChange,
+  options,
+  disabled,
+  defaultOption,
+  getValue,
+  getLabel,
+  className,
+}) {
   return (
-    <select value={value} onChange={handleChange} disabled={disabled}>
+    <select
+      className={className}
+      value={value}
+      onChange={handleChange}
+      disabled={disabled}
+    >
       <option value="">{defaultOption}</option>
       {options.map((optionItem) => (
         <option key={getValue(optionItem)} value={getValue(optionItem)}>

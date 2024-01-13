@@ -5,3 +5,37 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+.react-calendar {
+    width: 350px;
+    max-width: 100%;
+    background: white;
+    border: 1px solid #a0a096;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.125em;
+  }
+  
+  .react-calendar__tile {
+    color: #2d3748; /* Este es el color 'gray-800' en Tailwind */
+  }
+  
+  .react-calendar__tile--now {
+    background: #cbd5e0; /* Este es el color 'gray-300' en Tailwind */
+  }
+  
+  .react-calendar__tile--active {
+    background: #a0aec0; /* Este es el color 'gray-400' en Tailwind */
+    color: white;
+  }
+  
+  .react-calendar__navigation {
+    background: #edf2f7; /* Este es el color 'gray-200' en Tailwind */
+  }
+  
+  .react-calendar__navigation button {
+    background: #e2e8f0; /* Este es el color 'gray-300' en Tailwind */
+  }
+  
+  .react-calendar__month-view__weekdays__weekday {
+    color: #4a5568; /* Este es el color 'gray-600' en Tailwind */
+  }
+  
