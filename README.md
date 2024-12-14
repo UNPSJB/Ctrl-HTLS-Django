@@ -1,3 +1,5 @@
+**NOTA:** Este repositorio está archivado. La nueva versión de este trabajo utiliza otras tecnologías y se encuentra en el repositorio llamado [Ctrl-HTLS](https://github.com/UNPSJB/Ctrl-HTLS).
+
 # Ctrl-HTLS - Sistema de Gestion de Hoteles
 
 El Centro Hotelero Buena Vista es una organización que nuclea la venta de estadías de distintos hoteles.
